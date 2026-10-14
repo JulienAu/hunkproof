@@ -1,0 +1,36 @@
+{
+  "priceListDate": "2026-10-14",
+  "currency": "USD",
+  "unit": "USD per 1M tokens",
+  "source": "Anthropic public API list prices (platform.claude.com/pricing) as known on 2026-10-14; first-party API rates, standard tier, no batch discount, no fast mode. Model ids are matched exactly, then by the longest '-' delimited prefix (so claude-haiku-4-5-20251001 uses claude-haiku-4-5). Models with no entry, aliases and '<synthetic>' resolve to 'unknown' => null cost and are listed in unpricedModels.",
+  "notes": [
+    "cacheWrite is priced as a 5-minute cache write (1.25x input). 1-hour cache writes cost 2x input but the transcript event carries a single cacheWrite total, so 1h writes are under-counted; summarizeUsage reads an optional cacheWrite1h field when a producer provides it.",
+    "cacheRead for claude-fable-5-1, claude-opus-5-5 and claude-sonnet-5-5 are published values ($0.25, $0.20, $0.20). cacheRead for the other models is the standard 10% of input and is inferred, not confirmed.",
+    "claude-fable-5 cacheRead is inferred as 10% of input ($1.00); the $0.25 rate was introduced with claude-fable-5-1.",
+    "claude-haiku-5-5 prices apply to prompts up to 100K tokens; longer prompts are billed at $0.50 / $2.50 and are not modeled here.",
+    "claude-opus-4-1 and claude-opus-4 keep their original $15 / $75 list prices; claude-opus-4-5 and later Opus models are $5 / $25 (claude-opus-5-5: $4 / $20).",
+    "claude-haiku-3-5 and claude-sonnet-3-7 are included for old transcripts; their prices are the last ones known and may have changed."
+  ],
+  "models": {
+    "claude-fable-5-1": { "input": 10, "output": 50, "cacheWrite": 12.5, "cacheRead": 0.25 },
+    "claude-fable-5": { "input": 10, "output": 50, "cacheWrite": 12.5, "cacheRead": 1.0 },
+    "claude-opus-5-5": { "input": 4, "output": 20, "cacheWrite": 5, "cacheRead": 0.2 },
+    "claude-opus-5": { "input": 5, "output": 25, "cacheWrite": 6.25, "cacheRead": 0.5 },
+    "claude-opus-4-8": { "input": 5, "output": 25, "cacheWrite": 6.25, "cacheRead": 0.5 },
+    "claude-opus-4-7": { "input": 5, "output": 25, "cacheWrite": 6.25, "cacheRead": 0.5 },
+    "claude-opus-4-6": { "input": 5, "output": 25, "cacheWrite": 6.25, "cacheRead": 0.5 },
+    "claude-opus-4-5": { "input": 5, "output": 25, "cacheWrite": 6.25, "cacheRead": 0.5 },
+    "claude-opus-4-1": { "input": 15, "output": 75, "cacheWrite": 18.75, "cacheRead": 1.5 },
+    "claude-opus-4": { "input": 15, "output": 75, "cacheWrite": 18.75, "cacheRead": 1.5 },
+    "claude-sonnet-5-5": { "input": 2, "output": 10, "cacheWrite": 2.5, "cacheRead": 0.2 },
+    "claude-sonnet-5": { "input": 2, "output": 10, "cacheWrite": 2.5, "cacheRead": 0.2 },
+    "claude-sonnet-4-6": { "input": 3, "output": 15, "cacheWrite": 3.75, "cacheRead": 0.3 },
+    "claude-sonnet-4-5": { "input": 3, "output": 15, "cacheWrite": 3.75, "cacheRead": 0.3 },
+    "claude-sonnet-4": { "input": 3, "output": 15, "cacheWrite": 3.75, "cacheRead": 0.3 },
+    "claude-sonnet-3-7": { "input": 3, "output": 15, "cacheWrite": 3.75, "cacheRead": 0.3 },
+    "claude-haiku-5-5": { "input": 0.1, "output": 0.5, "cacheWrite": 0.125, "cacheRead": 0.01 },
+    "claude-haiku-4-5": { "input": 1, "output": 5, "cacheWrite": 1.25, "cacheRead": 0.1 },
+    "claude-haiku-3-5": { "input": 0.8, "output": 4, "cacheWrite": 1, "cacheRead": 0.08 },
+    "unknown": null
+  }
+}

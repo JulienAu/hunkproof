@@ -1,0 +1,16 @@
+{
+  "name": "hunkproof",
+  "version": "0.1.0",
+  "description": "git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.",
+  "type": "module",
+  "bin": { "hunkproof": "bin/hunkproof.js" },
+  "files": ["bin", "src", "README.md", "LICENSE", "CHANGELOG.md"],
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test" },
+  "keywords": ["claude-code", "agent", "pull-request", "code-review", "provenance", "receipts", "developer-tools"],
+  "author": "JulienAu",
+  "license": "MIT",
+  "homepage": "https://github.com/JulienAu/hunkproof#readme",
+  "bugs": { "url": "https://github.com/JulienAu/hunkproof/issues" },
+  "repository": { "type": "git", "url": "git+https://github.com/JulienAu/hunkproof.git" }
+}

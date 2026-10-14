@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "hunkproof",
+  "description": "hunkproof: a run receipt for every hunk of an agent-written pull request, from the Claude Code transcripts on your disk",
+  "owner": {
+    "name": "JulienAu",
+    "url": "https://github.com/JulienAu"
+  },
+  "plugins": [
+    {
+      "name": "hunkproof",
+      "source": "./",
+      "description": "Stamps every hunk of a PR with what the agent ran after writing it and lists the unrun hunks. Adds the hunkproof skill and the /hunkproof:receipt command.",
+      "category": "development",
+      "tags": ["claude-code", "pull-request", "review", "provenance", "receipts"]
+    }
+  ]
+}

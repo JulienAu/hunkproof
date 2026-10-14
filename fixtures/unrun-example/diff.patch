@@ -1,0 +1,128 @@
+diff --git a/.claude-plugin/plugin.json b/.claude-plugin/plugin.json
+index f1d8517..45e8348 100644
+--- a/.claude-plugin/plugin.json
++++ b/.claude-plugin/plugin.json
+@@ -4 +4 @@
+-  "description": "git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, nothing leaves your machine.",
++  "description": "git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.",
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index f3c11f8..87b2878 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -16 +16 @@ First public release.
+-- Every output (`evidence.json`, HTML, Markdown, terminal, git note) rewrites home directories to `~`, diff lines and file paths included: the machine's home, its encoded transcript-directory form, and any `/home/<user>`, `/Users/<user>` or `C:\Users\<user>` prefix. Secrets (API keys, tokens, private keys, JWTs, high-entropy strings, emails, IPv4 addresses) are masked in the agent text, run commands and run summaries. The document states these rules in its `redaction` field and the footers print them.
++- Every output (`evidence.json`, HTML, Markdown, terminal, git note) rewrites home directories to `~`, diff lines and file paths included: the machine's home, its encoded transcript-directory form, and any `/home/<user>`, `/Users/<user>` or `C:\Users\<user>` prefix. Secrets (API keys, tokens, private keys, JWTs, high-entropy strings, emails, IPv4 addresses) are masked in the agent text, run commands and run summaries; the `origin` URL is stored without its user name and password. The document states these rules in its `redaction` field and the footers print them.
+@@ -18,3 +18,3 @@ First public release.
+-- A merged PR stops at its merge commit: transcript events after it are left out, so later sessions on the same repository do not stamp its hunks.
+-- `hunkproof stats` streams every transcript on the machine and prints, per project, how many file edits had no run, no targeted run or no passing run after their last edit, and how many commits included a file edited after the last run. `--anonymize` names the projects `project-01` to `project-NN` for a snapshot that can be shared.
+-- A receipt of hunkproof on its own PR #2 (code commits, `1af692a4..102eae0`) ships in `fixtures/self-pr`; the test suite rebuilds the HTML and Markdown from it byte for byte and the README quotes its numbers.
++- A merged PR stops at its merge commit: transcript events after it are left out, so later sessions on the same repository do not stamp its hunks, and the session rows end there too, so the document does not change as the transcripts grow.
++- `hunkproof stats` streams every transcript modified in the last 90 days (`--since DAYS`) and prints, per project, how many file edits had no run, no targeted run or no passing run after their last edit, and how many commits included a file edited after the last run. `--anonymize` names the projects `project-01` to `project-NN` for a snapshot that can be shared.
++- A receipt of hunkproof on its own PR #2 (code commits, `1af692a4..102eae0`) ships in `fixtures/self-pr`; the test suite rebuilds the HTML and Markdown from it byte for byte and the README quotes its numbers. A second receipt, `fixtures/unrun-example`, was taken on the release pull request right after its docs commits, before the suite ran again, so the README can show what an unrun hunk looks like.
+@@ -22 +22,2 @@ First public release.
+-- Ships as an npm package (`npx hunkproof`) and as a Claude Code plugin from the repository (`claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`) with a skill and the `/hunkproof:hunkproof` command.
++- Ships as an npm package (`npx hunkproof`) and as a Claude Code plugin from the repository (`claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`) with a skill and the `/hunkproof:receipt` command.
++- The reproduction command printed in every report carries the PR number and the `--base`/`--head` refs the receipt was made with.
+@@ -27 +28 @@ First public release.
+-- It does not judge code. A run after an edit says that the command ran and what it printed, nothing about whether the hunk is correct, exercised or safe. hunkproof's own wording never says a hunk was tested, verified or covered.
++- It does not judge code. A run after an edit says that the command ran and what it printed, nothing about whether the hunk is correct, exercised or safe. hunkproof's own wording never borrows the vocabulary of test coverage; it says what ran after the last edit, or that nothing did.
+diff --git a/CLAUDE.md b/CLAUDE.md
+index e57788a..f38a117 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -10 +10 @@
+-- Commits: small, imperative subject, body explains why. Trailer: `Signed-off-by: JulienAu <16043912+JulienAu@users.noreply.github.com>`. No Co-Authored-By trailers, no mention of AI tools in commit messages or PR text.
++- Commits: small, imperative subject, body explains why. Trailer: `Signed-off-by: JulienAu <16043912+JulienAu@users.noreply.github.com>`, no other trailers. Subject and body describe the change, not the tooling.
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 6fc56ec..5f7c60b 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -19 +19 @@ That runs `node --test` over `test/*.test.js`. Run it after every change. New be
+-- **Vocabulary rule, enforced by a test.** hunkproof reports what ran, not what is true about the code. Strings printed by the tool, and the docs, never say a hunk was "tested", "verified" or "covered", and never call a report "proof that it works". Use: "run after last edit", "unrun", "ran, failed", "ran, outcome not parsed".
++- **Vocabulary rule, enforced by a test.** hunkproof reports what ran, not what is true about the code. Strings printed by the tool, and the docs, never borrow the vocabulary of test coverage and never call a report proof of anything. Use: "run after last edit", "unrun", "ran, failed", "ran, outcome not parsed".
+diff --git a/LICENSE b/LICENSE
+index 390277c..dd53d58 100644
+--- a/LICENSE
++++ b/LICENSE
+@@ -3 +3 @@ MIT License
+-Copyright (c) 2026 Julien Au
++Copyright (c) 2026 JulienAu
+diff --git a/README.md b/README.md
+index 98adc77..8010de8 100644
+--- a/README.md
++++ b/README.md
+@@ -3 +3 @@
+-**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.** 0 LLM tokens, nothing leaves your machine.
++**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.** 0 LLM tokens, your transcripts never leave your machine.
+@@ -9 +9 @@
+-*The HTML report on PR #2 of this repository, 7.5 seconds: the headline, then the first hunks with their diff lines, the agent's sentence for the edit when there is one, and the runs after it. [Still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png).*
++*The HTML report on PR #2 of this repository, about 8 seconds: the headline, then the first hunks with their diff lines, the agent's sentence for the edit when there is one, and the runs after it. [Still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png).*
+@@ -11 +11,5 @@
+-One row per hunk of the pull request: the file and line range, the status (`ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun`, `unattributed`), and the last run after the hunk's last edit with its timestamp, runner and outcome. The HTML report adds the diff lines, the sentence the agent wrote in the same turn as the edit (its intent, when there is one), how many times the lines were rewritten, and the timeline of runs after the edit. The Markdown comment lists the unrun hunks with links and names the run that decided each hunk. Everything comes from the Claude Code transcripts already in `~/.claude/projects`; hunkproof reads them, it never asks a model.
++One row per hunk of the pull request: the file and line range, the status (`ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun`, `unattributed`), and the last run after the hunk's last edit with its timestamp, runner and outcome.
++
++The HTML report adds the diff lines, the sentence the agent wrote in the same turn as the edit (its intent, when there is one), how many times the lines were rewritten, and the timeline of runs after the edit. The Markdown comment lists the unrun hunks with links and names the run that decided each hunk.
++
++Everything comes from the Claude Code transcripts already in `~/.claude/projects`; hunkproof reads them, it never asks a model.
+@@ -15 +19 @@ One row per hunk of the pull request: the file and line range, the status (`ran,
+-`npx hunkproof --pr 2 --base 1af692a4 --head 102eae0` on this repository, 2026-10-14, output kept in [`fixtures/self-pr`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/self-pr). [PR #2](https://github.com/JulienAu/hunkproof/pull/2) is the v0.1 build branch (it replaced PR #1 after a history rewrite that only changed the commit identity, not the content); the range stops at the last code commit, before the commit that added this receipt itself, since a receipt of a diff that contains its own 2 MB evidence file would quote itself. Transcript events after the merge are left out, as for every merged PR:
++`npx hunkproof --pr 2 --base 1af692a4 --head 102eae0` on this repository, 2026-10-14, output kept in [`fixtures/self-pr`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/self-pr). The range is the code commits of [PR #2](https://github.com/JulienAu/hunkproof/pull/2), the v0.1 build branch, up to the last one before the receipt itself was added (a receipt of a diff that contains its own 2 MB evidence file would quote itself). Events after the merge are left out, as for every merged PR. *line-matched* means the hunk's added lines were found in an edit the agent made; *file-level* means only the file was:
+@@ -23 +27,3 @@ hunkproof · PR #2 · 64 of 64 line-matched hunks had a run after their last edi
+-| 68 | 64 | 64 | 0 | 1 | 9 | 5.2 s | 0 |
++| 68 | 64 | 64 | 0 | 1 | 9 | 3.5 s | 0 |
++
++No hunk is unrun in this range: the plugin manifests, the skill and the install page, written last, got a passing `node --test` run eight minutes later from the same session. The 3 file-level hunks are `CONTRACT.md` edits whose exact lines were not found in any edit; the unattributed hunk is a `.gitignore` line edited before the branch existed. `test/fixture.test.js` holds these numbers and rebuilds the HTML and Markdown from the saved evidence byte for byte.
+@@ -25 +31,3 @@ hunkproof · PR #2 · 64 of 64 line-matched hunks had a run after their last edi
+-No hunk is unrun in this range: the plugin manifests, the skill and the install page, written last, got a passing `node --test` run eight minutes later from the same session. The unattributed hunk is a `.gitignore` line edited before the branch existed. `test/fixture.test.js` holds these numbers and rebuilds the HTML and Markdown from the saved evidence byte for byte.
++### What an unrun hunk looks like
++
++The receipt above is clean, so here is one that is not, from the pull request that prepared this release: its docs commits edited this README and the CHANGELOG after the test suite had last run.
+@@ -29 +37 @@ No hunk is unrun in this range: the plugin manifests, the skill and the install
+-Tell your agent: *"install hunkproof"*. An agent that reads [`docs/install/agent.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) resolves that to one of:
++Paste this into Claude Code: *"Install github.com/JulienAu/hunkproof and run it on this branch"*. The agent reads [`docs/install/agent.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) and runs one of:
+@@ -39 +47 @@ npx hunkproof --pr <n>
+-Inside a Claude Code session, `/plugin install hunkproof --marketplace JulienAu/hunkproof` does the same in one step. The plugin adds a skill (Claude runs hunkproof when a PR needs a receipt) and the `/hunkproof:hunkproof` command (runs it on the current branch's PR and summarizes the unrun hunks). Node 22 or later, no dependencies.
++One step, from a terminal: `claude plugin install hunkproof --marketplace JulienAu/hunkproof` (adds the marketplace first). Inside a session, after `claude plugin marketplace add JulienAu/hunkproof`, it is `/plugin install hunkproof@hunkproof`. `npx github:JulienAu/hunkproof --pr <n>` runs the CLI straight from the repository. The plugin adds a skill (Claude runs hunkproof when a PR needs a receipt) and the `/hunkproof:receipt` command (runs it on the current branch's PR and summarizes the unrun hunks). Node 22 or later, no dependencies.
+@@ -54,2 +61,0 @@ Outputs go to `<repo>/.hunkproof/` (`evidence.json`, `hunkproof.html`, `hunkproo
+-hunkproof's own row would read: yes, the last run after each hunk's last edit with its outcome, yes, 0, no.
+-
+@@ -57,0 +64 @@ hunkproof's own row would read: yes, the last run after each hunk's last edit wi
++| hunkproof | yes | the last run after each hunk's last edit, with its outcome | yes | 0 | no (transcripts); `gh` fetches the PR metadata, `--post` sends the comment after you type y |
+@@ -61 +68 @@ hunkproof's own row would read: yes, the last run after each hunk's last edit wi
+-| git-ai | yes: agent, model and prompt per line | ? | per line (`git ai blame`) | 0 (the agents report the lines they wrote) | no: offline, no login |
++| git-ai | yes: agent, model and prompt per line | ? | per line (`git ai blame`) | none mentioned | no: offline, no login |
+@@ -65 +72 @@ hunkproof's own row would read: yes, the last run after each hunk's last edit wi
+-Filled from each project's README on 2026-10-14: [Entire CLI](https://github.com/entireio/cli#readme), [git-ai](https://github.com/git-ai-project/git-ai#readme), [claude-replay](https://github.com/es617/claude-replay#readme), [mindwalk](https://github.com/cosmtrek/mindwalk#readme). A "?" means the README does not say. The first two rows describe git and GitHub as used, there is no README to cite. Also nearby: Anthropic's [receipts](https://claude.com/plugins/receipts) plugin (a personal usage report from the same transcripts) and [pr-provenance-stamp](https://claudepluginhub.com/plugins/karanb192-pr-provenance-stamp-plugins-pr-provenance-stamp) (a provenance note in the PR body at creation time).
++Filled from each project's README on 2026-10-14: [Entire CLI](https://github.com/entireio/cli#readme), [git-ai](https://github.com/git-ai-project/git-ai#readme), [claude-replay](https://github.com/es617/claude-replay#readme), [mindwalk](https://github.com/cosmtrek/mindwalk#readme). A "?" means the README does not say. The git diff and GitHub rows describe them as used, there is no README to cite. Also nearby: Anthropic's [receipts](https://claude.com/plugins/receipts) plugin (a personal usage report from the same transcripts) and [pr-provenance-stamp](https://claudepluginhub.com/plugins/karanb192-pr-provenance-stamp-plugins-pr-provenance-stamp) (a provenance note in the PR body at creation time).
+@@ -91 +98 @@ These are the strings printed in every report footer (`evidence.definitions`):
+-- Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`.
++- Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`. The deciding run commands are quoted verbatim and may name other directories on your machine; read the preview.
+@@ -94 +101 @@ These are the strings printed in every report footer (`evidence.definitions`):
+-- Every string of the document goes through the home-path rules, diff lines and file paths included: your home directory, its encoded form in transcript directory names (`-home-you`), and any `/home/<name>`, `/Users/<name>` or `C:\Users\<name>` prefix are rewritten to `~`. Nothing else is rewritten, and the document says so in its `redaction` field, which the HTML and Markdown footers print.
++- Every string of the document goes through the home-path rules, diff lines and file paths included: your home directory, its encoded form in transcript directory names (`-home-you`), and any `/home/<name>`, `/Users/<name>` or `C:\Users\<name>` prefix are rewritten to `~`. The `origin` URL is stored without its user name and password (`https://user:token@github.com/...` becomes `https://github.com/...`). Nothing else is rewritten, and the document says so in its `redaction` field, which the HTML and Markdown footers print.
+diff --git a/docs/demo.gif b/docs/demo.gif
+index 7b81b85..3eab917 100644
+Binary files a/docs/demo.gif and b/docs/demo.gif differ
+diff --git a/docs/demo.png b/docs/demo.png
+index cc6988c..9c9c6c2 100644
+Binary files a/docs/demo.png and b/docs/demo.png differ
+diff --git a/docs/install/agent.md b/docs/install/agent.md
+index 5a6fa71..88295cc 100644
+--- a/docs/install/agent.md
++++ b/docs/install/agent.md
+@@ -5 +5 @@ You are an agent asked to install hunkproof. Pick the first line that applies an
+-- You run inside Claude Code and the human wants the skill and the `/hunkproof:hunkproof` command:
++- You run inside Claude Code and the human wants the skill and the `/hunkproof:receipt` command:
+@@ -8 +8 @@ You are an agent asked to install hunkproof. Pick the first line that applies an
+-  `npx hunkproof --pr <n>` (no install step; nothing to add to the project).
++  `npx hunkproof --pr <n>` (no install step; nothing to add to the project), or `npx github:JulienAu/hunkproof --pr <n>` straight from the repository.
+@@ -10 +10 @@ You are an agent asked to install hunkproof. Pick the first line that applies an
+-Both resolve to the same CLI: `bin/hunkproof.js`, zero runtime dependencies, Node 22 ESM. After the plugin install, `node "${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js"` runs it without npm.
++Both resolve to the same CLI: `bin/hunkproof.js`, zero runtime dependencies, Node 22 ESM. After the plugin install, `node "${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js"` runs it without npm. The plugin install copies the whole repository into the plugin cache (about 9 MB, most of it the fixtures and the demo images; the CLI itself is under 300 KB).
+diff --git a/package.json b/package.json
+index 85b1cc4..4a63b18 100644
+--- a/package.json
++++ b/package.json
+@@ -4 +4 @@
+-  "description": "git diff tells you what the agent changed. Hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, nothing leaves your machine.",
++  "description": "git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.",

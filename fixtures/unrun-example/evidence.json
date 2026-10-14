@@ -1,0 +1,3271 @@
+{
+  "schema": "hunkproof/evidence@1",
+  "generatedAt": "2026-10-14T17:55:21.338Z",
+  "tool": {
+    "name": "hunkproof",
+    "version": "0.1.0"
+  },
+  "repo": {
+    "root": "~/hunkproof",
+    "remote": "git@github.com:JulienAu/hunkproof.git",
+    "base": "559fee6",
+    "head": "7fbda28",
+    "prNumber": null,
+    "prUrl": null,
+    "headSha": "7fbda284e76ac3440e1514588698c24a516cea11",
+    "mergeBase": "559fee668e67c32dc7d28d6c3e567a34055b6509",
+    "mergeBaseTs": "2026-10-14T17:52:41.000Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "aa09e0968de43ae5a",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-aa09e0968de43ae5a.jsonl",
+      "firstTs": "2026-10-14T17:05:26.675Z",
+      "lastTs": "2026-10-14T17:16:18.522Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 104,
+      "edits": 50,
+      "shellEdits": 5,
+      "runs": 5
+    },
+    {
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-ac5ae6e3a0b88ef52.jsonl",
+      "firstTs": "2026-10-14T17:30:36.263Z",
+      "lastTs": "2026-10-14T17:55:20.166Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 117,
+      "edits": 72,
+      "shellEdits": 4,
+      "runs": 10
+    },
+    {
+      "sessionId": "a90585f515cc53034",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-a90585f515cc53034.jsonl",
+      "firstTs": "2026-10-14T16:28:33.241Z",
+      "lastTs": "2026-10-14T16:33:05.446Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 25,
+      "edits": 4,
+      "shellEdits": 0,
+      "runs": 2
+    },
+    {
+      "sessionId": "ac916b24bdde689a0",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-ac916b24bdde689a0.jsonl",
+      "firstTs": "2026-10-14T16:28:33.242Z",
+      "lastTs": "2026-10-14T16:38:14.887Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 62,
+      "edits": 6,
+      "shellEdits": 0,
+      "runs": 5
+    },
+    {
+      "sessionId": "a747bd5244f6af29d",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-a747bd5244f6af29d.jsonl",
+      "firstTs": "2026-10-14T16:38:17.827Z",
+      "lastTs": "2026-10-14T17:05:21.897Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 111,
+      "edits": 53,
+      "shellEdits": 0,
+      "runs": 13
+    },
+    {
+      "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+      "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b.jsonl",
+      "firstTs": "2026-10-14T06:52:52.054Z",
+      "lastTs": "2026-10-14T17:09:18.631Z",
+      "versions": [
+        "2.1.299"
+      ],
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "toolCalls": 128,
+      "edits": 2,
+      "shellEdits": 45,
+      "runs": 2
+    }
+  ],
+  "hunks": [
+    {
+      "id": ".claude-plugin/plugin.json:4",
+      "file": "~/hunkproof/.claude-plugin/plugin.json",
+      "relFile": ".claude-plugin/plugin.json",
+      "oldStart": 4,
+      "oldLines": 1,
+      "newStart": 4,
+      "newLines": 1,
+      "added": [
+        "  \"description\": \"git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.\","
+      ],
+      "removed": [
+        "  \"description\": \"git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, nothing leaves your machine.\","
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "\"description\": \"git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.\","
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:44.789Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01JSgnWPJADzbtNksSJgi8Xg",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:44.789Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "CHANGELOG.md:16",
+      "file": "~/hunkproof/CHANGELOG.md",
+      "relFile": "CHANGELOG.md",
+      "oldStart": 16,
+      "oldLines": 1,
+      "newStart": 16,
+      "newLines": 1,
+      "added": [
+        "- Every output (`evidence.json`, HTML, Markdown, terminal, git note) rewrites home directories to `~`, diff lines and file paths included: the machine's home, its encoded transcript-directory form, and any `/home/<user>`, `/Users/<user>` or `C:\\Users\\<user>` prefix. Secrets (API keys, tokens, private keys, JWTs, high-entropy strings, emails, IPv4 addresses) are masked in the agent text, run commands and run summaries; the `origin` URL is stored without its user name and password. The document states these rules in its `redaction` field and the footers print them."
+      ],
+      "removed": [
+        "- Every output (`evidence.json`, HTML, Markdown, terminal, git note) rewrites home directories to `~`, diff lines and file paths included: the machine's home, its encoded transcript-directory form, and any `/home/<user>`, `/Users/<user>` or `C:\\Users\\<user>` prefix. Secrets (API keys, tokens, private keys, JWTs, high-entropy strings, emails, IPv4 addresses) are masked in the agent text, run commands and run summaries. The document states these rules in its `redaction` field and the footers print them."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- Every output (`evidence.json`, HTML, Markdown, terminal, git note) rewrites home directories to `~`, diff lines and file paths included: the machine's home, its encoded transcript-directory form, and any `/home/<user>`, `/Users/<user>` or `C:\\Users\\<user>` prefix. Secrets (API keys, tokens, private keys, JWTs, high-entropy strings, emails, IPv4 addresses) are masked in the agent text, run commands and run summaries; the `origin` URL is stored without its user name and password. The document states these rules in its `redaction` field and the footers print them."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:01.002Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_013EtWukSp8RhJfn7tCnkye5",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:01.002Z",
+      "intent": {
+        "text": "Now the CHANGELOG, CONTRIBUTING, CLAUDE.md, CONTRACT.md, manifests, agent.md and LICENSE edits.",
+        "ts": "2026-10-14T17:43:56.587Z",
+        "sessionId": "ac5ae6e3a0b88ef52"
+      },
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "CHANGELOG.md:18",
+      "file": "~/hunkproof/CHANGELOG.md",
+      "relFile": "CHANGELOG.md",
+      "oldStart": 18,
+      "oldLines": 3,
+      "newStart": 18,
+      "newLines": 3,
+      "added": [
+        "- A merged PR stops at its merge commit: transcript events after it are left out, so later sessions on the same repository do not stamp its hunks, and the session rows end there too, so the document does not change as the transcripts grow.",
+        "- `hunkproof stats` streams every transcript modified in the last 90 days (`--since DAYS`) and prints, per project, how many file edits had no run, no targeted run or no passing run after their last edit, and how many commits included a file edited after the last run. `--anonymize` names the projects `project-01` to `project-NN` for a snapshot that can be shared.",
+        "- A receipt of hunkproof on its own PR #2 (code commits, `1af692a4..102eae0`) ships in `fixtures/self-pr`; the test suite rebuilds the HTML and Markdown from it byte for byte and the README quotes its numbers. A second receipt, `fixtures/unrun-example`, was taken on the release pull request right after its docs commits, before the suite ran again, so the README can show what an unrun hunk looks like."
+      ],
+      "removed": [
+        "- A merged PR stops at its merge commit: transcript events after it are left out, so later sessions on the same repository do not stamp its hunks.",
+        "- `hunkproof stats` streams every transcript on the machine and prints, per project, how many file edits had no run, no targeted run or no passing run after their last edit, and how many commits included a file edited after the last run. `--anonymize` names the projects `project-01` to `project-NN` for a snapshot that can be shared.",
+        "- A receipt of hunkproof on its own PR #2 (code commits, `1af692a4..102eae0`) ships in `fixtures/self-pr`; the test suite rebuilds the HTML and Markdown from it byte for byte and the README quotes its numbers."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- A merged PR stops at its merge commit: transcript events after it are left out, so later sessions on the same repository do not stamp its hunks, and the session rows end there too, so the document does not change as the transcripts grow.",
+        "- `hunkproof stats` streams every transcript modified in the last 90 days (`--since DAYS`) and prints, per project, how many file edits had no run, no targeted run or no passing run after their last edit, and how many commits included a file edited after the last run. `--anonymize` names the projects `project-01` to `project-NN` for a snapshot that can be shared.",
+        "- A receipt of hunkproof on its own PR #2 (code commits, `1af692a4..102eae0`) ships in `fixtures/self-pr`; the test suite rebuilds the HTML and Markdown from it byte for byte and the README quotes its numbers. A second receipt, `fixtures/unrun-example`, was taken on the release pull request right after its docs commits, before the suite ran again, so the README can show what an unrun hunk looks like."
+      ],
+      "attribution": "MATCHED",
+      "score": 0.6667,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:05.146Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_012ouJKcuLDxtGpdyEcszpfV",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:53:47.012Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01LVtwLrNBQ6bE5eY3q1mpuj",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 2,
+      "lastEdit": "2026-10-14T17:53:47.012Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "CHANGELOG.md:22",
+      "file": "~/hunkproof/CHANGELOG.md",
+      "relFile": "CHANGELOG.md",
+      "oldStart": 22,
+      "oldLines": 1,
+      "newStart": 22,
+      "newLines": 2,
+      "added": [
+        "- Ships as an npm package (`npx hunkproof`) and as a Claude Code plugin from the repository (`claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`) with a skill and the `/hunkproof:receipt` command.",
+        "- The reproduction command printed in every report carries the PR number and the `--base`/`--head` refs the receipt was made with."
+      ],
+      "removed": [
+        "- Ships as an npm package (`npx hunkproof`) and as a Claude Code plugin from the repository (`claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`) with a skill and the `/hunkproof:hunkproof` command."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- Ships as an npm package (`npx hunkproof`) and as a Claude Code plugin from the repository (`claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`) with a skill and the `/hunkproof:receipt` command.",
+        "- The reproduction command printed in every report carries the PR number and the `--base`/`--head` refs the receipt was made with."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:09.571Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01UX1nseUsNpunpYn7o2udGP",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:09.571Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "CHANGELOG.md:28",
+      "file": "~/hunkproof/CHANGELOG.md",
+      "relFile": "CHANGELOG.md",
+      "oldStart": 27,
+      "oldLines": 1,
+      "newStart": 28,
+      "newLines": 1,
+      "added": [
+        "- It does not judge code. A run after an edit says that the command ran and what it printed, nothing about whether the hunk is correct, exercised or safe. hunkproof's own wording never borrows the vocabulary of test coverage; it says what ran after the last edit, or that nothing did."
+      ],
+      "removed": [
+        "- It does not judge code. A run after an edit says that the command ran and what it printed, nothing about whether the hunk is correct, exercised or safe. hunkproof's own wording never says a hunk was tested, verified or covered."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- It does not judge code. A run after an edit says that the command ran and what it printed, nothing about whether the hunk is correct, exercised or safe. hunkproof's own wording never borrows the vocabulary of test coverage; it says what ran after the last edit, or that nothing did."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:13.270Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01EJ9uhuKfw3Ym7N8cuS5GJo",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:13.270Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "CLAUDE.md:10",
+      "file": "~/hunkproof/CLAUDE.md",
+      "relFile": "CLAUDE.md",
+      "oldStart": 10,
+      "oldLines": 1,
+      "newStart": 10,
+      "newLines": 1,
+      "added": [
+        "- Commits: small, imperative subject, body explains why. Trailer: `Signed-off-by: JulienAu <16043912+JulienAu@users.noreply.github.com>`, no other trailers. Subject and body describe the change, not the tooling."
+      ],
+      "removed": [
+        "- Commits: small, imperative subject, body explains why. Trailer: `Signed-off-by: JulienAu <16043912+JulienAu@users.noreply.github.com>`. No Co-Authored-By trailers, no mention of AI tools in commit messages or PR text."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- Commits: small, imperative subject, body explains why. Trailer: `Signed-off-by: JulienAu <16043912+JulienAu@users.noreply.github.com>`, no other trailers. Subject and body describe the change, not the tooling."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:21.960Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01VaSXeuL5hn4jFG3Abdw69c",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:21.960Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "CONTRIBUTING.md:19",
+      "file": "~/hunkproof/CONTRIBUTING.md",
+      "relFile": "CONTRIBUTING.md",
+      "oldStart": 19,
+      "oldLines": 1,
+      "newStart": 19,
+      "newLines": 1,
+      "added": [
+        "- **Vocabulary rule, enforced by a test.** hunkproof reports what ran, not what is true about the code. Strings printed by the tool, and the docs, never borrow the vocabulary of test coverage and never call a report proof of anything. Use: \"run after last edit\", \"unrun\", \"ran, failed\", \"ran, outcome not parsed\"."
+      ],
+      "removed": [
+        "- **Vocabulary rule, enforced by a test.** hunkproof reports what ran, not what is true about the code. Strings printed by the tool, and the docs, never say a hunk was \"tested\", \"verified\" or \"covered\", and never call a report \"proof that it works\". Use: \"run after last edit\", \"unrun\", \"ran, failed\", \"ran, outcome not parsed\"."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- **Vocabulary rule, enforced by a test.** hunkproof reports what ran, not what is true about the code. Strings printed by the tool, and the docs, never borrow the vocabulary of test coverage and never call a report proof of anything. Use: \"run after last edit\", \"unrun\", \"ran, failed\", \"ran, outcome not parsed\"."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:17.837Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_018ACBJfQC3gEu7D8MYsTa4B",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:17.837Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "LICENSE:3",
+      "file": "~/hunkproof/LICENSE",
+      "relFile": "LICENSE",
+      "oldStart": 3,
+      "oldLines": 1,
+      "newStart": 3,
+      "newLines": 1,
+      "added": [
+        "Copyright (c) 2026 JulienAu"
+      ],
+      "removed": [
+        "Copyright (c) 2026 Julien Au"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "Copyright (c) 2026 JulienAu"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:45:01.170Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01W8uTfopM71fqTRFAVSZdjD",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:45:01.170Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:3",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 3,
+      "oldLines": 1,
+      "newStart": 3,
+      "newLines": 1,
+      "added": [
+        "**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.** 0 LLM tokens, your transcripts never leave your machine."
+      ],
+      "removed": [
+        "**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.** 0 LLM tokens, nothing leaves your machine."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.** 0 LLM tokens, your transcripts never leave your machine."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:42:51.097Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01A2PdRCyWFzsFUMHYe3CJpy",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:42:51.097Z",
+      "intent": {
+        "text": "Now the README edits.",
+        "ts": "2026-10-14T17:42:49.053Z",
+        "sessionId": "ac5ae6e3a0b88ef52"
+      },
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:9",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 9,
+      "oldLines": 1,
+      "newStart": 9,
+      "newLines": 1,
+      "added": [
+        "*The HTML report on PR #2 of this repository, about 8 seconds: the headline, then the first hunks with their diff lines, the agent's sentence for the edit when there is one, and the runs after it. [Still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png).*"
+      ],
+      "removed": [
+        "*The HTML report on PR #2 of this repository, 7.5 seconds: the headline, then the first hunks with their diff lines, the agent's sentence for the edit when there is one, and the runs after it. [Still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png).*"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "*The HTML report on PR #2 of this repository, about 8 seconds: the headline, then the first hunks with their diff lines, the agent's sentence for the edit when there is one, and the runs after it. [Still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png).*"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:51:34.393Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01J9HzLFtowt75DZvq77poCi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:51:34.393Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "README.md:11",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 11,
+      "oldLines": 1,
+      "newStart": 11,
+      "newLines": 5,
+      "added": [
+        "One row per hunk of the pull request: the file and line range, the status (`ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun`, `unattributed`), and the last run after the hunk's last edit with its timestamp, runner and outcome.",
+        "",
+        "The HTML report adds the diff lines, the sentence the agent wrote in the same turn as the edit (its intent, when there is one), how many times the lines were rewritten, and the timeline of runs after the edit. The Markdown comment lists the unrun hunks with links and names the run that decided each hunk.",
+        "",
+        "Everything comes from the Claude Code transcripts already in `~/.claude/projects`; hunkproof reads them, it never asks a model."
+      ],
+      "removed": [
+        "One row per hunk of the pull request: the file and line range, the status (`ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun`, `unattributed`), and the last run after the hunk's last edit with its timestamp, runner and outcome. The HTML report adds the diff lines, the sentence the agent wrote in the same turn as the edit (its intent, when there is one), how many times the lines were rewritten, and the timeline of runs after the edit. The Markdown comment lists the unrun hunks with links and names the run that decided each hunk. Everything comes from the Claude Code transcripts already in `~/.claude/projects`; hunkproof reads them, it never asks a model."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "One row per hunk of the pull request: the file and line range, the status (`ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun`, `unattributed`), and the last run after the hunk's last edit with its timestamp, runner and outcome.",
+        "",
+        "The HTML report adds the diff lines, the sentence the agent wrote in the same turn as the edit (its intent, when there is one), how many times the lines were rewritten, and the timeline of runs after the edit. The Markdown comment lists the unrun hunks with links and names the run that decided each hunk.",
+        "",
+        "Everything comes from the Claude Code transcripts already in `~/.claude/projects`; hunkproof reads them, it never asks a model."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:42:57.873Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01TVuiHJGXcDSBmEZy7mNaxx",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:42:57.873Z",
+      "intent": {
+        "text": "Now the README edits.",
+        "ts": "2026-10-14T17:42:49.053Z",
+        "sessionId": "ac5ae6e3a0b88ef52"
+      },
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:19",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 15,
+      "oldLines": 1,
+      "newStart": 19,
+      "newLines": 1,
+      "added": [
+        "`npx hunkproof --pr 2 --base 1af692a4 --head 102eae0` on this repository, 2026-10-14, output kept in [`fixtures/self-pr`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/self-pr). The range is the code commits of [PR #2](https://github.com/JulienAu/hunkproof/pull/2), the v0.1 build branch, up to the last one before the receipt itself was added (a receipt of a diff that contains its own 2 MB evidence file would quote itself). Events after the merge are left out, as for every merged PR. *line-matched* means the hunk's added lines were found in an edit the agent made; *file-level* means only the file was:"
+      ],
+      "removed": [
+        "`npx hunkproof --pr 2 --base 1af692a4 --head 102eae0` on this repository, 2026-10-14, output kept in [`fixtures/self-pr`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/self-pr). [PR #2](https://github.com/JulienAu/hunkproof/pull/2) is the v0.1 build branch (it replaced PR #1 after a history rewrite that only changed the commit identity, not the content); the range stops at the last code commit, before the commit that added this receipt itself, since a receipt of a diff that contains its own 2 MB evidence file would quote itself. Transcript events after the merge are left out, as for every merged PR:"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "`npx hunkproof --pr 2 --base 1af692a4 --head 102eae0` on this repository, 2026-10-14, output kept in [`fixtures/self-pr`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/self-pr). The range is the code commits of [PR #2](https://github.com/JulienAu/hunkproof/pull/2), the v0.1 build branch, up to the last one before the receipt itself was added (a receipt of a diff that contains its own 2 MB evidence file would quote itself). Events after the merge are left out, as for every merged PR. *line-matched* means the hunk's added lines were found in an edit the agent made; *file-level* means only the file was:"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:11.527Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Aauw6cAZ4JegyxZuHLFmEs",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:11.527Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:27",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 23,
+      "oldLines": 1,
+      "newStart": 27,
+      "newLines": 3,
+      "added": [
+        "| 68 | 64 | 64 | 0 | 1 | 9 | 3.5 s | 0 |",
+        "",
+        "No hunk is unrun in this range: the plugin manifests, the skill and the install page, written last, got a passing `node --test` run eight minutes later from the same session. The 3 file-level hunks are `CONTRACT.md` edits whose exact lines were not found in any edit; the unattributed hunk is a `.gitignore` line edited before the branch existed. `test/fixture.test.js` holds these numbers and rebuilds the HTML and Markdown from the saved evidence byte for byte."
+      ],
+      "removed": [
+        "| 68 | 64 | 64 | 0 | 1 | 9 | 5.2 s | 0 |"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "| 68 | 64 | 64 | 0 | 1 | 9 | 3.5 s | 0 |",
+        "",
+        "No hunk is unrun in this range: the plugin manifests, the skill and the install page, written last, got a passing `node --test` run eight minutes later from the same session. The 3 file-level hunks are `CONTRACT.md` edits whose exact lines were not found in any edit; the unattributed hunk is a `.gitignore` line edited before the branch existed. `test/fixture.test.js` holds these numbers and rebuilds the HTML and Markdown from the saved evidence byte for byte."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:11.527Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Aauw6cAZ4JegyxZuHLFmEs",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:11.527Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:31",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 25,
+      "oldLines": 1,
+      "newStart": 31,
+      "newLines": 3,
+      "added": [
+        "### What an unrun hunk looks like",
+        "",
+        "The receipt above is clean, so here is one that is not, from the pull request that prepared this release: its docs commits edited this README and the CHANGELOG after the test suite had last run."
+      ],
+      "removed": [
+        "No hunk is unrun in this range: the plugin manifests, the skill and the install page, written last, got a passing `node --test` run eight minutes later from the same session. The unattributed hunk is a `.gitignore` line edited before the branch existed. `test/fixture.test.js` holds these numbers and rebuilds the HTML and Markdown from the saved evidence byte for byte."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "### What an unrun hunk looks like",
+        "",
+        "The receipt above is clean, so here is one that is not, from the pull request that prepared this release: its docs commits edited this README and the CHANGELOG after the test suite had last run."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:53:42.154Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01UexU2NQgbCsrXTxS8oqEJt",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:53:42.154Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "README.md:37",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 29,
+      "oldLines": 1,
+      "newStart": 37,
+      "newLines": 1,
+      "added": [
+        "Paste this into Claude Code: *\"Install github.com/JulienAu/hunkproof and run it on this branch\"*. The agent reads [`docs/install/agent.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) and runs one of:"
+      ],
+      "removed": [
+        "Tell your agent: *\"install hunkproof\"*. An agent that reads [`docs/install/agent.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) resolves that to one of:"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "Paste this into Claude Code: *\"Install github.com/JulienAu/hunkproof and run it on this branch\"*. The agent reads [`docs/install/agent.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) and runs one of:"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:19.843Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01E9ZS7DAR45q4SRcV1j4Bgf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:19.843Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:47",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 39,
+      "oldLines": 1,
+      "newStart": 47,
+      "newLines": 1,
+      "added": [
+        "One step, from a terminal: `claude plugin install hunkproof --marketplace JulienAu/hunkproof` (adds the marketplace first). Inside a session, after `claude plugin marketplace add JulienAu/hunkproof`, it is `/plugin install hunkproof@hunkproof`. `npx github:JulienAu/hunkproof --pr <n>` runs the CLI straight from the repository. The plugin adds a skill (Claude runs hunkproof when a PR needs a receipt) and the `/hunkproof:receipt` command (runs it on the current branch's PR and summarizes the unrun hunks). Node 22 or later, no dependencies."
+      ],
+      "removed": [
+        "Inside a Claude Code session, `/plugin install hunkproof --marketplace JulienAu/hunkproof` does the same in one step. The plugin adds a skill (Claude runs hunkproof when a PR needs a receipt) and the `/hunkproof:hunkproof` command (runs it on the current branch's PR and summarizes the unrun hunks). Node 22 or later, no dependencies."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "One step, from a terminal: `claude plugin install hunkproof --marketplace JulienAu/hunkproof` (adds the marketplace first). Inside a session, after `claude plugin marketplace add JulienAu/hunkproof`, it is `/plugin install hunkproof@hunkproof`. `npx github:JulienAu/hunkproof --pr <n>` runs the CLI straight from the repository. The plugin adds a skill (Claude runs hunkproof when a PR needs a receipt) and the `/hunkproof:receipt` command (runs it on the current branch's PR and summarizes the unrun hunks). Node 22 or later, no dependencies."
+      ],
+      "attribution": "FILE_LEVEL",
+      "score": 0,
+      "edits": [
+        {
+          "ts": "2026-10-14T10:20:37.105Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01C8SJH4ZHXhWqdxV8ghNpiu",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T10:20:48.944Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_017Be1T4R7sAmMVDL9wBhaiz",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T13:06:54.505Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01SVamsAtsC64kFBr6kZ922R",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:18:31.306Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01MKG4NobnsLbwCbRiADoYJV",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:11.968Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Write",
+          "toolUseId": "toolu_01V3YnwitCNS7yLmAMWw6fWS",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:48.541Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_01ME86wGFWdvx7VZ2326aVvG",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:37:05.999Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_018S9f6vhCQgp5RSM4rzRazu",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:58:27.286Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_01HcaQZLTMc7T27SHwjLrq3k",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:03:30.585Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_011pvzgf1L1bTVViQPrb2ni3",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:11:00.626Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013a5m9wehQneHtkBs9A6k8Z",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:04.406Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Bash",
+          "toolUseId": "toolu_01VjARsbQuFhTju2aX8VaYiv",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:13.565Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01CWqXfHwanBHXi6brhrShZc",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:15.064Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01BpKRV3wd4tWsxNU4s8334y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:16.567Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01JurSBez3Gh1zLUFPFrZXzF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:18.135Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013vzpJkvjjnSn2ZjwXURa7y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:20.108Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Ka8oYbBivtVRVfHBQVTt2S",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:29.097Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01XG336AoEYAiyKdbnxA1hon",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:32.430Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01QEJGuT55voQuxb2kZtaCju",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:53.040Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KQvb3rBoP5LvVb6ZCa5adT",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:54.956Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cyb45J6CRBKAQtXCvNVk3D",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:21.967Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cv1d539NrEJpsFCNctUCJi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:23.944Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_016nT9ffKyEGoF7XyvuiMiex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:51.097Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01A2PdRCyWFzsFUMHYe3CJpy",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:57.873Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01TVuiHJGXcDSBmEZy7mNaxx",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:11.527Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Aauw6cAZ4JegyxZuHLFmEs",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:19.843Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01E9ZS7DAR45q4SRcV1j4Bgf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:30.792Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01PtQ6Sx911mtyjUcve2c73e",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:35.737Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KzfWnQ65zGtMuiAjdB7eDd",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:39.126Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NPdyGtX2hiUF59oRtGYKDF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:44.250Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_012Uo3em3C4ozM8Nke1z2iQf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:49.047Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_018f9Kq78hrGPXqWrkPMhsvj",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:54.326Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NH2p2ZEoRaouNWrNAewDTa",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:51:34.393Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01J9HzLFtowt75DZvq77poCi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:53:42.154Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01UexU2NQgbCsrXTxS8oqEJt",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 0,
+      "lastEdit": "2026-10-14T17:53:42.154Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "README.md:61",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 54,
+      "oldLines": 2,
+      "newStart": 61,
+      "newLines": 0,
+      "added": [],
+      "removed": [
+        "hunkproof's own row would read: yes, the last run after each hunk's last edit with its outcome, yes, 0, no.",
+        ""
+      ],
+      "kind": "modify",
+      "addedNormalized": [],
+      "attribution": "FILE_LEVEL",
+      "score": 0,
+      "edits": [
+        {
+          "ts": "2026-10-14T10:20:37.105Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01C8SJH4ZHXhWqdxV8ghNpiu",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T10:20:48.944Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_017Be1T4R7sAmMVDL9wBhaiz",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T13:06:54.505Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01SVamsAtsC64kFBr6kZ922R",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:18:31.306Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01MKG4NobnsLbwCbRiADoYJV",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:11.968Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Write",
+          "toolUseId": "toolu_01V3YnwitCNS7yLmAMWw6fWS",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:48.541Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_01ME86wGFWdvx7VZ2326aVvG",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:37:05.999Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_018S9f6vhCQgp5RSM4rzRazu",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:58:27.286Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_01HcaQZLTMc7T27SHwjLrq3k",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:03:30.585Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_011pvzgf1L1bTVViQPrb2ni3",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:11:00.626Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013a5m9wehQneHtkBs9A6k8Z",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:04.406Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Bash",
+          "toolUseId": "toolu_01VjARsbQuFhTju2aX8VaYiv",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:13.565Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01CWqXfHwanBHXi6brhrShZc",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:15.064Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01BpKRV3wd4tWsxNU4s8334y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:16.567Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01JurSBez3Gh1zLUFPFrZXzF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:18.135Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013vzpJkvjjnSn2ZjwXURa7y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:20.108Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Ka8oYbBivtVRVfHBQVTt2S",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:29.097Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01XG336AoEYAiyKdbnxA1hon",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:32.430Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01QEJGuT55voQuxb2kZtaCju",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:53.040Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KQvb3rBoP5LvVb6ZCa5adT",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:54.956Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cyb45J6CRBKAQtXCvNVk3D",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:21.967Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cv1d539NrEJpsFCNctUCJi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:23.944Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_016nT9ffKyEGoF7XyvuiMiex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:51.097Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01A2PdRCyWFzsFUMHYe3CJpy",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:57.873Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01TVuiHJGXcDSBmEZy7mNaxx",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:11.527Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Aauw6cAZ4JegyxZuHLFmEs",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:19.843Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01E9ZS7DAR45q4SRcV1j4Bgf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:30.792Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01PtQ6Sx911mtyjUcve2c73e",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:35.737Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KzfWnQ65zGtMuiAjdB7eDd",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:39.126Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NPdyGtX2hiUF59oRtGYKDF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:44.250Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_012Uo3em3C4ozM8Nke1z2iQf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:49.047Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_018f9Kq78hrGPXqWrkPMhsvj",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:54.326Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NH2p2ZEoRaouNWrNAewDTa",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:51:34.393Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01J9HzLFtowt75DZvq77poCi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:53:42.154Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01UexU2NQgbCsrXTxS8oqEJt",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 34,
+      "lastEdit": "2026-10-14T17:53:42.154Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "README.md:64",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 57,
+      "oldLines": 0,
+      "newStart": 64,
+      "newLines": 1,
+      "added": [
+        "| hunkproof | yes | the last run after each hunk's last edit, with its outcome | yes | 0 | no (transcripts); `gh` fetches the PR metadata, `--post` sends the comment after you type y |"
+      ],
+      "removed": [],
+      "kind": "modify",
+      "addedNormalized": [
+        "| hunkproof | yes | the last run after each hunk's last edit, with its outcome | yes | 0 | no (transcripts); `gh` fetches the PR metadata, `--post` sends the comment after you type y |"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:35.737Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KzfWnQ65zGtMuiAjdB7eDd",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:35.737Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:68",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 61,
+      "oldLines": 1,
+      "newStart": 68,
+      "newLines": 1,
+      "added": [
+        "| git-ai | yes: agent, model and prompt per line | ? | per line (`git ai blame`) | none mentioned | no: offline, no login |"
+      ],
+      "removed": [
+        "| git-ai | yes: agent, model and prompt per line | ? | per line (`git ai blame`) | 0 (the agents report the lines they wrote) | no: offline, no login |"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "| git-ai | yes: agent, model and prompt per line | ? | per line (`git ai blame`) | none mentioned | no: offline, no login |"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:39.126Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NPdyGtX2hiUF59oRtGYKDF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:39.126Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:72",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 65,
+      "oldLines": 1,
+      "newStart": 72,
+      "newLines": 1,
+      "added": [
+        "Filled from each project's README on 2026-10-14: [Entire CLI](https://github.com/entireio/cli#readme), [git-ai](https://github.com/git-ai-project/git-ai#readme), [claude-replay](https://github.com/es617/claude-replay#readme), [mindwalk](https://github.com/cosmtrek/mindwalk#readme). A \"?\" means the README does not say. The git diff and GitHub rows describe them as used, there is no README to cite. Also nearby: Anthropic's [receipts](https://claude.com/plugins/receipts) plugin (a personal usage report from the same transcripts) and [pr-provenance-stamp](https://claudepluginhub.com/plugins/karanb192-pr-provenance-stamp-plugins-pr-provenance-stamp) (a provenance note in the PR body at creation time)."
+      ],
+      "removed": [
+        "Filled from each project's README on 2026-10-14: [Entire CLI](https://github.com/entireio/cli#readme), [git-ai](https://github.com/git-ai-project/git-ai#readme), [claude-replay](https://github.com/es617/claude-replay#readme), [mindwalk](https://github.com/cosmtrek/mindwalk#readme). A \"?\" means the README does not say. The first two rows describe git and GitHub as used, there is no README to cite. Also nearby: Anthropic's [receipts](https://claude.com/plugins/receipts) plugin (a personal usage report from the same transcripts) and [pr-provenance-stamp](https://claudepluginhub.com/plugins/karanb192-pr-provenance-stamp-plugins-pr-provenance-stamp) (a provenance note in the PR body at creation time)."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "Filled from each project's README on 2026-10-14: [Entire CLI](https://github.com/entireio/cli#readme), [git-ai](https://github.com/git-ai-project/git-ai#readme), [claude-replay](https://github.com/es617/claude-replay#readme), [mindwalk](https://github.com/cosmtrek/mindwalk#readme). A \"?\" means the README does not say. The git diff and GitHub rows describe them as used, there is no README to cite. Also nearby: Anthropic's [receipts](https://claude.com/plugins/receipts) plugin (a personal usage report from the same transcripts) and [pr-provenance-stamp](https://claudepluginhub.com/plugins/karanb192-pr-provenance-stamp-plugins-pr-provenance-stamp) (a provenance note in the PR body at creation time)."
+      ],
+      "attribution": "FILE_LEVEL",
+      "score": 0,
+      "edits": [
+        {
+          "ts": "2026-10-14T10:20:37.105Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01C8SJH4ZHXhWqdxV8ghNpiu",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T10:20:48.944Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_017Be1T4R7sAmMVDL9wBhaiz",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T13:06:54.505Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01SVamsAtsC64kFBr6kZ922R",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:18:31.306Z",
+          "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+          "tool": "Bash",
+          "toolUseId": "toolu_01MKG4NobnsLbwCbRiADoYJV",
+          "source": "bashEditDiff",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:11.968Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Write",
+          "toolUseId": "toolu_01V3YnwitCNS7yLmAMWw6fWS",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:36:48.541Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_01ME86wGFWdvx7VZ2326aVvG",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:37:05.999Z",
+          "sessionId": "ac916b24bdde689a0",
+          "tool": "Edit",
+          "toolUseId": "toolu_018S9f6vhCQgp5RSM4rzRazu",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T16:58:27.286Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_01HcaQZLTMc7T27SHwjLrq3k",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:03:30.585Z",
+          "sessionId": "a747bd5244f6af29d",
+          "tool": "Edit",
+          "toolUseId": "toolu_011pvzgf1L1bTVViQPrb2ni3",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:11:00.626Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013a5m9wehQneHtkBs9A6k8Z",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:04.406Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Bash",
+          "toolUseId": "toolu_01VjARsbQuFhTju2aX8VaYiv",
+          "source": "regex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:13.565Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01CWqXfHwanBHXi6brhrShZc",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:15.064Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01BpKRV3wd4tWsxNU4s8334y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:16.567Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01JurSBez3Gh1zLUFPFrZXzF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:18.135Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_013vzpJkvjjnSn2ZjwXURa7y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:20.108Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Ka8oYbBivtVRVfHBQVTt2S",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:29.097Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01XG336AoEYAiyKdbnxA1hon",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:32.430Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01QEJGuT55voQuxb2kZtaCju",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:53.040Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KQvb3rBoP5LvVb6ZCa5adT",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:13:54.956Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cyb45J6CRBKAQtXCvNVk3D",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:21.967Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Cv1d539NrEJpsFCNctUCJi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:14:23.944Z",
+          "sessionId": "aa09e0968de43ae5a",
+          "tool": "Edit",
+          "toolUseId": "toolu_016nT9ffKyEGoF7XyvuiMiex",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:51.097Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01A2PdRCyWFzsFUMHYe3CJpy",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:42:57.873Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01TVuiHJGXcDSBmEZy7mNaxx",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:11.527Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01Aauw6cAZ4JegyxZuHLFmEs",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:19.843Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01E9ZS7DAR45q4SRcV1j4Bgf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:30.792Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01PtQ6Sx911mtyjUcve2c73e",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:35.737Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01KzfWnQ65zGtMuiAjdB7eDd",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:39.126Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NPdyGtX2hiUF59oRtGYKDF",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:44.250Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_012Uo3em3C4ozM8Nke1z2iQf",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:49.047Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_018f9Kq78hrGPXqWrkPMhsvj",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:43:54.326Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NH2p2ZEoRaouNWrNAewDTa",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:51:34.393Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01J9HzLFtowt75DZvq77poCi",
+          "checkout": "~/hunkproof",
+          "chain": true
+        },
+        {
+          "ts": "2026-10-14T17:53:42.154Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01UexU2NQgbCsrXTxS8oqEJt",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 0,
+      "lastEdit": "2026-10-14T17:53:42.154Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [],
+      "status": "UNRUN"
+    },
+    {
+      "id": "README.md:98",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 91,
+      "oldLines": 1,
+      "newStart": 98,
+      "newLines": 1,
+      "added": [
+        "- Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`. The deciding run commands are quoted verbatim and may name other directories on your machine; read the preview."
+      ],
+      "removed": [
+        "- Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`. The deciding run commands are quoted verbatim and may name other directories on your machine; read the preview."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:49.047Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_018f9Kq78hrGPXqWrkPMhsvj",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:49.047Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "README.md:101",
+      "file": "~/hunkproof/README.md",
+      "relFile": "README.md",
+      "oldStart": 94,
+      "oldLines": 1,
+      "newStart": 101,
+      "newLines": 1,
+      "added": [
+        "- Every string of the document goes through the home-path rules, diff lines and file paths included: your home directory, its encoded form in transcript directory names (`-home-you`), and any `/home/<name>`, `/Users/<name>` or `C:\\Users\\<name>` prefix are rewritten to `~`. The `origin` URL is stored without its user name and password (`https://user:token@github.com/...` becomes `https://github.com/...`). Nothing else is rewritten, and the document says so in its `redaction` field, which the HTML and Markdown footers print."
+      ],
+      "removed": [
+        "- Every string of the document goes through the home-path rules, diff lines and file paths included: your home directory, its encoded form in transcript directory names (`-home-you`), and any `/home/<name>`, `/Users/<name>` or `C:\\Users\\<name>` prefix are rewritten to `~`. Nothing else is rewritten, and the document says so in its `redaction` field, which the HTML and Markdown footers print."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- Every string of the document goes through the home-path rules, diff lines and file paths included: your home directory, its encoded form in transcript directory names (`-home-you`), and any `/home/<name>`, `/Users/<name>` or `C:\\Users\\<name>` prefix are rewritten to `~`. The `origin` URL is stored without its user name and password (`https://user:token@github.com/...` becomes `https://github.com/...`). Nothing else is rewritten, and the document says so in its `redaction` field, which the HTML and Markdown footers print."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:43:54.326Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01NH2p2ZEoRaouNWrNAewDTa",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:43:54.326Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "docs/install/agent.md:5",
+      "file": "~/hunkproof/docs/install/agent.md",
+      "relFile": "docs/install/agent.md",
+      "oldStart": 5,
+      "oldLines": 1,
+      "newStart": 5,
+      "newLines": 1,
+      "added": [
+        "- You run inside Claude Code and the human wants the skill and the `/hunkproof:receipt` command:"
+      ],
+      "removed": [
+        "- You run inside Claude Code and the human wants the skill and the `/hunkproof:hunkproof` command:"
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "- You run inside Claude Code and the human wants the skill and the `/hunkproof:receipt` command:"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:58.352Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01RUvNPmkhK5iebUvH9qLv3Y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:58.352Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "docs/install/agent.md:8",
+      "file": "~/hunkproof/docs/install/agent.md",
+      "relFile": "docs/install/agent.md",
+      "oldStart": 8,
+      "oldLines": 1,
+      "newStart": 8,
+      "newLines": 1,
+      "added": [
+        "  `npx hunkproof --pr <n>` (no install step; nothing to add to the project), or `npx github:JulienAu/hunkproof --pr <n>` straight from the repository."
+      ],
+      "removed": [
+        "  `npx hunkproof --pr <n>` (no install step; nothing to add to the project)."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "`npx hunkproof --pr <n>` (no install step; nothing to add to the project), or `npx github:JulienAu/hunkproof --pr <n>` straight from the repository."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:58.352Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01RUvNPmkhK5iebUvH9qLv3Y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:58.352Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "docs/install/agent.md:10",
+      "file": "~/hunkproof/docs/install/agent.md",
+      "relFile": "docs/install/agent.md",
+      "oldStart": 10,
+      "oldLines": 1,
+      "newStart": 10,
+      "newLines": 1,
+      "added": [
+        "Both resolve to the same CLI: `bin/hunkproof.js`, zero runtime dependencies, Node 22 ESM. After the plugin install, `node \"${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js\"` runs it without npm. The plugin install copies the whole repository into the plugin cache (about 9 MB, most of it the fixtures and the demo images; the CLI itself is under 300 KB)."
+      ],
+      "removed": [
+        "Both resolve to the same CLI: `bin/hunkproof.js`, zero runtime dependencies, Node 22 ESM. After the plugin install, `node \"${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js\"` runs it without npm."
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "Both resolve to the same CLI: `bin/hunkproof.js`, zero runtime dependencies, Node 22 ESM. After the plugin install, `node \"${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js\"` runs it without npm. The plugin install copies the whole repository into the plugin cache (about 9 MB, most of it the fixtures and the demo images; the CLI itself is under 300 KB)."
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:58.352Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01RUvNPmkhK5iebUvH9qLv3Y",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:58.352Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    },
+    {
+      "id": "package.json:4",
+      "file": "~/hunkproof/package.json",
+      "relFile": "package.json",
+      "oldStart": 4,
+      "oldLines": 1,
+      "newStart": 4,
+      "newLines": 1,
+      "added": [
+        "  \"description\": \"git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.\","
+      ],
+      "removed": [
+        "  \"description\": \"git diff tells you what the agent changed. Hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, nothing leaves your machine.\","
+      ],
+      "kind": "modify",
+      "addedNormalized": [
+        "\"description\": \"git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.\","
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        {
+          "ts": "2026-10-14T17:44:41.266Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "tool": "Edit",
+          "toolUseId": "toolu_01H9wuNUZgSCSNsNoZLGuyXW",
+          "checkout": "~/hunkproof",
+          "chain": true
+        }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-14T17:44:41.266Z",
+      "intent": null,
+      "checkout": "~/hunkproof",
+      "runsAfter": [
+        {
+          "ts": "2026-10-14T17:45:10.370Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+          "runner": "node:test",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": true
+        },
+        {
+          "ts": "2026-10-14T17:47:15.058Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+          "runner": "node",
+          "outcome": "unparsed",
+          "summary": null,
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:48:01.226Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+          "runner": "node",
+          "outcome": "fail",
+          "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+          "targeted": false
+        },
+        {
+          "ts": "2026-10-14T17:50:15.194Z",
+          "sessionId": "ac5ae6e3a0b88ef52",
+          "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+          "runner": "node:test+node",
+          "outcome": "pass",
+          "summary": "node --test: pass 329, fail 0",
+          "targeted": false
+        }
+      ],
+      "status": "RUN_PASS"
+    }
+  ],
+  "runs": [
+    {
+      "ts": "2026-10-14T12:04:33.996Z",
+      "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+      "toolUseId": "toolu_01XhR2AFUBpU2x9qCBYfBj1w",
+      "command": "python3 -c \"\nimport json\nfor l in open('journal.jsonl'):\n    j=json.loads(l)\n    if j.get('type') in ('started','log'): print(j.get('type'), j.get('label') or j.get('message'))\n    if j.get('type')=='result': print('RESULT', str(j.get('result'))[:400].replace('\\n',' '))\n\" | tail -12; cd ~/hunkproof && git log --oneline | head -5; ls src test; npm test 2>&1 | tail -5",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass count not in output, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T13:01:06.309Z",
+      "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+      "toolUseId": "toolu_01UAmci2yfKDJax7ZoUuT34c",
+      "command": "cd ~/hunkproof && git status --short | head && git log --oneline origin/main..HEAD | wc -l && git log --format='%H%n%b' origin/main..HEAD | grep -iE 'co-authored|anthropic|claude' ; echo \"---\"; npm test 2>&1 | tail -4; echo \"---\"; sed -n 1,60p README.md",
+      "runner": "node:test",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:28:59.706Z",
+      "sessionId": "a90585f515cc53034",
+      "toolUseId": "toolu_01UiAJFMUj3rPsX5c4jhD75c",
+      "command": "node --version && npm --version && (npm test 2>&1 | tail -12) && echo ---- && node bin/hunkproof.js --help; echo \"exit=$?\"; echo ----; node bin/hunkproof.js stats --help; echo \"exit=$?\"",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 313, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:29:05.209Z",
+      "sessionId": "ac916b24bdde689a0",
+      "toolUseId": "toolu_01DZTDVXZsCQ9jga4tP1QC7z",
+      "command": "npm test 2>&1 | tail -12",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 313, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:31:02.105Z",
+      "sessionId": "a90585f515cc53034",
+      "toolUseId": "toolu_01Vk9SABEZ1VcpzuUMMCzHsD",
+      "command": "npm test 2>&1 | tail -9 && echo ---- && npm pack --dry-run 2>&1",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 313, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:33:25.058Z",
+      "sessionId": "ac916b24bdde689a0",
+      "toolUseId": "toolu_013x8tn6a61KgqYVRnrVZ8wJ",
+      "command": "cd /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release && time node demo-gif.mjs 2>&1 | tail -5 && ls -la ~/hunkproof/docs/demo.gif && ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames,width,height,r_frame_rate -of default=nw=1 ~/hunkproof/docs/demo.gif",
+      "runner": "node",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [
+        "demo-gif.mjs"
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:34:47.502Z",
+      "sessionId": "ac916b24bdde689a0",
+      "toolUseId": "toolu_01NMHZRDQ8RTGFhQvaH4XBQu",
+      "command": "cd /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release && node demo-gif.mjs 2>&1 | tail -3 && ls -la ~/hunkproof/docs/demo.gif && ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames,width,height,r_frame_rate -of default=nw=1 ~/hunkproof/docs/demo.gif",
+      "runner": "node",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [
+        "demo-gif.mjs"
+      ]
+    },
+    {
+      "ts": "2026-10-14T16:36:31.418Z",
+      "sessionId": "ac916b24bdde689a0",
+      "toolUseId": "toolu_01UMpVZr8Lznm4PezfHDAh2r",
+      "command": "npm test 2>&1 | tail -8",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 319, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:37:14.511Z",
+      "sessionId": "ac916b24bdde689a0",
+      "toolUseId": "toolu_01LavGfaSDd7TsHUDLm5ppav",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)'",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 319, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:44:29.936Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_014rF7EyzqnqQYNoQPEvwt2U",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok|# Subtest|AssertionError|Error:' | head -40",
+      "runner": "node:test",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:44:36.614Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01YNjdtegRujkewuUsWgXxKw",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok' | head -20; echo ----; npm test 2>&1 | grep -B2 -A25 '^not ok' | grep -E 'not ok|error|expected|actual|message|at ' | head -60",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 317, fail 2",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:46:45.455Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_013YFctXQd3tn7nKaWaXDk2E",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok' ; npm test 2>&1 | grep -A30 '^not ok' | grep -vE '^\\s*at |^\\s*\\.\\.\\.|stack' | head -80",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 321, fail 4",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:47:08.925Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_014pY9VVE3hBB5cMzzBVCZRp",
+      "command": "node --test test/redact.test.js test/evidence.test.js test/cli.test.js test/stats.test.js 2>&1 | grep -E '^# (tests|pass|fail)|^not ok' ; node --test test/redact.test.js test/evidence.test.js test/cli.test.js 2>&1 | grep -A22 '^not ok' | grep -vE '^\\s*at |stack|duration|type:|location|failureType|code:|name:|operator' | head -40",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 39, fail 2",
+      "isError": false,
+      "targets": [
+        "test/redact.test.js",
+        "test/evidence.test.js",
+        "test/cli.test.js",
+        "test/stats.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:47:23.814Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01DP41ySWfLuuDvnxyo8BNku",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 324, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:52:25.559Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01QQtEVRR9S9kYBTaFENnAmX",
+      "command": "node --test test/cli.test.js 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'; node --test test/cli.test.js 2>&1 | grep -A25 '^not ok' | grep -vE '^\\s*at |stack|duration|type:|location|failureType|code:|name:|operator' | head -50",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 12, fail 1",
+      "isError": false,
+      "targets": [
+        "test/cli.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:52:38.627Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_016Aa7Pmvwn92MJdVVXKo89y",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 325, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:54:59.714Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01F6PvzgvraYu8Twsi6Sayns",
+      "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; node $S/privacy/scrub.mjs $S/privacy/self-pr-v2/evidence.json $S/privacy/diff-v2.patch fixtures/self-pr && node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note 2>&1 | grep -E '^hunkproof ·|^wrote|hint'; echo \"exit=${PIPESTATUS[0]}\"; ls -la fixtures/self-pr; echo \"== private names / home paths in fixtures/self-pr\"; for w in ~ ~ other-app My_App My-App My-App proj-e proj-d third-app proj-f example-org proj-g example-host JulienAu/third-app; do n=$(cat fixtures/self-pr/* | grep -c -- \"$w\"); [ \"$n\" != 0 ] && echo \"$w $n\"; done; echo \"(end)\"; grep -oE '/home/[A-Za-z0-9._-]+|/Users/[A-Za-z0-9._-]+' fixtures/self-pr/* | sort | uniq -c",
+      "runner": "node",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [
+        "$S/privacy/scrub.mjs",
+        "fixtures/self-pr"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T16:59:39.123Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_014FpeiQwqThXUEDYkg5hBbk",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'; npm test 2>&1 | grep -A20 '^not ok' | grep -vE '^\\s*at |stack|duration|type:|location|failureType|code:|name:|operator' | head -40",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 325, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:01:16.634Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01NbgDfLPhN3exVr1tb7DMxm",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'; echo \"== remaining hits (tracked + untracked, text files)\"; for w in ~ ~ other-app My_App My-App proj-e proj-d third-app proj-f example-org proj-g example-host; do git ls-files -co --exclude-standard | grep -v '\\.gif$\\|\\.png$' | xargs grep -n -- \"$w\" 2>/dev/null | cut -c1-120; done",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 325, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:01:37.527Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01YYxxZtvpqXgYYHE9oKy63n",
+      "command": "node --test test/fixture.test.js 2>&1 | grep -A12 '^not ok' | grep -E 'error|expected|actual' | head -5; node -e '\nconst fs=require(\"fs\"); const re=/\\/home\\/[A-Za-z0-9._-]+|\\/Users\\/[A-Za-z0-9._-]+|[A-Za-z]:(?:\\\\\\\\|\\\\|\\/)Users(?:\\\\\\\\|\\\\|\\/)[A-Za-z0-9._-]+/g;\nfor (const f of [\"fixtures/self-pr/evidence.json\",\"fixtures/self-pr/hunkproof.html\",\"fixtures/self-pr/hunkproof.md\",\"fixtures/self-pr/diff.patch\"]) { const t=fs.readFileSync(f,\"utf8\"); const m=t.match(re)||[]; console.log(f, m.length, [...new Set(m)].slice(0,8)); }'",
+      "runner": "node:test",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [
+        "test/fixture.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:02:41.160Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_017qT2HT8mevfGMrn3vmHKFv",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'; echo \"== git status (no .hunkproof dir expected)\"; git status --short | grep -v '^ M \\(README.md\\|docs/stats-2026-10-14.md\\|fixtures/self-pr/\\|package.json\\|src/attribute.js\\|test/attribute.test.js\\)' ; ls -d .hunkproof 2>&1 | head -1; echo \"== footers\"; grep -c 'nothing else is rewritten' fixtures/self-pr/hunkproof.html fixtures/self-pr/hunkproof.md; echo \"== dashes in every file I touched\"; grep -lP '[\\x{2013}\\x{2014}]' README.md docs/stats-2026-10-14.md test/fixture.test.js src/redact.js src/evidence.js src/cli.js src/stats.js src/render-html.js src/render-md.js test/cli.test.js test/evidence.test.js test/redact.test.js test/stats.test.js fixtures/self-pr/hunkproof.md; echo \"(end)\"; echo \"== README receipt section\"; sed -n 13,26p README.md | cut -c1-160; echo \"== fixture sizes\"; wc -c fixtures/self-pr/*; echo \"== summary json\"; node -e 'const e=require(\"./fixtures/self-pr/evidence.json\"); console.log(JSON.stringify(e.summary)); console.log(e.generatedAt, e.tool.version, \"intents non-null:\", e.hunks.filter(h=>h.intent).length)'",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 326, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:03:32.890Z",
+      "sessionId": "a747bd5244f6af29d",
+      "toolUseId": "toolu_01HJq59tu4WztvU2sDFgGYkQ",
+      "command": "npm test 2>&1 | grep -E '^# (tests|pass|fail)|^not ok'; node bin/hunkproof.js --help | grep -n 'anonymize\\|left out'; git status --short | wc -l; git log --oneline -1; echo \"no commit made: $(git diff --cached --stat | wc -l) staged lines\"",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 326, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:06:33.263Z",
+      "sessionId": "aa09e0968de43ae5a",
+      "toolUseId": "toolu_017oQE34vGSrk4PiZ8rw72rB",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|suites|pass|fail)|^not ok\"; node bin/hunkproof.js --help | head -5; echo \"help exit $?\"; claude plugin validate . 2>&1 | tail -5; echo \"validate exit $?\"",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 326, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:11:01.885Z",
+      "sessionId": "aa09e0968de43ae5a",
+      "toolUseId": "toolu_01SjaQRbFsF2Sxq4QLvpsR5s",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 325, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:11:54.412Z",
+      "sessionId": "aa09e0968de43ae5a",
+      "toolUseId": "toolu_01VScqJ4GmEdaZrEAbAoPVrg",
+      "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1; echo \"replay exit $?\"; git status --short; grep -cP '[\\x{2013}\\x{2014}]' fixtures/self-pr/hunkproof.md; grep -rnP '[\\x{2013}\\x{2014}]' CLAUDE.md CONTRACT.md src test | wc -l; grep -n 'generated' fixtures/self-pr/hunkproof.md | head -3; npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 325, fail 1",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:13:34.418Z",
+      "sessionId": "aa09e0968de43ae5a",
+      "toolUseId": "toolu_01L45jMDRD6Sxwa3ExAL8JeE",
+      "command": "grep -nP '[\\x{2013}\\x{2014}]' README.md | wc -l; grep -n -i 'tested\\|verified\\|covered\\|proof that it works\\|generated' README.md | wc -l; grep -n '](docs/\\|](fixtures/' README.md; wc -l README.md; npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 326, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:14:26.434Z",
+      "sessionId": "aa09e0968de43ae5a",
+      "toolUseId": "toolu_0112MmUnJNZyonX5bJ8LZV9c",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; node bin/hunkproof.js --help >/dev/null; echo \"help exit $?\"; node bin/hunkproof.js --version; claude plugin validate . 2>&1 | tail -1; grep -rnP '[\\x{2013}\\x{2014}]' CHANGELOG.md CONTRIBUTING.md README.md package.json .claude-plugin .github | wc -l; npm pack --dry-run 2>&1 | grep -E 'total files|package size|unpacked'",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 326, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:40:41.184Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01Px9a2PCNYqwuN7BSMp8vgs",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|not ok|AssertionError|expected|actual|Error \\[\" | head -40; grep -n \"prNumber: 42\" test/render.test.js | head -2; sed -n \"$(grep -n 'prNumber: 42' test/render.test.js | head -1 | cut -d: -f1),+1p\" test/render.test.js",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 299, fail 5",
+      "isError": true,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:40:47.452Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01GaJn4QY6d7ZPDpCQQ1tQb9",
+      "command": "echo \"=== cli ===\" && node --test test/cli.test.js 2>&1 | grep -B2 -A12 \"^not ok\\|^    not ok\" | grep -E \"not ok|error|expected|actual|at |message\" | head -30; echo \"=== stats ===\"; node --test test/stats.test.js 2>&1 | grep -E \"not ok|error:|expected|actual\" | head -10; echo \"=== render ===\"; grep -n \"Reproduce locally\\|npx hunkproof --pr\" test/render.test.js; grep -n \"prNumber\" test/render.test.js",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: not ok",
+      "isError": false,
+      "targets": [
+        "test/cli.test.js",
+        "test/stats.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:40:52.167Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01D1nUKx8MNNjhYGm5DCZtN2",
+      "command": "node --test test/cli.test.js 2>&1 | grep -vE \"^\\s*(ok|#|duration_ms|---|\\.\\.\\.|type:)\" | head -40; echo \"=== stats ===\"; node --test test/stats.test.js 2>&1 | grep -vE \"^\\s*(ok|#|duration_ms|---|\\.\\.\\.|type:)\" | head -30; echo \"=== render evidence at 100-116 ===\"; grep -n \"repo:\" test/render.test.js | head; grep -n \"base: \\|head: \" test/render.test.js | head -5",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: not ok",
+      "isError": false,
+      "targets": [
+        "test/cli.test.js",
+        "test/stats.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:40:57.264Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_016Zd6DKdAWc1gMgLCaBbpRw",
+      "command": "node test/cli.test.js 2>&1 | grep -vE \"^\\s*(ok|#|duration_ms|---|\\.\\.\\.|type:)\" | head -20; echo \"=== stats ===\"; node test/stats.test.js 2>&1 | grep -vE \"^\\s*(ok|#|duration_ms|---|\\.\\.\\.|type:)\" | head -20; echo \"=== render 42 ===\"; grep -n \"42\" test/render.test.js | head -5",
+      "runner": "node",
+      "outcome": "fail",
+      "summary": "SyntaxError: Identifier 'redactHomePaths' has already been declared",
+      "isError": false,
+      "targets": [
+        "test/cli.test.js",
+        "test/stats.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:41:05.226Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_012wWo5xheMC3ikUXTu8wop2",
+      "command": "grep -n \"redactHomePaths\" src/stats.js | head -3; grep -n \"prNumber: 42\\|evidence.sample\\|sample.json\" test/render.test.js | head; grep -o '\"repo\": {[^}]*}' fixtures/evidence.sample.json | head -2; node --test test/cli.test.js test/stats.test.js 2>&1 | grep -E \"^# (pass|fail)\"",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 21, fail 0",
+      "isError": false,
+      "targets": [
+        "test/cli.test.js",
+        "test/stats.test.js"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:41:22.169Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_015eFdfCYvSCFAEid2BVEARv",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" | head",
+      "runner": "node:test",
+      "outcome": "fail",
+      "summary": "node --test: pass 327, fail 2",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:45:10.370Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01LhKR2mcLFh42hpkm3S6iAY",
+      "command": "npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\"; echo \"=== validate ===\"; claude plugin validate . 2>&1 | tail -4; echo \"=== leftovers ===\"; git grep -n 'hunkproof:hunkproof' -- . ; git grep -nE '–|—' -- . ':!fixtures/self-pr' ; git grep -nE '\\b(tested|verified|covered)\\b' -- README.md CHANGELOG.md CONTRIBUTING.md docs skill commands CLAUDE.md; git grep -n 'nothing leaves' -- . ; git grep -nwi 'generated' -- README.md CHANGELOG.md CONTRIBUTING.md docs/install skill commands src; echo \"=== git-url install ===\"; S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; rm -rf $S/fix-prefix && mkdir -p $S/fix-prefix && (cd $S && npm install -g --prefix $S/fix-prefix \"git+file://~/hunkproof#release/v0.1.0\" 2>&1 | tail -2) && $S/fix-prefix/bin/hunkproof --version",
+      "runner": "node:test",
+      "outcome": "pass",
+      "summary": "node --test: pass 329, fail 0",
+      "isError": false,
+      "targets": [],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:47:15.058Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01QqVRw7wYsTm6DT6Vohry9k",
+      "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -3 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif && ls -l $S/release/demo-v3.gif $S/release/demo-v3.png | awk '{print $5, $9}' && ls $S/release/frames-v3 | wc -l",
+      "runner": "node",
+      "outcome": "unparsed",
+      "summary": null,
+      "isError": false,
+      "targets": [
+        "demo-gif-v3.mjs"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:48:01.226Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01QWBX4EYsvcdoYTTeJPuPzB",
+      "command": "S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad; cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.gif $S/release/demo-v3.png",
+      "runner": "node",
+      "outcome": "fail",
+      "summary": "exit code 1: /tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad/release/demo-v3.gif: 39 frames at 5 fps = 7.80 s, 1.33 MB, 1000x620 at zoom 1.25",
+      "isError": true,
+      "targets": [
+        "demo-gif-v3.mjs"
+      ],
+      "checkout": "~/hunkproof"
+    },
+    {
+      "ts": "2026-10-14T17:50:15.194Z",
+      "sessionId": "ac5ae6e3a0b88ef52",
+      "toolUseId": "toolu_01LDBJJadJCNn1D5n5WEJ61r",
+      "command": "node bin/hunkproof.js --evidence fixtures/self-pr/evidence.json --diff fixtures/self-pr/diff.patch --out fixtures/self-pr --no-note >/dev/null 2>&1 && npm test 2>&1 | grep -E \"^# (tests|pass|fail)|^not ok\" && S=/tmp/claude-1000/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/scratchpad && cd $S/release && node demo-gif-v3.mjs --out $S/release/demo-v3.gif --png $S/release/demo-v3.png 2>&1 | tail -2 && ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 $S/release/demo-v3.png",
+      "runner": "node:test+node",
+      "outcome": "pass",
+      "summary": "node --test: pass 329, fail 0",
+      "isError": false,
+      "targets": [
+        "demo-gif-v3.mjs"
+      ],
+      "checkout": "~/hunkproof"
+    }
+  ],
+  "usage": {
+    "byModel": {
+      "claude-fable-5-1": {
+        "input": 10906,
+        "output": 188086,
+        "cacheWrite": 1751268,
+        "cacheRead": 50420660,
+        "messages": 363,
+        "cacheWrite1h": 868894
+      }
+    },
+    "totals": {
+      "input": 10906,
+      "output": 188086,
+      "cacheWrite": 1751268,
+      "cacheRead": 50420660,
+      "messages": 363
+    },
+    "costListUSD": 50.52608,
+    "priceListDate": "2026-10-14",
+    "costByModel": {
+      "claude-fable-5-1": 50.52608
+    },
+    "unpricedModels": [],
+    "label": "what these tokens would cost at Anthropic API list prices; not a bill (subscription plans have no per-token charge)"
+  },
+  "summary": {
+    "hunks": 26,
+    "attributed": 23,
+    "matched": 23,
+    "fileLevel": 3,
+    "unattributed": 0,
+    "runAfterLastEdit": 20,
+    "runPass": 20,
+    "runFail": 0,
+    "runUnparsed": 0,
+    "unrun": 6,
+    "strictRunAfterLastEdit": 20,
+    "sessions": 6,
+    "durationSec": 39748,
+    "toolCalls": 547,
+    "llmTokensUsedByHunkproof": 0,
+    "elapsedMs": 680
+  },
+  "definitions": {
+    "hunk": "A hunk is one contiguous block of added or removed lines in the diff between the base and head commits (git diff -U0). Its id is the file and the first new line number.",
+    "attribution": "MATCHED (line-matched): most of the added lines appear in an edit the agent made to this file during a session; only these hunks count as attributed in the headline. FILE_LEVEL: the agent edited this file in a session, but the added lines could not be found in any edit, so the run timing is relative to the file's last edit, not to the lines. UNATTRIBUTED: no session edit of this file was found, or the only edits of the file predate the branch base commit. Working-tree changes a shell command cannot have written (a merge, files changed by another agent while the command ran) are not counted as edits.",
+    "run": "A run is a shell command that executes code: a test runner, a linter, a type checker, a build, or a direct script invocation. Commands that only write files are not runs, nor are hunkproof's own invocations. Outcome is pass, fail, or unparsed when the exit status and output could not be read (including commands moved to the background).",
+    "status": "Decided by the last run after the hunk's last edit whose outcome was parsed, targeted runs first; a run made in another checkout than the edit (a git worktree) never decides. RUN_PASS: that run passed. RUN_FAIL: it failed (\"ran, failed\"). RUN_UNPARSED: runs happened after the last edit but none had a parsable outcome (\"ran, outcome not parsed\"). UNRUN: no run at all after the last edit. UNATTRIBUTED: the hunk could not be tied to a session edit, so nothing is known about runs.",
+    "targeted": "A run is targeted when the command names the file, its stem or its parent directory, or when it is a whole-project run with no path arguments. The strict count only accepts targeted runs after the last edit.",
+    "cost": "Token counts come from the session transcripts, deduplicated per API call. The dollar figure is what these tokens would cost at Anthropic API list prices; not a bill (subscription plans have no per-token charge); it comes from a dated public price table and is not what was billed. Models without a price entry are listed and left out of the total. Hunkproof itself makes no LLM call (0 tokens)."
+  },
+  "redaction": {
+    "home": "~",
+    "rules": [
+      "the home directory of the machine that ran hunkproof is rewritten to ~ in every string of this document, file paths and diff lines included",
+      "its encoded transcript-directory form (/home/<user> written as -home-<user> under ~/.claude/projects) is rewritten to ~",
+      "any other home directory prefix (/home/<user>, /Users/<user>, C:\\Users\\<user>) is rewritten to ~",
+      "in the agent text (intent), run commands and run summaries only: API keys, tokens, private keys, JWTs, emails, IPv4 addresses and long high-entropy strings are replaced by [REDACTED:<kind>]"
+    ],
+    "note": "Home directories are rewritten to ~ in every field, diff lines included; secrets are masked in the agent text, run commands and run summaries only; nothing else is rewritten."
+  },
+  "discovery": {
+    "candidates": 17,
+    "considered": 12,
+    "selected": [
+      {
+        "sessionId": "aa09e0968de43ae5a",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-aa09e0968de43ae5a.jsonl",
+        "score": 61,
+        "reasons": [
+          "17 edits of 4 diff files in window (+60): README.md, CLAUDE.md, CHANGELOG.md, .claude-plugin/plugin.json",
+          "cwd ~/hunkproof"
+        ]
+      },
+      {
+        "sessionId": "ac5ae6e3a0b88ef52",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-ac5ae6e3a0b88ef52.jsonl",
+        "score": 61,
+        "reasons": [
+          "24 edits of 8 diff files in window (+60): README.md, CHANGELOG.md, CONTRIBUTING.md, CLAUDE.md, package.json, ...",
+          "cwd ~/hunkproof"
+        ]
+      },
+      {
+        "sessionId": "a90585f515cc53034",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-a90585f515cc53034.jsonl",
+        "score": 31,
+        "reasons": [
+          "3 edits of 3 diff files in window (+30): package.json, CHANGELOG.md, CONTRIBUTING.md",
+          "cwd ~/hunkproof"
+        ]
+      },
+      {
+        "sessionId": "ac916b24bdde689a0",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-ac916b24bdde689a0.jsonl",
+        "score": 31,
+        "reasons": [
+          "3 edits of 1 diff file in window (+30): README.md",
+          "cwd ~/hunkproof"
+        ]
+      },
+      {
+        "sessionId": "a747bd5244f6af29d",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b/subagents/workflows/wf_eb21de01-fce/agent-a747bd5244f6af29d.jsonl",
+        "score": 21,
+        "reasons": [
+          "2 edits of 1 diff file in window (+20): README.md",
+          "cwd ~/hunkproof"
+        ]
+      },
+      {
+        "sessionId": "23f0d5d8-3370-4095-a1c4-363a8d0bb49b",
+        "path": "~/.claude/projects/~/23f0d5d8-3370-4095-a1c4-363a8d0bb49b.jsonl",
+        "score": 10,
+        "reasons": [
+          "1 edit of 1 diff file in window (+10): README.md"
+        ]
+      }
+    ],
+    "timeWindow": {
+      "start": "2026-10-14T15:52:41.000Z",
+      "end": "2026-10-14T17:55:20.699Z",
+      "firstCommit": "2026-10-14T17:52:41.000Z"
+    }
+  }
+}

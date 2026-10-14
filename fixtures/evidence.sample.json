@@ -1,0 +1,455 @@
+{
+  "schema": "hunkproof/evidence@1",
+  "generatedAt": "2026-10-13T10:31:52.000Z",
+  "tool": { "name": "hunkproof", "version": "0.1.0" },
+  "repo": {
+    "root": "/home/dev/acme-billing",
+    "remote": "git@github.com:acme/billing.git",
+    "base": "main",
+    "head": "feat/tax-rate-table",
+    "prNumber": 42,
+    "prUrl": "https://github.com/acme/billing/pull/42"
+  },
+  "sessions": [
+    {
+      "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11",
+      "path": "~/.claude/projects/-home-dev-acme-billing/5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11.jsonl",
+      "firstTs": "2026-10-13T09:00:11.000Z",
+      "lastTs": "2026-10-13T09:35:48.000Z",
+      "versions": ["2.1.284"],
+      "models": ["claude-opus-5-5"],
+      "toolCalls": 34,
+      "edits": 9,
+      "shellEdits": 1,
+      "runs": 4
+    },
+    {
+      "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92",
+      "path": "~/.claude/projects/-home-dev-acme-billing/c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92.jsonl",
+      "firstTs": "2026-10-13T10:00:03.000Z",
+      "lastTs": "2026-10-13T10:30:19.000Z",
+      "versions": ["2.1.284", "2.1.286"],
+      "models": ["claude-opus-5-5", "claude-haiku-4-5-20251001"],
+      "toolCalls": 27,
+      "edits": 7,
+      "shellEdits": 0,
+      "runs": 2
+    }
+  ],
+  "hunks": [
+    {
+      "id": "src/invoice.js:12",
+      "file": "/home/dev/acme-billing/src/invoice.js",
+      "relFile": "src/invoice.js",
+      "oldStart": 12,
+      "oldLines": 3,
+      "newStart": 12,
+      "newLines": 4,
+      "added": [
+        "  const subtotal = lines.reduce((sum, l) => sum + l.qty * l.unitPrice, 0);",
+        "  // round once at the end: per-line rounding drifted by a cent on long invoices",
+        "  const rounded = Math.round(subtotal * 100) / 100;",
+        "  return { ...invoice, subtotal: rounded };"
+      ],
+      "removed": [
+        "  const subtotal = lines.reduce((sum, l) => sum + round2(l.qty * l.unitPrice), 0);",
+        "  return { ...invoice, subtotal };",
+        ""
+      ],
+      "addedNormalized": [
+        "const subtotal = lines.reduce((sum, l) => sum + l.qty * l.unitPrice, 0);",
+        "// round once at the end: per-line rounding drifted by a cent on long invoices",
+        "const rounded = Math.round(subtotal * 100) / 100;",
+        "return { ...invoice, subtotal: rounded };"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T10:03:27.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Edit", "toolUseId": "toolu_01F3kq9Yv2mN8pLwX0aRtZ1b" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:03:27.000Z",
+      "intent": {
+        "text": "Round the subtotal once at the end instead of per line, the cents drift came from here.",
+        "ts": "2026-10-13T10:03:21.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "RUN_PASS",
+      "runsAfter": [
+        { "ts": "2026-10-13T10:09:40.000Z", "command": "npx eslint src/", "runner": "eslint", "outcome": "pass", "summary": "0 problems", "targeted": true },
+        { "ts": "2026-10-13T10:11:03.000Z", "command": "npm test", "runner": "npm test", "outcome": "pass", "summary": "tests 14, pass 14, fail 0", "targeted": true }
+      ]
+    },
+    {
+      "id": "src/invoice.js:40",
+      "file": "/home/dev/acme-billing/src/invoice.js",
+      "relFile": "src/invoice.js",
+      "oldStart": 40,
+      "oldLines": 2,
+      "newStart": 40,
+      "newLines": 5,
+      "added": [
+        "  const rate = lookupRate(invoice.region, invoice.issuedAt);",
+        "  if (rate === undefined) {",
+        "    throw new MissingRateError(invoice.region, invoice.issuedAt);",
+        "  }",
+        "  const tax = Math.round(invoice.subtotal * rate * 100) / 100;"
+      ],
+      "removed": [
+        "  const rate = RATES[invoice.region] ?? 0.2;",
+        "  const tax = invoice.subtotal * rate;"
+      ],
+      "addedNormalized": [
+        "const rate = lookupRate(invoice.region, invoice.issuedAt);",
+        "if (rate === undefined) {",
+        "throw new MissingRateError(invoice.region, invoice.issuedAt);",
+        "}",
+        "const tax = Math.round(invoice.subtotal * rate * 100) / 100;"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T09:15:02.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "tool": "Edit", "toolUseId": "toolu_01Hq7Vc2dR9sT4uWxY6zA8bC" },
+        { "ts": "2026-10-13T09:18:44.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "tool": "Edit", "toolUseId": "toolu_01Jm3Nn5pQ7rS9tUvW1xY2zD" },
+        { "ts": "2026-10-13T09:25:19.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "tool": "Bash", "toolUseId": "toolu_01Kp4Qq6rS8tU0vWxY2zA3bE", "source": "bashEditDiff" }
+      ],
+      "churn": 3,
+      "lastEdit": "2026-10-13T09:25:19.000Z",
+      "intent": {
+        "text": "Switching the tax lookup to the new rate table. The old fallback to 20% hid missing regions, so this throws instead.",
+        "ts": "2026-10-13T09:25:08.000Z",
+        "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11"
+      },
+      "status": "RUN_FAIL",
+      "runsAfter": [
+        { "ts": "2026-10-13T09:31:17.000Z", "command": "node --test test/invoice.test.js", "runner": "node --test", "outcome": "fail", "summary": "tests 13, pass 11, fail 2", "targeted": true },
+        { "ts": "2026-10-13T09:33:50.000Z", "command": "node src/tax.js --print-table", "runner": "node", "outcome": "unparsed", "summary": null, "targeted": false }
+      ]
+    },
+    {
+      "id": "src/invoice.js:77",
+      "file": "/home/dev/acme-billing/src/invoice.js",
+      "relFile": "src/invoice.js",
+      "oldStart": 76,
+      "oldLines": 0,
+      "newStart": 77,
+      "newLines": 9,
+      "added": [
+        "export async function renderBatch(invoices, { dryRun = false } = {}) {",
+        "  const out = [];",
+        "  for (const inv of invoices) {",
+        "    const doc = renderInvoice(inv);",
+        "    if (!dryRun) await writeInvoice(doc);",
+        "    out.push(doc);",
+        "  }",
+        "  return out;",
+        "}"
+      ],
+      "removed": [],
+      "addedNormalized": [
+        "export async function renderBatch(invoices, { dryRun = false } = {}) {",
+        "const out = [];",
+        "for (const inv of invoices) {",
+        "const doc = renderInvoice(inv);",
+        "if (!dryRun) await writeInvoice(doc);",
+        "out.push(doc);",
+        "}",
+        "return out;",
+        "}"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T10:14:02.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Edit", "toolUseId": "toolu_01Lr5Ss7tU9vW1xYzA3bC4dF" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:14:02.000Z",
+      "intent": {
+        "text": "Adding a dry-run flag so the batch job can print invoices without writing them.",
+        "ts": "2026-10-13T10:13:55.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "UNRUN",
+      "runsAfter": []
+    },
+    {
+      "id": "src/tax.js:5",
+      "file": "/home/dev/acme-billing/src/tax.js",
+      "relFile": "src/tax.js",
+      "oldStart": 5,
+      "oldLines": 1,
+      "newStart": 5,
+      "newLines": 4,
+      "added": [
+        "  'FR': [{ from: '2024-01-01', rate: 0.2 }],",
+        "  'DE': [{ from: '2024-01-01', rate: 0.19 }],",
+        "  'ES': [{ from: '2024-01-01', rate: 0.21 }],",
+        "  'PT': [{ from: '2024-01-01', rate: 0.23 }, { from: '2026-07-01', rate: 0.22 }],"
+      ],
+      "removed": [
+        "  FR: 0.2, DE: 0.19, ES: 0.21,"
+      ],
+      "addedNormalized": [
+        "'FR': [{ from: '2024-01-01', rate: 0.2 }],",
+        "'DE': [{ from: '2024-01-01', rate: 0.19 }],",
+        "'ES': [{ from: '2024-01-01', rate: 0.21 }],",
+        "'PT': [{ from: '2024-01-01', rate: 0.23 }, { from: '2026-07-01', rate: 0.22 }],"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T10:07:36.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Write", "toolUseId": "toolu_01Ms6Tt8uV0wX2yZaB4cD5eG" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:07:36.000Z",
+      "intent": {
+        "text": "Rates for the new regions, pulled from the CSV the finance team sent. PT changes mid-2026 so it gets two rows.",
+        "ts": "2026-10-13T10:07:30.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "RUN_PASS",
+      "runsAfter": [
+        { "ts": "2026-10-13T10:09:40.000Z", "command": "npx eslint src/", "runner": "eslint", "outcome": "pass", "summary": "0 problems", "targeted": true },
+        { "ts": "2026-10-13T10:11:03.000Z", "command": "npm test", "runner": "npm test", "outcome": "pass", "summary": "tests 14, pass 14, fail 0", "targeted": true }
+      ]
+    },
+    {
+      "id": "src/tax.js:22",
+      "file": "/home/dev/acme-billing/src/tax.js",
+      "relFile": "src/tax.js",
+      "oldStart": 21,
+      "oldLines": 0,
+      "newStart": 22,
+      "newLines": 6,
+      "added": [
+        "if (process.argv.includes('--print-table')) {",
+        "  for (const [region, rows] of Object.entries(RATE_TABLE)) {",
+        "    const latest = rows[rows.length - 1];",
+        "    console.log(`${region}\\t${latest.from}\\t${latest.rate}`);",
+        "  }",
+        "}"
+      ],
+      "removed": [],
+      "addedNormalized": [
+        "if (process.argv.includes('--print-table')) {",
+        "for (const [region, rows] of Object.entries(RATE_TABLE)) {",
+        "const latest = rows[rows.length - 1];",
+        "console.log(`${region}\\t${latest.from}\\t${latest.rate}`);",
+        "}",
+        "}"
+      ],
+      "attribution": "MATCHED",
+      "score": 0.83,
+      "edits": [
+        { "ts": "2026-10-13T09:27:05.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "tool": "Edit", "toolUseId": "toolu_01Nt7Uu9vW1xY3zAbC5dE6fH" },
+        { "ts": "2026-10-13T09:28:51.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "tool": "Edit", "toolUseId": "toolu_01Pu8Vv0wX2yZ4aBcD6eF7gJ" }
+      ],
+      "churn": 2,
+      "lastEdit": "2026-10-13T09:28:51.000Z",
+      "intent": {
+        "text": "Printing the rate table as a quick sanity check before wiring it into the invoice path.",
+        "ts": "2026-10-13T09:26:58.000Z",
+        "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11"
+      },
+      "status": "RUN_UNPARSED",
+      "runsAfter": [
+        { "ts": "2026-10-13T09:33:50.000Z", "command": "node src/tax.js --print-table", "runner": "node", "outcome": "unparsed", "summary": null, "targeted": true }
+      ]
+    },
+    {
+      "id": "src/tax.js:48",
+      "file": "/home/dev/acme-billing/src/tax.js",
+      "relFile": "src/tax.js",
+      "oldStart": 47,
+      "oldLines": 2,
+      "newStart": 48,
+      "newLines": 7,
+      "added": [
+        "const rateCache = new Map();",
+        "export function lookupRate(region, issuedAt) {",
+        "  const key = `${region}|${issuedAt}`;",
+        "  if (rateCache.has(key)) return rateCache.get(key);",
+        "  const rate = findRate(region, issuedAt);",
+        "  rateCache.set(key, rate);",
+        "  return rate;"
+      ],
+      "removed": [
+        "export function lookupRate(region, issuedAt) {",
+        "  return findRate(region, issuedAt);"
+      ],
+      "addedNormalized": [
+        "const rateCache = new Map();",
+        "export function lookupRate(region, issuedAt) {",
+        "const key = `${region}|${issuedAt}`;",
+        "if (rateCache.has(key)) return rateCache.get(key);",
+        "const rate = findRate(region, issuedAt);",
+        "rateCache.set(key, rate);",
+        "return rate;"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T10:16:40.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Edit", "toolUseId": "toolu_01Qv9Ww1xY3zA5bCdE7fG8hK" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:16:40.000Z",
+      "intent": {
+        "text": "Caching the rate lookup per process; the profile showed it called 40k times for one batch.",
+        "ts": "2026-10-13T10:16:33.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "UNRUN",
+      "runsAfter": []
+    },
+    {
+      "id": "src/tax.js:60",
+      "file": "/home/dev/acme-billing/src/tax.js",
+      "relFile": "src/tax.js",
+      "oldStart": 58,
+      "oldLines": 1,
+      "newStart": 60,
+      "newLines": 2,
+      "added": [
+        "export class MissingRateError extends Error {",
+        "  constructor(region, issuedAt) { super(`no tax rate for ${region} at ${issuedAt}`); }"
+      ],
+      "removed": [
+        "export class MissingRateError extends Error {}"
+      ],
+      "addedNormalized": [
+        "export class MissingRateError extends Error {",
+        "constructor(region, issuedAt) { super(`no tax rate for ${region} at ${issuedAt}`); }"
+      ],
+      "attribution": "UNATTRIBUTED",
+      "score": 0,
+      "edits": [],
+      "churn": 0,
+      "lastEdit": null,
+      "intent": null,
+      "status": "UNATTRIBUTED",
+      "runsAfter": []
+    },
+    {
+      "id": "test/invoice.test.js:1",
+      "file": "/home/dev/acme-billing/test/invoice.test.js",
+      "relFile": "test/invoice.test.js",
+      "oldStart": 1,
+      "oldLines": 2,
+      "newStart": 1,
+      "newLines": 3,
+      "added": [
+        "import { test } from 'node:test';",
+        "import assert from 'node:assert/strict';",
+        "import { computeSubtotal, applyTax } from '../src/invoice.js';"
+      ],
+      "removed": [
+        "import test from 'node:test';",
+        "import { computeSubtotal } from '../src/invoice.js';"
+      ],
+      "addedNormalized": [
+        "import { test } from 'node:test';",
+        "import assert from 'node:assert/strict';",
+        "import { computeSubtotal, applyTax } from '../src/invoice.js';"
+      ],
+      "attribution": "MATCHED",
+      "score": 1,
+      "edits": [
+        { "ts": "2026-10-13T10:05:12.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Edit", "toolUseId": "toolu_01Rw0Xx2yZ4aB6cDeF8gH9jL" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:05:12.000Z",
+      "intent": {
+        "text": "Test for the rounding fix: one invoice with three lines at 0.333 must come out at 1.00, not 0.99.",
+        "ts": "2026-10-13T10:05:04.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "RUN_PASS",
+      "runsAfter": [
+        { "ts": "2026-10-13T10:09:40.000Z", "command": "npx eslint src/", "runner": "eslint", "outcome": "pass", "summary": "0 problems", "targeted": false },
+        { "ts": "2026-10-13T10:11:03.000Z", "command": "npm test", "runner": "npm test", "outcome": "pass", "summary": "tests 14, pass 14, fail 0", "targeted": true }
+      ]
+    },
+    {
+      "id": "test/invoice.test.js:30",
+      "file": "/home/dev/acme-billing/test/invoice.test.js",
+      "relFile": "test/invoice.test.js",
+      "oldStart": 29,
+      "oldLines": 0,
+      "newStart": 30,
+      "newLines": 5,
+      "added": [
+        "test('applyTax uses the rate in force at issuedAt', () => {",
+        "  const inv = { region: 'PT', issuedAt: '2026-08-01', subtotal: 100 };",
+        "  const taxed = applyTax(inv);",
+        "  assert.equal(taxed.tax, 22);",
+        "});"
+      ],
+      "removed": [],
+      "addedNormalized": [
+        "test('applyTax uses the rate in force at issuedAt', () => {",
+        "const inv = { region: 'PT', issuedAt: '2026-08-01', subtotal: 100 };",
+        "const taxed = applyTax(inv);",
+        "assert.equal(taxed.tax, 22);",
+        "});"
+      ],
+      "attribution": "FILE_LEVEL",
+      "score": 0.4,
+      "edits": [
+        { "ts": "2026-10-13T10:18:27.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "tool": "Edit", "toolUseId": "toolu_01Sx1Yy3zA5bC7dEfG9hJ0kM" }
+      ],
+      "churn": 1,
+      "lastEdit": "2026-10-13T10:18:27.000Z",
+      "intent": {
+        "text": "Pinning the fixture date so the test does not depend on today.",
+        "ts": "2026-10-13T10:18:20.000Z",
+        "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92"
+      },
+      "status": "UNRUN",
+      "runsAfter": []
+    }
+  ],
+  "runs": [
+    { "ts": "2026-10-13T09:12:04.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "toolUseId": "toolu_01Ab1Cd2Ef3Gh4Ij5Kl6Mn7P", "command": "npm test", "runner": "npm test", "outcome": "pass", "summary": "tests 12, pass 12, fail 0", "isError": false, "targets": [] },
+    { "ts": "2026-10-13T09:20:38.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "toolUseId": "toolu_01Bc2De3Fg4Hi5Jk6Lm7No8Q", "command": "node --test test/invoice.test.js", "runner": "node --test", "outcome": "pass", "summary": "tests 12, pass 12, fail 0", "isError": false, "targets": ["test/invoice.test.js"] },
+    { "ts": "2026-10-13T09:31:17.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "toolUseId": "toolu_01Cd3Ef4Gh5Ij6Kl7Mn8Op9R", "command": "node --test test/invoice.test.js", "runner": "node --test", "outcome": "fail", "summary": "tests 13, pass 11, fail 2", "isError": true, "targets": ["test/invoice.test.js"] },
+    { "ts": "2026-10-13T09:33:50.000Z", "sessionId": "5b1c7d2e-0a4f-4c33-9e1b-2f6a8d9c0e11", "toolUseId": "toolu_01De4Fg5Hi6Jk7Lm8No9Pq0S", "command": "node src/tax.js --print-table", "runner": "node", "outcome": "unparsed", "summary": null, "isError": false, "targets": ["src/tax.js"] },
+    { "ts": "2026-10-13T10:09:40.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "toolUseId": "toolu_01Ef5Gh6Ij7Kl8Mn9Op0Qr1T", "command": "npx eslint src/", "runner": "eslint", "outcome": "pass", "summary": "0 problems", "isError": false, "targets": ["src"] },
+    { "ts": "2026-10-13T10:11:03.000Z", "sessionId": "c93f0a61-7d2b-4e58-b0c4-1a5e6f7d8a92", "toolUseId": "toolu_01Fg6Hi7Jk8Lm9No0Pq1Rs2U", "command": "npm test", "runner": "npm test", "outcome": "pass", "summary": "tests 14, pass 14, fail 0", "isError": false, "targets": [] }
+  ],
+  "usage": {
+    "byModel": {
+      "claude-opus-5-5": { "input": 18420, "output": 6110, "cacheWrite": 41200, "cacheRead": 612300, "messages": 48 },
+      "claude-haiku-4-5-20251001": { "input": 1210, "output": 340, "cacheWrite": 0, "cacheRead": 0, "messages": 6 }
+    },
+    "totals": { "input": 19630, "output": 6450, "cacheWrite": 41200, "cacheRead": 612300, "messages": 54 },
+    "costListUSD": 8.47,
+    "priceListDate": "2026-10-01",
+    "label": "what these tokens would cost at Anthropic API list prices; not a bill (subscription plans have no per-token charge)"
+  },
+  "summary": {
+    "hunks": 9,
+    "attributed": 7,
+    "matched": 7,
+    "fileLevel": 1,
+    "unattributed": 1,
+    "runAfterLastEdit": 5,
+    "runPass": 3,
+    "runFail": 1,
+    "runUnparsed": 1,
+    "unrun": 3,
+    "strictRunAfterLastEdit": 4,
+    "sessions": 2,
+    "durationSec": 3953,
+    "toolCalls": 61,
+    "llmTokensUsedByHunkproof": 0,
+    "elapsedMs": 412
+  },
+  "definitions": {
+    "hunk": "One contiguous block of added or removed lines in the PR diff (git diff -U0), named by file and new start line.",
+    "attribution": "A hunk is attributed to an agent edit when at least 60% of its added lines appear in content written by an Edit, Write or file-modifying Bash call for the same file in a Claude Code session. FILE_LEVEL means the file matched but the lines did not. Unattributed hunks matched no agent edit at all.",
+    "run": "A Bash call classified as a test, build, lint or type-check command (pytest, jest, node --test, npm test, cargo test, go test, tsc, eslint, make ...). Commands that write files are not runs.",
+    "status": "Decided by the last run after the hunk's last edit: ran and passed, ran and failed, or ran with an outcome that could not be parsed. A hunk with no run after its last edit is unrun.",
+    "targeted": "A run is targeted when its command names the hunk's file, its stem or its parent directory, or when it is a whole-project run with no path arguments.",
+    "cost": "Token counts come from the transcripts. The dollar figure is what these tokens would cost at Anthropic API list prices; it is not a bill. Hunkproof itself makes no LLM call."
+  }
+}
