@@ -196,11 +196,12 @@ test('self-pr fixture: --evidence --diff replay rebuilds byte-identical files', 
   }
 });
 
-test('README quotes the fixture headline and the definitions verbatim', () => {
+test('README quotes the fixture headline, docs/definitions.md quotes the definitions verbatim', () => {
   const readme = fs.readFileSync(path.join(repoRoot, 'README.md'), 'utf8');
   assert.ok(readme.includes(summarySentence(evidence)), 'README carries the headline sentence of the fixture');
+  const definitions = fs.readFileSync(path.join(repoRoot, 'docs', 'definitions.md'), 'utf8');
   for (const [key, text] of Object.entries(evidence.definitions)) {
-    assert.ok(readme.includes(text), `README quotes the "${key}" definition verbatim`);
+    assert.ok(definitions.includes(text), `docs/definitions.md quotes the "${key}" definition verbatim`);
   }
-  assert.ok(readme.includes(evidence.usage.label), 'README quotes the cost label');
+  assert.ok(definitions.includes(evidence.usage.label), 'docs/definitions.md quotes the cost label');
 });
