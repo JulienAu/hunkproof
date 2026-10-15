@@ -2,7 +2,7 @@
 
 All notable changes to hunkproof are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2026-10-15
 
 ### Added
 
@@ -39,5 +39,5 @@ First public release.
 - It does not edit the repository it reports on: outputs go to `<repo>/.hunkproof/` and the tool only prints a hint when that directory is not gitignored.
 - The dollar figure is computed from a shipped price table and says nothing about your plan or what you paid.
 
-[Unreleased]: https://github.com/JulienAu/hunkproof/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/JulienAu/hunkproof/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/JulienAu/hunkproof/releases/tag/v0.1.0

@@ -1,6 +1,6 @@
 {
   "name": "hunkproof",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran. 0 LLM tokens, your transcripts never leave your machine.",
   "author": {
     "name": "JulienAu",
