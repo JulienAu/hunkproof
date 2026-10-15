@@ -1,9 +1,9 @@
 # hunkproof
 
-**hunkproof stamps every hunk of the diff with what the agent ran after writing it, and marks the hunks it never ran.**
+**git diff shows what the agent changed. hunkproof shows what it ran after each hunk, and the hunks it never ran.**
 Reads the Claude Code transcripts already on your disk. 0 LLM tokens, nothing leaves your machine.
 
-On the laptop that built it, 270 of the 392 commits the agent made after editing files in the session (69%) included a file edited after the last run (446 commits in all, 380 transcripts). `npx hunkproof stats` prints yours ([snapshot](https://github.com/JulienAu/hunkproof/blob/main/docs/stats-2026-10-14.md)).
+On the laptop that built it, 69% of the agent's commits that followed its own edits (270 of 392, over 380 transcripts) included a file edited after the last run. `npx hunkproof stats` prints yours ([snapshot](https://github.com/JulienAu/hunkproof/blob/main/docs/stats-2026-10-14.md)).
 
 ![hunkproof HTML report, 8 seconds: the Unrun chip pressed, 6 of 26 hunks remain, then a scroll from CHANGELOG.md +18,3 to README.md +31,3, each with its diff lines, its edit time, a red unrun badge and the line "no run after the last edit"](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.gif)
 
