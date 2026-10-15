@@ -237,6 +237,9 @@ function makeRepo() {
     env: { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t.t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t.t' },
   }).trim();
   g('init', '-q', '.');
+  g('config', 'user.email', 't@t.t');
+  g('config', 'user.name', 't');
+  g('config', 'commit.gpgsign', 'false');
   writeFileSync(path.join(dir, 'a.txt'), 'one\n');
   g('add', 'a.txt');
   g('commit', '-q', '-m', 'first');
