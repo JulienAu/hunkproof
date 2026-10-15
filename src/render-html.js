@@ -45,12 +45,12 @@ export function escapeHtml(s) {
 const esc = escapeHtml;
 
 const LIGHT = `
-  --bg: #fcfcfb; --bg-2: #f4f4f1; --panel: #ffffff; --ink: #1b1b1a; --ink-2: #4d4d49; --ink-3: #7b7b75;
+  --bg: #fcfcfb; --bg-2: #f4f4f1; --panel: #ffffff; --ink: #1b1b1a; --ink-2: #4d4d49; --ink-3: #6a6a64;
   --hair: #e3e2dc; --hair-2: #cfcec7; --accent: #2d5bd3; --accent-ink: #ffffff;
   --add-bg: #e6f6ea; --add-ink: #11602b; --add-gutter: #c7ead1;
   --del-bg: #fdeceb; --del-ink: #9b1d1a; --del-gutter: #f3cfcd;
-  --pass: #1a7f37; --pass-bg: #dcf1e2; --fail: #c42b2b; --fail-bg: #fbe2e1;
-  --unparsed: #6b6b66; --unparsed-bg: #ebebe7; --unrun: #d0481f; --unrun-bg: #fde7df;
+  --pass: #156e30; --pass-bg: #dcf1e2; --fail: #c42b2b; --fail-bg: #fbe2e1;
+  --unparsed: #62625d; --unparsed-bg: #ebebe7; --unrun: #b83c14; --unrun-bg: #fde7df;
   --unattr: #6b6b66; --unattr-bg: transparent;
   --shadow: 0 1px 0 rgba(0,0,0,.04), 0 6px 20px -12px rgba(0,0,0,.18);`;
 
