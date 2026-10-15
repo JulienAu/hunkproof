@@ -2,6 +2,17 @@
 
 All notable changes to hunkproof are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- HTML report: the top now leads with the unrun count, then the failed count when there is one, as large figures; the other numbers sit on one smaller line under them. With nothing unrun or failed the lead is one line, "Every line-matched hunk had a run after its last edit." The full headline sentence moved to the footer.
+- HTML report: only the filter chips stay pinned while scrolling (50 px instead of 104 px on desktop and 209 px on a phone); chips are 32 px tall and scroll sideways in one row on a phone; "No hunk matches this filter" names the filter ("No unrun hunks.").
+- HTML report: each file is a collapsible section, closed when every hunk of the file passed; under a hunk the run that decided its status and the two latest other runs are listed, the others fold behind "N more runs after the last edit"; diffs over 40 lines show 20 and fold the rest. Every run and every line stays in the page. The self-pr receipt (68 hunks) goes from 218,886 px to 3,840 px tall on desktop (308,191 px to 5,221 px on a phone).
+- HTML report: the status badge comes first in the hunk header and the edit tag reads "edited HH:MM:SS" (session and tool in its tooltip); badges, chips, pills and the lead carry their definition as a tooltip; the "no agent text in this turn" note is gone and the diff takes the full width; run rows stay on one line with the command and summary cut short (full text in the tooltip); on a phone diff lines wrap and the transcript column is hidden.
+- HTML report: the footer no longer repeats the cost line under the receipt, and the definitions fold behind a "show" toggle. The "hunkproof" title links to the repository, with the line "Run receipt for an agent-written PR".
+- HTML report: light theme colours darkened so small text passes WCAG AA (secondary text, the passed and unrun badges, the outcome-not-parsed badge).
+
 ## [0.2.0] - 2026-10-15
 
 ### Added
