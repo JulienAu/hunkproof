@@ -10,7 +10,7 @@
     {
       "name": "hunkproof",
       "source": "./",
-      "description": "Stamps every hunk of a PR with what the agent ran after writing it and lists the unrun hunks. Adds the hunkproof skill and the /hunkproof:receipt command.",
+      "description": "Stamps every hunk of a PR with what the agent ran after writing it and lists the unrun hunks. Adds the hunkproof skill, the /hunkproof:receipt command and a Stop hook that names the hunks edited in the session with no run after their last edit.",
       "category": "development",
       "tags": ["claude-code", "pull-request", "review", "provenance", "receipts"]
     }

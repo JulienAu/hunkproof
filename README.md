@@ -75,6 +75,16 @@ npx hunkproof stats               # what fraction of edits across your transcrip
 
 Outputs go to `<repo>/.hunkproof/` (`evidence.json`, `hunkproof.html`, `hunkproof.md`); add that directory to `.gitignore`, hunkproof will not do it for you. The evidence is also stored as a git note (`refs/notes/hunkproof`) on the head commit, so `--from-note` can rebuild the receipt later without the transcripts. A snapshot of `hunkproof stats --anonymize` over the author's transcripts is kept in [`docs/stats-2026-10-14.md`](https://github.com/JulienAu/hunkproof/blob/main/docs/stats-2026-10-14.md).
 
+## Stop hook
+
+The plugin also installs a Claude Code `Stop` hook ([`hooks/hooks.json`](https://github.com/JulienAu/hunkproof/blob/main/hooks/hooks.json)). When the agent is about to hand back, the hook diffs the working tree against the base branch (untracked files included when this session wrote them), reads this session's transcripts only (the main one and its subagents) and shows you the hunks whose lines this session wrote and that have no run after their last edit: `hunkproof: 2 hunks edited in this session have no run after their last edit`, then one `file:line` per hunk, 10 at most. Hunks written in an earlier session are not listed, even in a file this session edited elsewhere. When there is nothing to say (no git repository, no diff, no transcript, every hunk run) it prints nothing; `HUNKPROOF_DEBUG=1` names the reason on stderr. It writes nothing (no `.hunkproof/`, no git note), never runs transcript discovery, and on this repository, with a 26 MB session transcript and 108 subagent transcripts (73 MB, 23 of them mentioning the repository), five runs on an idle machine took 1.4 to 1.7 s; a loaded machine takes longer, and the hook's 10 s timeout bounds it. Without the plugin, add it to `.claude/settings.json`; the `hook` subcommand exists from hunkproof 0.2.0 (0.1.0 prints its usage and exits 1), so pin the version, or point `command` at `node` and `args` at `<checkout>/bin/hunkproof.js hook stop` from a clone until 0.2.0 is on npm:
+
+```json
+{ "hooks": { "Stop": [ { "hooks": [ { "type": "command", "command": "npx", "args": ["-y", "hunkproof@^0.2.0", "hook", "stop"], "timeout": 30 } ] } ] } }
+```
+
+`HUNKPROOF_STOP=block` (an environment variable, so it works with the plugin's hook as shipped: `HUNKPROOF_STOP=block claude`, or `env` in your settings) returns the hook's block decision instead, with the same list as the reason and a closing line naming the project's checks (`npm test`, `npm run check`, `npm run lint`, `make test`, `make check`, whichever exist), so the agent runs the unrun hunks before it stops; the hook never blocks when the agent is already continuing because of a stop hook (`stop_hook_active`). Claude Code shows a block as a `Stop hook error occurred` notice (`ctrl+o` shows the reason): that is how it renders any Stop hook that asks the agent to continue, not a failure of the hook. `HUNKPROOF_STOP=off` turns it off, `HUNKPROOF_BASE=<ref>` picks the base (default: origin's HEAD, `main` or `master`).
+
 ## Compared with
 
 | | shows what changed | shows what ran after the change | per hunk | LLM tokens | leaves your machine |
@@ -112,7 +122,7 @@ These are the strings printed in every report footer (`evidence.definitions`):
 ## Privacy
 
 - Read: the Claude Code transcripts under `~/.claude/projects` (JSONL files Claude Code already writes), the repository's git objects, and with `--pr` the PR metadata through `gh`. No LLM call, no telemetry, no upload of transcripts.
-- Written: `<repo>/.hunkproof/evidence.json`, `hunkproof.html`, `hunkproof.md`, and a git note on the head commit (`refs/notes/hunkproof`, skipped with `--no-note`). Nothing else on disk is touched.
+- Written: `<repo>/.hunkproof/evidence.json`, `hunkproof.html`, `hunkproof.md`, and a git note on the head commit (`refs/notes/hunkproof`, skipped with `--no-note`). Nothing else on disk is touched. The Stop hook writes nothing at all; its message goes to Claude Code's hook output only.
 - Sent: only with `--post`, only the Markdown comment shown in the preview, only after you type `y`, through `gh pr comment`. The comment carries counts, `file:line` links and the deciding run of each hunk; the agent's intent quotes are left out unless you pass `--quotes`. The deciding run commands are quoted verbatim and may name other directories on your machine; read the preview.
 - The evidence document and the HTML contain the agent's own sentences (the intent of each edit), the command lines it ran, the parsed run summaries and the diff lines, taken from your transcripts and your repository. They are meant to stay local; read them before sharing them.
 - Three fields (intent, command, summary) pass through the secret rules of `src/redact.js` when the evidence is built, and the whole comment passes through them again before posting. They replace private key blocks, JWTs, `Bearer`/`Basic`/`Token` values, keys with a known prefix (`sk-`, `sk-ant-`, `ghp_` and other GitHub tokens, `github_pat_`, `AKIA`/`ASIA`, `xox`, `glpat-`, `AIza`, `npm_`), email addresses, runs of 32 or more hex characters, long high-entropy tokens and IPv4 addresses (loopback and bind-all kept) with `[REDACTED:...]` placeholders.
@@ -133,7 +143,6 @@ These are the strings printed in every report footer (`evidence.definitions`):
 ## Roadmap
 
 - Parsers for Codex and other agents' session logs, behind the same event schema.
-- A Claude Code `Stop` hook that prints the unrun hunks before the agent hands back.
 - A GitHub Action that replays a committed evidence document (or the git note) into a check run.
 
 ## License

@@ -2,6 +2,14 @@
 
 All notable changes to hunkproof are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] - 2026-10-15
+
+### Added
+
+- A Claude Code `Stop` hook, installed with the plugin (`hooks/hooks.json`, exec form `node ${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js hook stop`, 10 s timeout). When the agent is about to hand back, the hook diffs the working tree against the base branch (merge base of `HUNKPROOF_BASE`, else origin's HEAD, `main` or `master`, with HEAD), reads the current session's transcripts only (the main transcript plus the subagent transcripts that mention the repository, 64 MiB of them at most) and shows the user the hunks whose lines this session wrote and that have no run after their last edit: a header with the count, then one `file:line  edited HH:MM:SS UTC  no run after` line per hunk, 10 at most, then `+N more`. Untracked files are diffed only when an edit of this session names them, 50 at most and none over 1 MiB, so a stray dump in the working tree costs nothing: a 30 MB untracked log next to one session edit took 6444 ms before this rule and 32 ms after it. A hunk written in an earlier session is not listed, even in a file this session edited elsewhere: a line-matched hunk has to carry lines this session's own edits added. Nothing to say (no git repository, no diff, no transcript, every hunk run) prints nothing, and `HUNKPROOF_DEBUG=1` names the reason on stderr. It never blocks by default; `HUNKPROOF_STOP=block` returns the hook's block decision with the same list as the reason, closed by `Run the project's check (npm test, make check) for these files, then stop again.` with the project's own entry points (package scripts `test`, `check`, `lint`, Makefile targets `test`, `check`), downgraded to a report when `stop_hook_active` is true so it never loops; `HUNKPROOF_STOP=off` turns it off. The hook writes nothing (no `.hunkproof/`, no git note), never runs transcript discovery, and always exits 0, also when it crashes (`HUNKPROOF_DEBUG=1` prints the stack on stderr). On this repository, with a 26,118,805-byte session transcript and 108 subagent transcripts (72,709,287 bytes, 23 kept by the byte scan, 27,699,286 bytes), five runs on an idle machine (load average 0.65) took 1.37, 1.37, 1.54, 1.73 and 1.49 s with a peak of 147 to 187 MB of memory.
+- `hunkproof hook stop [--mode report|block|off]`: the hook as a subcommand of the CLI, JSON in on stdin, JSON out on stdout, for a hand-written `settings.json` hook (`npx -y hunkproof@^0.2.0 hook stop`; the subcommand does not exist in 0.1.0); the environment variable wins over the flag.
+- `src/hook.js` (`stopHook`, `parseStdin`, `formatUnrun`, `formatEditTime`, `knownChecks`) with injectable git, diff, transcript reader, byte scan, clock and environment; `defaultBaseRef`, `readPackageScripts` and `readMakeTargets` are now exported from `src/cli.js`; `hooks/` ships in the npm package for reference.
+
 ## [0.1.0] - 2026-10-14
 
 First public release.
@@ -31,4 +39,5 @@ First public release.
 - It does not edit the repository it reports on: outputs go to `<repo>/.hunkproof/` and the tool only prints a hint when that directory is not gitignored.
 - The dollar figure is computed from a shipped price table and says nothing about your plan or what you paid.
 
+[0.2.0]: https://github.com/JulienAu/hunkproof/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/JulienAu/hunkproof/releases/tag/v0.1.0
