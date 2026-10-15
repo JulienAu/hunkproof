@@ -80,6 +80,7 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 @media (max-width:600px){.wrap{padding:0 16px}}
 summary{cursor:pointer}
 summary::-webkit-details-marker{display:none}
+summary:focus-visible,.chip:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 
 header.top{padding:22px 0 16px}
 header.top .row{display:flex;flex-wrap:wrap;gap:6px 28px;align-items:baseline;justify-content:space-between}
@@ -96,11 +97,14 @@ header.top .row{display:flex;flex-wrap:wrap;gap:6px 28px;align-items:baseline;ju
 .fig b{font-size:26px;line-height:1.1;font-weight:650;font-variant-numeric:tabular-nums}
 .fig[data-s="UNRUN"] b{color:var(--unrun)}
 .fig[data-s="RUN_FAIL"] b{color:var(--fail)}
+.fig[data-s="RUN_UNPARSED"] b{color:var(--unparsed)}
 p.lead{display:block;font-size:20px;line-height:1.3;font-weight:650;color:var(--ink)}
 p.lead.pass{color:var(--pass)}
 p.sub{margin:8px 0 0;font-size:13px;font-weight:400;color:var(--ink-2)}
 p.sub .sep{color:var(--ink-3);white-space:pre}
-p.sub span[title]{border-bottom:1px dotted var(--hair-2)}
+p.sub a.term{color:inherit;border-bottom:1px dotted var(--ink-3)}
+p.sub a.term:hover{text-decoration:none;border-bottom-style:solid}
+@media (max-width:600px){header.top .wrap{display:flex;flex-direction:column}header.top .row{display:contents}header.top .meta{order:3;margin-top:10px}}
 
 .bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.4) blur(8px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .bar .wrap{padding-top:8px;padding-bottom:8px}
@@ -122,11 +126,12 @@ section.file[hidden]{display:none}
 .filehead::before{content:"";flex:none;width:0;height:0;border:5px solid transparent;border-left:6px solid var(--ink-3);border-right:0;transition:transform .12s}
 details[open]>.filehead{border-bottom:1px solid var(--hair)}
 details[open]>.filehead::before{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.filehead::before{transition:none}}
 .filehead h2{margin:0;font-size:13px;font-weight:600;word-break:break-all}
 .filehead .counts{color:var(--ink-3);font-size:12px;margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
 .filehead .counts span b{font-weight:600;color:var(--ink-2)}
 
-article.hunk{border-top:1px solid var(--hair);padding:14px 14px 12px}
+article.hunk{border-top:1px solid var(--hair);padding:14px 14px 12px;scroll-margin-top:64px}
 article.hunk:first-of-type{border-top:0}
 article.hunk[hidden]{display:none}
 .hunkhead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:10px}
@@ -137,6 +142,7 @@ article.hunk[hidden]{display:none}
 .tag.when{border-color:transparent;background:transparent;color:var(--ink-3);padding-left:0}
 .badge{font-size:11.5px;font-weight:600;letter-spacing:.01em;line-height:1.3;padding:2px 8px;border-radius:4px;border:1px solid transparent;white-space:nowrap}
 .badge::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:currentColor;vertical-align:1px}
+a.badge:hover,a.tgt:hover{text-decoration:none}
 .badge[data-s="RUN_PASS"]{color:var(--pass);background:var(--pass-bg);border-color:transparent}
 .badge[data-s="RUN_FAIL"]{color:var(--fail);background:var(--fail-bg)}
 .badge[data-s="RUN_UNPARSED"]{color:var(--unparsed);background:var(--unparsed-bg)}
@@ -159,15 +165,15 @@ pre.code .l.ctx{color:var(--ink-3)}
 .diff details>pre.code{border-top:0;border-radius:0 0 6px 6px}
 .diff>pre.code:not(:only-child){border-radius:6px 6px 0 0}
 .diff>details:not([open])>summary{border:1px solid var(--hair);border-top:0;border-radius:0 0 6px 6px}
-@media (max-width:600px){pre.code .l{white-space:pre-wrap;word-break:break-all;min-width:0;padding-left:36px;text-indent:-36px}}
+@media (max-width:600px){pre.code .l{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0;padding-left:36px;text-indent:-36px}pre.code .l.add{box-shadow:inset 26px 0 var(--add-gutter)}pre.code .l.del{box-shadow:inset 26px 0 var(--del-gutter)}}
 
-details.more>summary{list-style:none;color:var(--accent);font-size:12px;padding:4px 10px;background:var(--bg-2)}
+details.more>summary{list-style:none;color:var(--accent);font-size:12px;padding:6px 10px;min-height:32px;display:flex;align-items:center;background:var(--bg-2)}
 details.more>summary::before{content:"+ ";font-family:ui-monospace,monospace}
 details.more[open]>summary::before{content:"- "}
 details.more .o{display:none}
 details.more[open] .o{display:inline}
 details.more[open] .c{display:none}
-.runs-wrap details.more>summary{background:transparent;padding:6px 0 0}
+.runs-wrap details.more>summary{background:transparent;padding:8px 0 4px}
 
 aside.note{color:var(--ink-3);font-size:12.5px;line-height:1.5;border-left:2px solid var(--hair-2);padding:2px 0 2px 12px;margin:0;word-wrap:break-word}
 aside.note .who{color:var(--ink-2);font-weight:600}
@@ -190,7 +196,7 @@ ol.runs .tgt.other{color:var(--unrun)}
 ol.runs .tgt.dec{color:var(--ink-2)}
 ol.runs li.none{color:var(--ink-3);font-style:italic}
 ol.runs li.none[data-s="UNRUN"]{color:var(--unrun);font-style:normal}
-@media (max-width:600px){ol.runs li{flex-wrap:wrap;padding-top:8px}ol.runs .cmd{flex:1 1 100%;order:9}ol.runs .out{max-width:none;flex:1 1 100%;order:10}}
+@media (max-width:600px){ol.runs li{flex-wrap:wrap;padding-top:8px}ol.runs .cmd{flex:1 1 100%;order:9}ol.runs .out{max-width:none;flex:1 1 100%;order:10}ol.runs .cmd,ol.runs .out{white-space:normal;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}}
 
 footer{border-top:1px solid var(--hair);padding:22px 0 40px;color:var(--ink-2);font-size:13px}
 footer h3{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:18px 0 8px;font-weight:600}
@@ -200,7 +206,8 @@ footer details.defs>summary h3{display:inline-block}
 footer details.defs>summary::after{content:" show";color:var(--accent);font-size:12px}
 footer details.defs[open]>summary::after{content:" hide"}
 footer dl{margin:0}
-footer dt{font-weight:600;color:var(--ink);margin-top:8px}
+footer dt{font-weight:600;color:var(--ink);margin-top:8px;scroll-margin-top:64px}
+footer dt:target{color:var(--accent)}
 footer dd{margin:2px 0 0}
 footer .receipt{border:1px solid var(--hair);border-radius:6px;background:var(--panel);padding:12px 14px;margin-top:6px}
 footer .receipt .row{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border-bottom:1px dashed var(--hair)}
@@ -220,8 +227,10 @@ footer .fine{color:var(--ink-3);font-size:12px;margin-top:22px}
 `;
 
 // Filter chips. Kept small on purpose: no framework, no fetch, no storage.
-// A filter other than "all" opens every file that holds a match; "all" puts
-// back the default (closed when every hunk of the file passed).
+// A filter other than "all" opens every closed file that holds a match and marks
+// it (data-auto); "all" closes only the files a filter opened, so a file the
+// visitor opened stays open. A link to a definition or a hunk opens the
+// <details> around its target (Chromium does this itself, other browsers do not).
 const JS = `
 (function(){
   var chips=document.querySelectorAll('.chip');
@@ -230,7 +239,7 @@ const JS = `
   var main=document.querySelector('main');
   var empty=document.querySelector('main .empty');
   var want={unrun:'UNRUN',fail:'RUN_FAIL',unparsed:'RUN_UNPARSED',unattributed:'UNATTRIBUTED'};
-  function apply(f){
+  function apply(f,click){
     var shown=0;
     for(var i=0;i<hunks.length;i++){
       var ok=f==='all'||hunks[i].getAttribute('data-status')===want[f];
@@ -240,23 +249,30 @@ const JS = `
       var hit=!!files[j].querySelector('article.hunk:not([hidden])');
       files[j].hidden=!hit;
       var d=files[j].querySelector('details');
-      if(d&&hit)d.open=f==='all'?files[j].getAttribute('data-open')==='1':true;
+      if(!d)continue;
+      if(f==='all'){if(d.hasAttribute('data-auto')){d.open=false;d.removeAttribute('data-auto');}}
+      else if(hit&&!d.open){d.open=true;d.setAttribute('data-auto','1');}
     }
-    var label='';
     for(var k=0;k<chips.length;k++){
       var on=chips[k].getAttribute('data-filter')===f;
       chips[k].setAttribute('aria-pressed',on?'true':'false');
-      if(on)label=chips[k].getAttribute('data-none');
+      if(on&&empty)empty.textContent=chips[k].getAttribute('data-none');
     }
-    if(empty)empty.textContent=label;
     main.setAttribute('data-empty',shown?'0':'1');
-    if(history.replaceState){history.replaceState(null,'',f==='all'?location.pathname:'#'+f);}
+    if(!click)return;
+    if(history.replaceState)history.replaceState(null,'',f==='all'?location.pathname:'#'+f);
+    var top=main.offsetTop-document.querySelector('.bar').offsetHeight;
+    if(scrollY>top)scrollTo(0,top);
   }
-  for(var c=0;c<chips.length;c++){
-    chips[c].addEventListener('click',function(e){apply(e.currentTarget.getAttribute('data-filter'));});
+  for(var c=0;c<chips.length;c++)chips[c].addEventListener('click',function(e){apply(e.currentTarget.getAttribute('data-filter'),true);});
+  function reveal(){
+    var t=document.getElementById(location.hash.slice(1)),d=t&&t.closest('details');
+    if(d&&!d.open){d.open=true;t.scrollIntoView();}
   }
+  addEventListener('hashchange',reveal);
   var h=(location.hash||'').slice(1);
   apply(want[h]?h:'all');
+  reveal();
 })();
 `;
 
@@ -273,12 +289,14 @@ function defMarks(text) {
  * definitions.attribution). With `intro`, the sentence before the first case goes in
  * front. '' when the text or the key is absent.
  */
-export function defPart(text, key, { intro = false } = {}) {
+export function defPart(text, key, { intro = false, label = '' } = {}) {
   if (typeof text !== 'string' || !text) return '';
   const marks = defMarks(text);
   const i = marks.findIndex((x) => x.key === key);
   if (i < 0) return '';
-  const part = text.slice(marks[i].at, i + 1 < marks.length ? marks[i + 1].at : text.length).trim();
+  let part = text.slice(marks[i].at, i + 1 < marks.length ? marks[i + 1].at : text.length).trim();
+  // `label`: the word the page shows instead of the case key ("ran, passed: ..." for "RUN_PASS: ...")
+  if (label) part = part.replace(/^[A-Z][A-Z_]{3,}(?: \([^)]*\))?: /, `${label}: `);
   const head = intro ? defIntro(text) : '';
   return head ? `${head} ${part}` : part;
 }
@@ -293,37 +311,57 @@ export function defIntro(text) {
 const titleAttr = (t) => (t ? ` title="${esc(t)}"` : '');
 const firstSentence = (t) => (typeof t === 'string' ? t.replace(/^(.*?\.)\s.*$/s, '$1') : '');
 
-// long form (intro + case) for the few places shown once: lead figures, chips
+// One status definition, worded with the label the page shows ("ran, passed: ...")
+// and the rule that decides it in front, so the case has a subject. Used wherever a
+// status is named: badges, chips, lead figures, the "decides status" pill.
 function statusTitle(defs, status) {
-  return defPart(defs.status, status, { intro: true }) || defs.status || '';
-}
-// short form for what repeats on every hunk: the badge
-function statusCase(defs, status) {
-  return defPart(defs.status, status) || defs.status || '';
+  const part = defPart(defs.status, status, { intro: true, label: statusLabel(status) });
+  return part ? `Status: ${part}` : defs.status || '';
 }
 
-// Lead: the decisive figures (unrun first, then failed when any) or, when both
-// are zero, one sentence. The other numbers go to the sub-line.
+const ATTRIBUTION_LABEL = { MATCHED: 'line-matched', FILE_LEVEL: 'file-level', UNATTRIBUTED: 'unattributed' };
+function attributionTitle(defs, key) {
+  return defPart(defs.attribution, key, { label: ATTRIBUTION_LABEL[key] });
+}
+
+// a term that links to its definition in the footer: the tooltip on a desktop,
+// a tap that opens the definitions on a phone (where a title never shows)
+function defLink(key, text, title) {
+  return `<a class="term" href="#def-${key}"${titleAttr(title)}>${esc(text)}</a>`;
+}
+
+// Lead: the decisive figures (unrun, failed, outcome not parsed, each when there
+// is any) or, when all three are zero, one sentence. The counts come from the
+// hunks, the same way the chips count, so a figure and its chip always agree.
+// The other numbers go to the sub-line.
 function leadHtml(ev, defs) {
-  const s = ev.summary || {};
   const p = summaryParts(ev);
-  const fail = s.runFail ?? 0;
-  const hunks = Array.isArray(ev.hunks) ? ev.hunks.length : 0;
+  const list = Array.isArray(ev.hunks) ? ev.hunks : [];
+  const of = (status, attribution) => list.filter((h) => h.status === status && (!attribution || h.attribution === attribution)).length;
+  const unrun = of('UNRUN');
+  const fail = of('RUN_FAIL');
+  const unparsed = of('RUN_UNPARSED');
   let lead;
-  if (!p.unrun && !fail) {
+  if (!unrun && !fail && !unparsed) {
     if (p.matched) lead = `<p class="lead pass">${esc(PASS_LEAD)}</p>`;
-    else lead = `<p class="lead">${hunks ? 'No hunk in this diff matched an agent edit.' : 'No hunks in this diff.'}</p>`;
+    else if (p.fileLevel) lead = `<p class="lead">No hunk matched an agent edit line by line; ${p.fileLevel} matched at file level.</p>`;
+    else lead = `<p class="lead">${list.length ? 'No hunk in this diff matched an agent edit.' : 'No hunks in this diff.'}</p>`;
   } else {
-    const figs = [`<span class="fig" data-s="UNRUN"${titleAttr(statusTitle(defs, 'UNRUN'))}><b>${p.unrun}</b>unrun ${plural(p.unrun, 'hunk')}</span>`];
+    const figs = [];
+    if (unrun) {
+      const fileLevel = of('UNRUN', 'FILE_LEVEL');
+      const split = fileLevel === unrun ? ' (file-level)' : fileLevel ? ` (${unrun - fileLevel} line-matched, ${fileLevel} file-level)` : '';
+      figs.push(`<span class="fig" data-s="UNRUN"${titleAttr(statusTitle(defs, 'UNRUN'))}><b>${unrun}</b>unrun ${plural(unrun, 'hunk')}${split}</span>`);
+    }
     if (fail) figs.push(`<span class="fig" data-s="RUN_FAIL"${titleAttr(statusTitle(defs, 'RUN_FAIL'))}><b>${fail}</b>${plural(fail, 'hunk')} ran, failed</span>`);
+    if (unparsed) figs.push(`<span class="fig" data-s="RUN_UNPARSED"${titleAttr(statusTitle(defs, 'RUN_UNPARSED'))}><b>${unparsed}</b>${plural(unparsed, 'hunk')} ran, outcome not parsed</span>`);
     lead = `<div class="lead">${figs.join('')}</div>`;
   }
   const sep = '<span class="sep"> · </span>';
-  const matchedWord = `matched ${plural(p.matched, 'hunk')}`;
   const bits = [
-    `${p.ran} of ${p.matched} <span${titleAttr(defPart(defs.attribution, 'MATCHED'))}>${esc(matchedWord)}</span> had a run after their last edit (${esc(p.outcomes)})`,
-    `${p.fileLevel} <span${titleAttr(defPart(defs.attribution, 'FILE_LEVEL'))}>file-level</span>`,
-    `${p.unattributed} <span${titleAttr(defPart(defs.attribution, 'UNATTRIBUTED'))}>unattributed</span>`,
+    `${p.ran} of ${p.matched} ${defLink('attribution', p.matchedWord, attributionTitle(defs, 'MATCHED'))} had a run after their last edit (${esc(p.outcomes)})`,
+    `${p.fileLevel} ${defLink('attribution', 'file-level', attributionTitle(defs, 'FILE_LEVEL'))}`,
+    `${p.unattributed} ${defLink('attribution', 'unattributed', attributionTitle(defs, 'UNATTRIBUTED'))}`,
     `${p.sessions} ${esc(p.sessionsWord)}`,
     `hunkproof used ${p.tokens} LLM tokens`,
   ];
@@ -376,7 +414,10 @@ function runRow(h, r, defs, deciding, explain) {
   const out = r.summary ? esc(r.summary) : (outcome === 'unparsed' ? 'outcome not parsed' : outcome);
   const markers = runMarkers(h, r).trim().split(/\)\s*\(/).map((m) => m.replace(/^\(|\)$/g, '')).filter(Boolean);
   const tags = markers.map((m) => `<span class="tgt${m === 'targeted' ? '' : ' other'}"${explain ? titleAttr(m === 'targeted' ? firstSentence(defs.targeted) : MARKER_TITLE[m]) : ''}>${esc(m)}</span>`);
-  if (deciding) tags.unshift(`<span class="tgt dec"${titleAttr(defIntro(defs.status))}>decides status</span>`);
+  if (deciding) {
+    const rule = defIntro(defs.status);
+    tags.unshift(`<a class="tgt dec" href="#def-status"${titleAttr(rule ? `Status: ${rule}` : '')}>decides status</a>`);
+  }
   const outTitle = r.summary && r.summary.length > 32 ? ` title="${esc(r.summary)}"` : '';
   return `<li${deciding ? ' class="dec"' : ''}><span class="t mono">${esc(fmtTime(r.ts))}</span><span class="dot" data-o="${esc(outcome)}" title="${esc(outcome)}"></span><span class="runner">${esc(r.runner || 'run')}</span>${tags.join('')}<code class="cmd" title="${esc(r.command || '')}">${esc(truncate(r.command || '', 72))}</code><span class="out"${outTitle}>${out}</span></li>`;
 }
@@ -395,7 +436,11 @@ function runsHtml(h, defs) {
   for (let i = runs.length - 1; i >= 0 && open.size < RUNS_EXTRA + (dec >= 0 ? 1 : 0); i--) open.add(i);
   const shown = [];
   const folded = [];
-  runs.forEach((r, i) => (open.has(i) ? shown : folded).push(runRow(h, r, defs, i === dec, open.has(i))));
+  // the pill only marks a run whose parsed outcome set the status: with no parsed
+  // outcome (or a run from another checkout) the run is listed, nothing is decided by it
+  const decRun = dec >= 0 ? runs[dec] : null;
+  const pill = Boolean(decRun && (decRun.outcome === 'pass' || decRun.outcome === 'fail') && decRun.otherCheckout !== true);
+  runs.forEach((r, i) => (open.has(i) ? shown : folded).push(runRow(h, r, defs, pill && i === dec, open.has(i))));
   const more = folded.length
     ? `<details class="more"><summary><span class="c">${folded.length} more ${plural(folded.length, 'run')} after the last edit</span><span class="o">fold ${folded.length} ${plural(folded.length, 'run')}</span></summary><ol class="runs">${folded.join('')}</ol></details>`
     : '';
@@ -408,7 +453,7 @@ function hunkHtml(h, defs) {
   const newPart = `+${h.newStart ?? 0}${(h.newLines ?? 0) === 1 ? '' : `,${h.newLines ?? 0}`}`;
   const tags = [];
   if (churn >= 2) tags.push(`<span class="tag churn">rewritten ${churn} times</span>`);
-  if (h.attribution === 'FILE_LEVEL') tags.push(`<span class="tag"${titleAttr(defPart(defs.attribution, 'FILE_LEVEL') || 'the file matched an agent edit, the lines did not')}>file-level match</span>`);
+  if (h.attribution === 'FILE_LEVEL') tags.push(`<span class="tag"${titleAttr(attributionTitle(defs, 'FILE_LEVEL') || 'the file matched an agent edit, the lines did not')}>file-level match</span>`);
   if (h.status === 'UNATTRIBUTED' && h.reason) tags.push(`<span class="tag" title="why no edit is attributed">${esc(h.reason)}</span>`);
   if (h.lastEdit) {
     const e = lastEditOf(h);
@@ -417,7 +462,7 @@ function hunkHtml(h, defs) {
   }
   const note = noteHtml(h);
   return `<article class="hunk" id="${esc(anchorId(h))}" data-status="${esc(h.status)}">
-<div class="hunkhead"><span class="badge" data-s="${esc(h.status)}"${titleAttr(statusCase(defs, h.status))}>${esc(statusLabel(h.status))}</span><span class="range mono">@@ ${esc(oldPart)} <b>${esc(newPart)}</b> @@</span>${tags.join('')}</div>
+<div class="hunkhead"><a class="badge" href="#def-status" data-s="${esc(h.status)}"${titleAttr(statusTitle(defs, h.status))}>${esc(statusLabel(h.status))}</a><span class="range mono">@@ ${esc(oldPart)} <b>${esc(newPart)}</b> @@</span>${tags.join('')}</div>
 <div class="grid${note ? '' : ' solo'}">${codeHtml(h)}${note}${runsHtml(h, defs)}</div>
 </article>`;
 }
@@ -487,7 +532,7 @@ export function renderHtml(evidence, { theme = 'auto' } = {}) {
     : '';
 
   const defOrder = ['hunk', 'attribution', 'run', 'status', 'targeted', 'cost'];
-  const defsHtml = defOrder.filter((k) => defs[k]).map((k) => `<dt>${esc(k)}</dt><dd>${esc(defs[k])}</dd>`).join('');
+  const defsHtml = defOrder.filter((k) => defs[k]).map((k) => `<dt id="def-${k}">${esc(k)}</dt><dd>${esc(defs[k])}</dd>`).join('');
 
   return `<!doctype html>
 <html lang="en"${theme === 'dark' || theme === 'light' ? ` data-theme="${theme}"` : ''}>
@@ -507,7 +552,7 @@ ${leadHtml(ev, defs)}
 <div class="bar"><div class="wrap">${chipsHtml(hunks, defs)}</div></div>
 <main class="wrap" data-empty="0">
 ${[...byFile].map(([file, list]) => fileSectionHtml(file, list, defs)).join('\n')}
-<p class="empty">No hunks in this diff.</p>
+<p class="empty" role="status">No hunks in this diff.</p>
 </main>
 <footer><div class="wrap">
 <div class="cols">

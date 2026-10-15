@@ -123,10 +123,12 @@ test('html: layout pieces are present', () => {
   assert.ok(!html.includes('List-price equivalent'));
   // the edit tag shows the time; session and tool of the edit that defines lastEdit go in its tooltip
   assert.ok(html.includes('title="last agent edit of these lines: 09:25:19 UTC · session 5b1c7d2e · Bash">edited 09:25:19</span>'), 'edit tag with session and tool in the title');
-  // the status badge comes first in the hunk header, with its status case as tooltip
-  assert.match(html, /<div class="hunkhead"><span class="badge" data-s="UNRUN" title="[^"]+">unrun<\/span><span class="range mono">/);
-  for (const k of Object.keys(evidence.definitions)) assert.ok(html.includes(`<dt>${k}</dt>`));
-  for (const s of ['RUN_PASS', 'RUN_FAIL', 'RUN_UNPARSED', 'UNRUN', 'UNATTRIBUTED']) assert.ok(html.includes(`<span class="badge" data-s="${s}"`));
+  // the status badge comes first in the hunk header, links to the status definition,
+  // and its tooltip names the status by its label, with the rule that decides it in front
+  assert.match(html, /<div class="hunkhead"><a class="badge" href="#def-status" data-s="UNRUN" title="[^"]+">unrun<\/a><span class="range mono">/);
+  for (const k of Object.keys(evidence.definitions)) assert.ok(html.includes(`<dt id="def-${k}">${k}</dt>`));
+  for (const s of ['RUN_PASS', 'RUN_FAIL', 'RUN_UNPARSED', 'UNRUN', 'UNATTRIBUTED']) assert.ok(html.includes(`<a class="badge" href="#def-status" data-s="${s}"`));
+  assert.ok(!/title="[^"]*\b(RUN_PASS|RUN_FAIL|RUN_UNPARSED|UNRUN|MATCHED|FILE_LEVEL):/.test(html), 'no tooltip shows a case key');
   assert.ok(html.includes('ran, failed') && html.includes('ran, outcome not parsed') && html.includes('ran, passed'));
   // added/removed lines land in coloured spans
   assert.ok(html.includes('<span class="l add"><span class="g">+</span>'));
@@ -287,7 +289,8 @@ test('vocabulary: tool strings stay clean when every data field is a sentinel', 
     repo: { root: `/repo/${DATA}`, remote: `git@github.com:${DATA}/${DATA}.git`, base: DATA, head: DATA, prNumber: 7, prUrl: `https://github.com/${DATA}/${DATA}/pull/7` },
     sessions: [{ sessionId: DATA, path: `/home/x/${DATA}.jsonl`, firstTs: '2026-10-14T09:00:00.000Z', lastTs: '2026-10-14T10:30:00.000Z', versions: [DATA], models: [DATA], toolCalls: 1, edits: 1, shellEdits: 1, runs: 1 }],
     hunks: [
-      hunk('a', 'MATCHED', 'RUN_PASS', [run]),
+      // 5 runs and 45 lines: the folded run list and the folded diff render too
+      hunk('a', 'MATCHED', 'RUN_PASS', Array.from({ length: 5 }, () => run), { added: Array.from({ length: 45 }, () => DATA) }),
       hunk('b', 'MATCHED', 'RUN_FAIL', [{ ...run, outcome: 'fail' }]),
       hunk('c', 'MATCHED', 'RUN_UNPARSED', [{ ...run, outcome: 'unparsed', summary: null, otherCheckout: true, targeted: false }]),
       hunk('d', 'FILE_LEVEL', 'UNRUN', []),
@@ -297,7 +300,11 @@ test('vocabulary: tool strings stay clean when every data field is a sentinel', 
     usage: { ...summarizeUsage([{ type: 'usage', messageId: 'm', requestId: 'r', usage: { model: DATA, input: 1, output: 1, cacheWrite: 0, cacheRead: 0 } }]) },
     generatedAt: '2026-10-14T11:00:00.000Z', version: '0.1.0', home: '/home/x',
   });
-  const outputs = [renderHtml(ev), renderHtml(ev, { theme: 'dark' }), renderMarkdown(ev), renderMarkdown(ev, { quotes: true, blobBase: 'https://example.invalid/b' }), renderTerminal(ev)];
+  // the same diff with every hunk passed renders the pass lead
+  const allPass = { ...ev, hunks: ev.hunks.map((h) => (h.status === 'UNATTRIBUTED' ? h : { ...h, status: 'RUN_PASS' })) };
+  const outputs = [renderHtml(ev), renderHtml(ev, { theme: 'dark' }), renderHtml(allPass), renderMarkdown(ev), renderMarkdown(ev, { quotes: true, blobBase: 'https://example.invalid/b' }), renderTerminal(ev)];
+  assert.ok(outputs[0].includes('more runs after the last edit') && outputs[0].includes('show all 46 lines'), 'the fold strings are rendered');
+  assert.ok(outputs[2].includes(PASS_LEAD), 'the pass lead is rendered');
   const re = /\b(tested|verified|covered)\b|proof that it works/i;
   for (const out of outputs) {
     assert.doesNotMatch(out, re);
@@ -368,25 +375,89 @@ test('renderers tolerate an empty diff-only evidence', () => {
 test('html: the lead shows unrun first, then failed, as figures; the rest goes to the sub-line', () => {
   const html = renderHtml(evidence);
   const lead = html.slice(html.indexOf('<div class="lead">'), html.indexOf('<p class="sub">'));
-  assert.match(lead, /^<div class="lead"><span class="fig" data-s="UNRUN" title="[^"]*"><b>3<\/b>unrun hunks<\/span><span class="fig" data-s="RUN_FAIL" title="[^"]*"><b>1<\/b>hunk ran, failed<\/span><\/div>/);
+  // the unrun figure splits line-matched from file-level, so it adds up with the sub-line
+  assert.match(lead, /^<div class="lead"><span class="fig" data-s="UNRUN" title="[^"]*"><b>3<\/b>unrun hunks \(2 line-matched, 1 file-level\)<\/span><span class="fig" data-s="RUN_FAIL" title="[^"]*"><b>1<\/b>hunk ran, failed<\/span><span class="fig" data-s="RUN_UNPARSED" title="[^"]*"><b>1<\/b>hunk ran, outcome not parsed<\/span><\/div>/);
   const sub = html.slice(html.indexOf('<p class="sub">'), html.indexOf('</p>', html.indexOf('<p class="sub">')));
   assert.ok(!sub.includes('<b>'), 'only the lead figures are bold');
-  assert.ok(!sub.includes('line-matched'), 'the sub-line says matched, the footer keeps the contract sentence');
-  for (const bit of ['5 of 7 ', '(3 passed, 1 failed, 1 outcome not parsed)', '1 <span', '>file-level</span>', '>unattributed</span>', '2 sessions', 'hunkproof used 0 LLM tokens']) assert.ok(sub.includes(bit), bit);
+  // one term for the matched count on every line: line-matched
+  for (const bit of ['5 of 7 <a class="term" href="#def-attribution"', '>line-matched hunks</a>', '(3 passed, 1 failed, 1 outcome not parsed)', '>file-level</a>', '>unattributed</a>', '2 sessions', 'hunkproof used 0 LLM tokens']) assert.ok(sub.includes(bit), bit);
   assert.ok(!html.includes(PASS_LEAD));
   // the full contract sentence stays in the footer
   assert.ok(html.includes(`<p class="fine">Headline: ${escapeHtml(SENTENCE)}.</p>`));
 });
 
-test('html: no unrun and no failed hunk gives the one-line pass lead', () => {
+test('html: no unrun, failed or unparsed hunk gives the one-line pass lead', () => {
   const ev = load();
-  ev.summary = { ...ev.summary, unrun: 0, runFail: 0 };
+  const set = (pred, status) => { for (const h of ev.hunks) if (pred(h)) h.status = status; };
+  set((h) => ['UNRUN', 'RUN_FAIL', 'RUN_UNPARSED'].includes(h.status), 'RUN_PASS');
   const html = renderHtml(ev);
   assert.ok(html.includes(`<p class="lead pass">${PASS_LEAD}</p>`));
   assert.ok(!html.includes('<span class="fig"'));
-  // failed alone still gets a figure, after the unrun one
-  ev.summary.runFail = 2;
-  assert.match(renderHtml(ev), /<span class="fig" data-s="UNRUN"[^>]*><b>0<\/b>unrun hunks<\/span><span class="fig" data-s="RUN_FAIL"[^>]*><b>2<\/b>hunks ran, failed<\/span>/);
+  // failed alone leads with the failed figure: no "0 unrun" in the warning colour
+  const failOnly = load();
+  for (const h of failOnly.hunks) if (h.status === 'UNRUN' || h.status === 'RUN_UNPARSED') h.status = 'RUN_PASS';
+  const f = renderHtml(failOnly);
+  assert.match(f, /<div class="lead"><span class="fig" data-s="RUN_FAIL"[^>]*><b>1<\/b>hunk ran, failed<\/span><\/div>/);
+  assert.ok(!f.includes('class="fig" data-s="UNRUN"') && !f.includes('<b>0</b>'));
+  // a FILE_LEVEL hunk that ran and failed counts in the figure, as it does in the chip
+  const fl = load();
+  for (const h of fl.hunks) if (h.status !== 'UNATTRIBUTED') h.status = 'RUN_PASS';
+  fl.hunks.find((h) => h.attribution === 'FILE_LEVEL').status = 'RUN_FAIL';
+  fl.summary = { ...fl.summary, unrun: 0, runFail: 0, runUnparsed: 0 };
+  const flHtml = renderHtml(fl);
+  assert.ok(!flHtml.includes(PASS_LEAD));
+  assert.ok(flHtml.includes('<b>1</b>hunk ran, failed</span>') && flHtml.includes('Ran, failed<span class="n">1</span>'));
+});
+
+test('html: outcomes not parsed are never good news', () => {
+  const ev = load();
+  for (const h of ev.hunks) if (h.status !== 'UNATTRIBUTED') h.status = 'RUN_UNPARSED';
+  const html = renderHtml(ev);
+  assert.ok(!html.includes(PASS_LEAD));
+  assert.match(html, /<div class="lead"><span class="fig" data-s="RUN_UNPARSED"[^>]*><b>8<\/b>hunks ran, outcome not parsed<\/span><\/div>/);
+  // one unparsed among passes still blocks the pass lead
+  const one = load();
+  for (const h of one.hunks) if (h.status === 'UNRUN' || h.status === 'RUN_FAIL') h.status = 'RUN_PASS';
+  assert.ok(!renderHtml(one).includes(PASS_LEAD));
+});
+
+test('html: a diff with only file-level matches says so, not "no hunk matched"', () => {
+  const ev = load();
+  ev.hunks = ev.hunks.filter((h) => h.attribution === 'FILE_LEVEL').map((h) => ({ ...h, status: 'RUN_PASS' }));
+  ev.summary = { ...ev.summary, matched: 0, attributed: 0, fileLevel: ev.hunks.length, unrun: 0, runFail: 0, runUnparsed: 0 };
+  const html = renderHtml(ev);
+  assert.ok(html.includes('<p class="lead">No hunk matched an agent edit line by line; 1 matched at file level.</p>'));
+  ev.hunks = ev.hunks.map((h) => ({ ...h, status: 'UNRUN', runsAfter: [] }));
+  assert.match(renderHtml(ev), /<b>1<\/b>unrun hunk \(file-level\)<\/span>/);
+});
+
+test('html: tooltips name statuses and attributions by their label, terms link to the footer', () => {
+  const ev = JSON.parse(readFileSync(path.join(here, '..', 'fixtures', 'unrun-example', 'evidence.json'), 'utf8'));
+  const html = renderHtml(ev);
+  assert.match(html, /<a class="badge" href="#def-status" data-s="UNRUN" title="Status: Decided by [^"]+ unrun: no run at all after the last edit\.">unrun<\/a>/);
+  assert.match(html, /<a class="badge" href="#def-status" data-s="RUN_PASS" title="Status: [^"]+ ran, passed: that run passed\.">/);
+  assert.match(html, /title="line-matched: most of the added lines[^"]*">line-matched hunks<\/a>/);
+  assert.ok(!/title="[^"]*\b(RUN_PASS|RUN_FAIL|RUN_UNPARSED|UNRUN|MATCHED|FILE_LEVEL|UNATTRIBUTED)[ :(]/.test(html), 'no tooltip shows a case key');
+  for (const k of ['attribution', 'status']) assert.ok(html.includes(`<dt id="def-${k}">`), k);
+  assert.ok(html.includes('<a class="tgt dec" href="#def-status" title="Status: Decided by'));
+  // 6 unrun = 3 line-matched + 3 file-level, next to "20 of 23 line-matched hunks"
+  assert.ok(html.includes('<b>6</b>unrun hunks (3 line-matched, 3 file-level)</span>'));
+  assert.ok(html.includes('20 of 23 <a class="term" href="#def-attribution"'));
+});
+
+test('html: a run from another checkout or without a parsed outcome never carries "decides status"', () => {
+  const ev = load();
+  const h = ev.hunks.find((x) => x.status === 'RUN_PASS');
+  const base = h.runsAfter[0];
+  h.runsAfter = [{ ...base, otherCheckout: true, targeted: false, outcome: 'pass' }];
+  h.status = 'RUN_UNPARSED';
+  const u = ev.hunks.find((x) => x.id === 'src/tax.js:22');
+  const html = renderHtml(ev);
+  const art = (id) => { const a = html.slice(html.indexOf(`id="h-${id.replace(/[^A-Za-z0-9_-]+/g, '-')}"`)); return a.slice(0, a.indexOf('</article>')); };
+  assert.ok(!art(h.id).includes('decides status'));
+  assert.ok(art(h.id).includes('other checkout'));
+  assert.ok(!art(u.id).includes('decides status'), 'an unparsed run lists, it does not decide');
+  assert.ok(art(ev.hunks.find((x) => x.status === 'RUN_FAIL').id).includes('decides status'));
 });
 
 test('html: defPart and defIntro cut the KEY: cases out of a definition', () => {
@@ -431,6 +502,7 @@ test('html: files, run lists and long diffs fold with <details> and keep every r
     assert.equal(flag, allPass ? '0' : '1', file);
     assert.equal(Boolean(openAttr), !allPass, file);
   }
+  assert.doesNotMatch(html, /\b(tested|verified|covered)\b|proof that it works/i);
   // short run lists and short diffs do not fold
   assert.equal((renderHtml(load()).match(/<details class="more">/g) || []).length, 0);
 });
