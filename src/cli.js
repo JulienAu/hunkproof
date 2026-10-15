@@ -163,7 +163,7 @@ function firstExisting(root, refs) {
   return null;
 }
 
-function defaultBaseRef(root) {
+export function defaultBaseRef(root) {
   const sym = tryGit(root, ['symbolic-ref', '--quiet', 'refs/remotes/origin/HEAD']);
   if (sym) return sym.replace(/^refs\/remotes\//, '');
   return firstExisting(root, ['origin/main', 'main', 'origin/master', 'master']);
@@ -454,14 +454,14 @@ export function isRepoScopedBash(ev, root, worktrees = []) {
   return false;
 }
 
-function readPackageScripts(root) {
+export function readPackageScripts(root) {
   try {
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
     return pkg && typeof pkg.scripts === 'object' && pkg.scripts ? pkg.scripts : {};
   } catch { return {}; }
 }
 
-function readMakeTargets(root) {
+export function readMakeTargets(root) {
   try {
     const text = fs.readFileSync(path.join(root, 'Makefile'), 'utf8');
     const out = [];
