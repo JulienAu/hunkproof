@@ -15,13 +15,14 @@
 //   block mode:  { decision: 'block', reason }      the agent continues and runs the hunks
 // Mode: HUNKPROOF_STOP=report|block|off (default report), else --mode of `hunkproof hook stop`.
 // Block is downgraded to report when stop_hook_active is true, so the hook never loops.
+// HUNKPROOF_DEBUG=1 names on stderr the reason for every silent exit.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { readSession } from './transcript.js';
+import { readSession, isCorroboratedSource } from './transcript.js';
 import { fileMentionsRepo } from './discover.js';
-import { gitDiffHunks, parseUnifiedDiff } from './diff.js';
+import { gitDiffHunks, parseUnifiedDiff, normalizeLine } from './diff.js';
 import { attributeHunks } from './attribute.js';
 import { extractRuns, runsForHunk, hunkStatus } from './runs.js';
 import {
@@ -30,8 +31,10 @@ import {
 
 export const MAX_LINES = 10;             // hunk lines in the message, then "+N more"
 export const MAX_UNTRACKED = 50;         // untracked files diffed against /dev/null
+export const MAX_UNTRACKED_BYTES = 1024 * 1024; // an untracked file larger than this is not diffed
 export const SUBAGENT_BYTES_CAP = 64 * 1024 * 1024; // subagent transcript bytes read at most
 const MODES = new Set(['report', 'block', 'off']);
+const EDIT_TYPES = new Set(['edit', 'shell_edit']);
 
 function defaultGit(root, args) {
   return execFileSync('git', ['-C', root, ...args], {
@@ -82,10 +85,24 @@ export function formatEditTime(iso, now = new Date()) {
   return day === today ? `${time} UTC` : `${day} ${time} UTC`;
 }
 
+// The project's entry points a run can go through, named in the block closing
+// line: package scripts test, check and lint, Makefile targets test and check.
+export function knownChecks(packageScripts = {}, makeTargets = []) {
+  const out = [];
+  for (const name of ['test', 'check', 'lint']) {
+    if (packageScripts && typeof packageScripts[name] === 'string') out.push(name === 'test' ? 'npm test' : `npm run ${name}`);
+  }
+  for (const name of ['test', 'check']) {
+    if (Array.isArray(makeTargets) && makeTargets.includes(name)) out.push(`make ${name}`);
+  }
+  return out;
+}
+
 // rows: [{ id, lastEdit, fileLevel }] -> the message. Header, one line per hunk
 // (at most MAX_LINES), then "+N more". In block mode a closing line tells the
-// agent what to do. The words come from the renderers' vocabulary.
-export function formatUnrun(rows, { mode = 'report', now = new Date(), maxLines = MAX_LINES } = {}) {
+// agent what to do, naming the project's known checks when there are any. The
+// words come from the renderers' vocabulary.
+export function formatUnrun(rows, { mode = 'report', now = new Date(), maxLines = MAX_LINES, checks = [] } = {}) {
   const n = rows.length;
   const head = n === 1
     ? 'hunkproof: 1 hunk edited in this session has no run after its last edit'
@@ -95,7 +112,10 @@ export function formatUnrun(rows, { mode = 'report', now = new Date(), maxLines 
   const lines = shown.map((r) => `  ${r.id.padEnd(width)}  edited ${formatEditTime(r.lastEdit, now)}  no run after${r.fileLevel ? ' (file-level)' : ''}`);
   if (n > shown.length) lines.push(`  +${n - shown.length} more`);
   const out = [head, ...lines];
-  if (mode === 'block') out.push("Run the project's check for these files, then stop again.");
+  if (mode === 'block') {
+    const named = Array.isArray(checks) && checks.length ? ` (${checks.join(', ')})` : '';
+    out.push(`Run the project's check${named} for these files, then stop again.`);
+  }
   return out.join('\n');
 }
 
@@ -110,29 +130,40 @@ async function* walkJsonl(fsMod, dir) {
   }
 }
 
-// Hunks of the untracked files (git diff never lists them): each diffed against
-// /dev/null, at most MAX_UNTRACKED files. `git diff --no-index` exits 1 when the
-// files differ, which is the expected case here.
-function untrackedHunks(d, root) {
-  let list;
-  try { list = d.git(root, ['ls-files', '--others', '--exclude-standard', '-z']); } catch { return []; }
-  const files = list.split('\0').filter(Boolean).slice(0, MAX_UNTRACKED);
+// The untracked, non-ignored files, relative to the root (git diff never lists them).
+function untrackedFiles(d, root) {
+  try {
+    return d.git(root, ['ls-files', '--others', '--exclude-standard', '-z']).split('\0').filter(Boolean);
+  } catch { return []; }
+}
+
+// Hunks of the untracked files this session edited: each diffed against
+// /dev/null, at most MAX_UNTRACKED files, none over MAX_UNTRACKED_BYTES (a stray
+// dump would cost seconds). `--` keeps a name starting with `-` a path.
+// `git diff --no-index` exits 1 when the files differ, the expected case here.
+function untrackedHunks(d, root, files, quiet) {
   const out = [];
-  for (const rel of files) {
+  for (const rel of files.slice(0, MAX_UNTRACKED)) {
+    let size = 0;
+    try { size = d.fs.statSync(path.join(root, rel)).size; } catch { continue; }
+    if (size > MAX_UNTRACKED_BYTES) { quiet(`untracked ${rel} skipped: ${size} bytes`); continue; }
     let text = null;
     try {
-      text = d.git(root, ['-c', 'core.quotePath=false', 'diff', '--no-index', '-U0', '--no-color', '--no-ext-diff', '--src-prefix=a/', '--dst-prefix=b/', '/dev/null', rel]);
+      text = d.git(root, ['-c', 'core.quotePath=false', 'diff', '--no-index', '-U0', '--no-color', '--no-ext-diff', '--src-prefix=a/', '--dst-prefix=b/', '--', '/dev/null', rel]);
     } catch (e) {
       if (e && e.status === 1 && typeof e.stdout === 'string') text = e.stdout;
     }
     if (!text) continue;
     try { out.push(...parseUnifiedDiff(text, { repoRoot: root })); } catch { /* an unreadable file is not a hunk */ }
   }
+  if (files.length > MAX_UNTRACKED) quiet(`${files.length - MAX_UNTRACKED} untracked files past the cap of ${MAX_UNTRACKED} not diffed`);
   return out;
 }
 
 // Subagent transcripts of this session: <dirname(transcript)>/<session_id>/subagents/**/*.jsonl,
 // kept when they mention the repository (byte scan) and while the cap holds.
+// Sequential on purpose: the scan and the reads are CPU-bound in this process,
+// running them concurrently gained nothing here and doubled the peak memory.
 async function subagentFiles(d, transcriptPath, sessionId, root) {
   if (typeof sessionId !== 'string' || !sessionId) return [];
   const dir = path.join(path.dirname(transcriptPath), sessionId, 'subagents');
@@ -151,30 +182,48 @@ async function subagentFiles(d, transcriptPath, sessionId, root) {
   return out;
 }
 
+// The normalized, non-empty lines an edit event itself wrote: Write content,
+// Edit/MultiEdit new strings, the '+' lines of a shell edit. Not the whole
+// post-edit file: that would hand every line of the file to this one edit.
+function ownAddedLines(edit) {
+  const out = [];
+  const lines = Array.isArray(edit.addedLines) && edit.addedLines.length
+    ? edit.addedLines
+    : (typeof edit.newContent === 'string' ? edit.newContent.split(/\r?\n/) : []);
+  for (const l of lines) { const n = normalizeLine(l); if (n) out.push(n); }
+  return out;
+}
+
 async function run(input, d) {
-  if (!input || typeof input !== 'object') return null;
-  if (input.hook_event_name !== 'Stop') return null;
+  const debug = d.env && d.env.HUNKPROOF_DEBUG === '1';
+  const quiet = (why) => {
+    if (debug) { try { d.stderr.write(`hunkproof hook: ${why}\n`); } catch { /* stderr closed */ } }
+    return null;
+  };
+  if (!input || typeof input !== 'object') return quiet('stdin is not a JSON object');
+  if (input.hook_event_name !== 'Stop') return quiet(`hook_event_name is ${JSON.stringify(input.hook_event_name)}, not Stop`);
   let mode = pickMode(d.env, d.mode);
-  if (mode === 'off') return null;
+  if (mode === 'off') return quiet('mode off');
   if (mode === 'block' && input.stop_hook_active === true) mode = 'report';
 
   const transcriptPath = typeof input.transcript_path === 'string' ? path.resolve(input.transcript_path) : null;
-  if (!transcriptPath || !d.fs.existsSync(transcriptPath)) return null;
+  if (!transcriptPath || !d.fs.existsSync(transcriptPath)) return quiet(`transcript_path missing or not a file: ${input.transcript_path}`);
 
   const cwd = typeof input.cwd === 'string' && input.cwd ? input.cwd : process.cwd();
   let root;
-  try { root = path.resolve(d.git(cwd, ['rev-parse', '--show-toplevel'])); } catch { return null; }
+  try { root = path.resolve(d.git(cwd, ['rev-parse', '--show-toplevel'])); } catch { return quiet(`not a git repository: ${cwd}`); }
 
   const base = (typeof d.env.HUNKPROOF_BASE === 'string' && d.env.HUNKPROOF_BASE.trim()) || defaultBaseRef(root);
-  if (!base) return null;
+  if (!base) return quiet('no base ref (HUNKPROOF_BASE, origin HEAD, main, master)');
   let mergeBase;
-  try { mergeBase = d.git(root, ['merge-base', base, 'HEAD']); } catch { return null; }
-  if (!mergeBase) return null;
+  try { mergeBase = d.git(root, ['merge-base', base, 'HEAD']); } catch { return quiet(`no merge base for ${base}`); }
+  if (!mergeBase) return quiet(`no merge base for ${base}`);
 
-  // merge base .. working tree, plus the untracked files
+  // merge base .. working tree; the untracked files are listed now and diffed
+  // later, only those this session edited
   const hunks = d.diffHunks({ repoRoot: root, base: mergeBase, head: null });
-  hunks.push(...untrackedHunks(d, root));
-  if (!hunks.length) return null;
+  const untracked = untrackedFiles(d, root);
+  if (!hunks.length && !untracked.length) return quiet('no diff against the base');
 
   // this session's transcripts only: the main one, then its subagents
   const main = await d.readSession(transcriptPath);
@@ -198,22 +247,47 @@ async function run(input, d) {
   events.sort((a, b) => (a.ts < b.ts ? -1 : a.ts > b.ts ? 1 : a._i - b._i));
   for (const e of events) delete e._i;
 
+  // what this session itself wrote, per file: the lines of its own edits
+  const ownLines = new Map();
+  for (const ev of events) {
+    if (!EDIT_TYPES.has(ev.type) || !ev.edit || typeof ev.edit.file !== 'string' || !ids.has(ev.sessionId)) continue;
+    if (ev.type === 'shell_edit' && !isCorroboratedSource(ev.edit.source)) continue;
+    const file = path.resolve(ev.edit.file);
+    let set = ownLines.get(file);
+    if (!set) { set = new Set(); ownLines.set(file, set); }
+    for (const l of ownAddedLines(ev.edit)) set.add(l);
+  }
+
+  if (untracked.length) {
+    const edited = untracked.filter((rel) => ownLines.has(path.resolve(root, rel)));
+    hunks.push(...untrackedHunks(d, root, edited, quiet));
+  }
+  if (!hunks.length) return quiet('no diff against the base and no untracked file edited in this session');
+
   const runEvents = events.filter((ev) => ev.type !== 'tool' || ev.tool?.name !== 'Bash' || isRepoScopedBash(ev, root, worktrees));
-  const runs = extractRuns(runEvents, { repoRoot: root, packageScripts: readPackageScripts(root), makeTargets: readMakeTargets(root) });
+  const packageScripts = readPackageScripts(root);
+  const makeTargets = readMakeTargets(root);
+  const runs = extractRuns(runEvents, { repoRoot: root, packageScripts, makeTargets });
   const attributed = attributeHunks(hunks, events, { since: commitTime(root, mergeBase) });
 
   const rows = [];
   for (const h of attributed) {
     if (hunkStatus(h, runsForHunk(h, runs)) !== 'UNRUN') continue;
     // the edit that defines lastEdit has to be this session's (or one of its agents')
-    const own = (h.edits || []).some((e) => e.ts === h.lastEdit && ids.has(e.sessionId));
-    if (!own) continue;
+    if (!(h.edits || []).some((e) => e.ts === h.lastEdit && ids.has(e.sessionId))) continue;
+    // and a line-matched hunk has to carry lines this session itself wrote:
+    // attribution rebuilds the whole file from an Edit, so an older session's
+    // hunk in a file this session edited elsewhere would match otherwise
+    if (h.attribution === 'MATCHED') {
+      const mine = ownLines.get(path.resolve(h.file));
+      if (!mine || !(h.addedNormalized || []).some((t) => t && mine.has(t))) continue;
+    }
     rows.push({ id: h.id, lastEdit: h.lastEdit, fileLevel: h.attribution === 'FILE_LEVEL' });
   }
-  if (!rows.length) return null;
+  if (!rows.length) return quiet('no unrun hunk edited in this session');
   rows.sort((a, b) => a.id.localeCompare(b.id));
 
-  const text = formatUnrun(rows, { mode, now: d.now() });
+  const text = formatUnrun(rows, { mode, now: d.now(), checks: knownChecks(packageScripts, makeTargets) });
   if (mode === 'block') return { decision: 'block', reason: text };
   return { systemMessage: text };
 }

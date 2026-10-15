@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PassThrough } from 'node:stream';
 
-import { stopHook, parseStdin, formatUnrun, formatEditTime, MAX_LINES } from '../src/hook.js';
+import { stopHook, parseStdin, formatUnrun, formatEditTime, knownChecks, MAX_LINES, MAX_UNTRACKED_BYTES } from '../src/hook.js';
 import { runCli } from '../src/cli.js';
 import { readSession } from '../src/transcript.js';
 import { encodeProjectDir } from '../src/discover.js';
@@ -150,6 +150,17 @@ test('formatUnrun: singular, plural, file-level marker, block closing line, cap'
   assert.equal(many.length, 1 + MAX_LINES + 1);
   assert.equal(many[many.length - 1], '  +2 more');
   assert.ok(!FORBIDDEN.test(one + two + many.join('\n')));
+  // the block closing line names the project's known checks when there are any
+  const named = formatUnrun([{ id: 'src/x.js:4', lastEdit: '2026-10-15T10:31:07Z', fileLevel: false }], { now: NOW, mode: 'block', checks: ['npm test', 'make check'] });
+  assert.equal(named.split('\n')[2], "Run the project's check (npm test, make check) for these files, then stop again.");
+  assert.ok(!FORBIDDEN.test(named));
+});
+
+test('knownChecks: package scripts test, check, lint and Makefile targets test, check, in that order', () => {
+  assert.deepEqual(knownChecks({}, []), []);
+  assert.deepEqual(knownChecks({ test: 'node --test', lint: 'eslint .', build: 'tsc' }, ['all', 'check', 'clean']), ['npm test', 'npm run lint', 'make check']);
+  assert.deepEqual(knownChecks({ check: 'x' }, ['test']), ['npm run check', 'make test']);
+  assert.deepEqual(knownChecks(null, null), []);
 });
 
 test('silent exit 0: bad stdin, other event, mode off, not a git repo, no base ref, empty diff, missing transcript', async () => {
@@ -262,6 +273,95 @@ test('subagent edit with no run is reported; a subagent that never mentions the 
   assert.deepEqual(readPaths, [transcript]);
 });
 
+test('an older session\'s hunk in a file this session edited elsewhere is not listed; a file this session never touched is not listed either', async () => {
+  // base: lines 1 and 11; an older session (no transcript) added line 2; this
+  // session appended line 13 with one Edit whose structuredPatch starts at line 12
+  const V0 = 'export const a = 1;\n\n\n\n\n\n\n\n\n\nexport const z = 26;\n';
+  const repo = makeRepo({ edits: false });
+  const gitOld = (args) => gitIn(repo, args, { GIT_AUTHOR_DATE: new Date(Date.now() - 2 * 3600 * 1000).toISOString(), GIT_COMMITTER_DATE: new Date(Date.now() - 2 * 3600 * 1000).toISOString() });
+  gitOld(['checkout', '-q', 'main']);
+  fs.writeFileSync(path.join(repo, 'src/a.js'), V0);
+  fs.writeFileSync(path.join(repo, 'src/c.js'), 'export const c = 1;\n');
+  gitOld(['add', '.']);
+  gitOld(['commit', '-q', '-m', 'base 2']);
+  gitOld(['checkout', '-q', 'feat']);
+  gitOld(['merge', '-q', '--ff-only', 'main']);
+  const BEFORE = 'export const a = 1;\nexport const OLD_SESSION_LINE = 0;\n\n\n\n\n\n\n\n\n\nexport const z = 26;\n';
+  const AFTER = BEFORE + 'export const fresh = 1;\n';
+  fs.writeFileSync(path.join(repo, 'src/a.js'), AFTER);
+  fs.writeFileSync(path.join(repo, 'src/c.js'), 'export const c = 2;\n');
+  const patch = [{ oldStart: 12, oldLines: 1, newStart: 12, newLines: 2, lines: [' export const z = 26;', '+export const fresh = 1;'] }];
+  const transcript = writeTranscript(repo, synth(repo, [{ min: 1, edit: 'src/a.js', old: 'export const z = 26;\n', new: 'export const z = 26;\nexport const fresh = 1;\n', originalFile: BEFORE, patch }]));
+  const out = parsed(await stopHook(stopInput(repo, transcript), deps()));
+  const lines = out.systemMessage.split('\n');
+  assert.equal(lines[0], 'hunkproof: 1 hunk edited in this session has no run after its last edit');
+  assert.equal(lines.length, 2);
+  assert.match(lines[1], /^  src\/a\.js:13\s+edited \d\d:\d\d:\d\d UTC  no run after$/);
+  assert.ok(!out.systemMessage.includes('src/a.js:2'), 'the older session\'s line 2 is not this session\'s hunk');
+  assert.ok(!out.systemMessage.includes('src/c.js'), 'a file this session never edited is not listed');
+});
+
+test('untracked files: only those this session edited are diffed, a name starting with a dash is a path, a file over the byte cap is skipped', async () => {
+  const repo = makeRepo({ edits: false });
+  fs.writeFileSync(path.join(repo, '-dash.md'), '# dash\n');
+  fs.writeFileSync(path.join(repo, 'stray.txt'), 'not from this session\n');
+  fs.writeFileSync(path.join(repo, 'big.log'), 'x'.repeat(MAX_UNTRACKED_BYTES + 1));
+  const transcript = writeTranscript(repo, synth(repo, [
+    { min: 1, write: '-dash.md', content: '# dash\n' },
+    { min: 2, write: 'big.log', content: 'x' },
+  ]));
+  const diffed = [];
+  const git = (root, args) => {
+    if (args.includes('--no-index')) diffed.push(args[args.length - 1]);
+    return execFileSync('git', ['-C', root, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).replace(/\n$/, '');
+  };
+  let err = '';
+  const out = parsed(await stopHook(stopInput(repo, transcript), deps({ git, env: { HUNKPROOF_DEBUG: '1' }, stderr: { write(s) { err += s; } } })));
+  assert.equal(out.systemMessage, `hunkproof: 1 hunk edited in this session has no run after its last edit\n  -dash.md:1  edited ${formatEditTime(JSON.parse(fs.readFileSync(transcript, 'utf8').split('\n')[1]).timestamp, NOW)}  no run after`);
+  assert.deepEqual(diffed, ['-dash.md'], 'stray.txt (not edited in this session) and big.log (over the cap) are never piped through git diff');
+  assert.match(err, new RegExp(`hunkproof hook: untracked big\\.log skipped: ${MAX_UNTRACKED_BYTES + 1} bytes`));
+});
+
+test('block mode names the project\'s known checks in the closing line', async () => {
+  const repo = makeRepo({ edits: false });
+  const gitOld = (args) => gitIn(repo, args, { GIT_AUTHOR_DATE: new Date(Date.now() - 2 * 3600 * 1000).toISOString(), GIT_COMMITTER_DATE: new Date(Date.now() - 2 * 3600 * 1000).toISOString() });
+  fs.writeFileSync(path.join(repo, 'package.json'), JSON.stringify({ name: 'demo', scripts: { test: 'node --test', lint: 'eslint .' } }) + '\n');
+  fs.writeFileSync(path.join(repo, 'Makefile'), 'check:\n\tnode --test\n');
+  gitOld(['add', '.']);
+  gitOld(['commit', '-q', '-m', 'scripts']);
+  fs.writeFileSync(path.join(repo, 'src/a.js'), A_V2);
+  const transcript = writeTranscript(repo, synth(repo, [{ min: 1, ...EDIT_A }]));
+  const out = parsed(await stopHook(stopInput(repo, transcript), deps({ env: { HUNKPROOF_STOP: 'block' } })));
+  assert.equal(out.decision, 'block');
+  assert.match(out.reason, /\nRun the project's check \(npm test, npm run lint, make check\) for these files, then stop again\.$/);
+});
+
+test('HUNKPROOF_DEBUG=1 names the reason of every silent exit on stderr', async () => {
+  const repo = makeRepo();
+  const transcript = writeTranscript(repo, synth(repo, [{ min: 1, ...RUN }, { min: 3, ...EDIT_A }]));
+  const probe = async (input, extra = {}) => {
+    let err = '';
+    const r = await stopHook(input, deps({ env: { HUNKPROOF_DEBUG: '1', ...extra }, stderr: { write(s) { err += s; } } }));
+    assert.deepEqual(r, { stdout: '', exitCode: 0 });
+    return err;
+  };
+  const notRepo = path.join(tmp, 'not-a-repo-debug');
+  fs.mkdirSync(notRepo, { recursive: true });
+  assert.equal(await probe(stopInput(notRepo, transcript)), `hunkproof hook: not a git repository: ${notRepo}\n`);
+  assert.equal(await probe(stopInput(path.join(tmp, 'does-not-exist'), transcript)), `hunkproof hook: not a git repository: ${path.join(tmp, 'does-not-exist')}\n`);
+  assert.equal(await probe(stopInput(repo, transcript, { hook_event_name: 'PreToolUse' })), 'hunkproof hook: hook_event_name is "PreToolUse", not Stop\n');
+  assert.equal(await probe(stopInput(repo, transcript), { HUNKPROOF_STOP: 'off' }), 'hunkproof hook: mode off\n');
+  assert.equal(await probe(stopInput(repo, path.join(tmp, 'missing.jsonl'))), `hunkproof hook: transcript_path missing or not a file: ${path.join(tmp, 'missing.jsonl')}\n`);
+  assert.equal(await probe(stopInput(makeRepo({ branch: 'trunk' }), transcript)), 'hunkproof hook: no base ref (HUNKPROOF_BASE, origin HEAD, main, master)\n');
+  assert.equal(await probe(stopInput(makeRepo({ edits: false }), transcript)), 'hunkproof hook: no diff against the base\n');
+  const ran = writeTranscript(repo, synth(repo, [{ min: 1, ...WRITE_B }, { min: 3, ...EDIT_A }, { min: 5, ...RUN }]));
+  assert.equal(await probe(stopInput(repo, ran)), 'hunkproof hook: no unrun hunk edited in this session\n');
+  // without the variable, the same paths write nothing
+  let err = '';
+  await stopHook(stopInput(notRepo, transcript), deps({ stderr: { write(s) { err += s; } } }));
+  assert.equal(err, '');
+});
+
 test('an exception is silent exit 0; HUNKPROOF_DEBUG=1 writes the stack to stderr; git failing is silent', async () => {
   const repo = makeRepo();
   const transcript = writeTranscript(repo, synth(repo, [{ min: 1, ...RUN }, { min: 3, ...EDIT_A }]));
@@ -353,7 +453,7 @@ test('hooks/hooks.json: wrapped in "hooks", one Stop command hook calling bin/hu
   const manifest = JSON.parse(fs.readFileSync(path.join(root, '.claude-plugin', 'plugin.json'), 'utf8'));
   assert.equal(manifest.hooks, undefined, 'hooks/hooks.json is loaded by default; declaring it again would merge it with itself');
   const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
-  assert.ok(pkg.files.includes('hooks'), 'npm users get hooks/hooks.json to copy from');
+  assert.ok(pkg.files.includes('hooks'), 'hooks/hooks.json ships in the npm package for reference');
   assert.ok(!FORBIDDEN.test(fs.readFileSync(path.join(root, 'src', 'hook.js'), 'utf8').replace(/\/\/.*$/gm, '').replace(/[.\w-]+\.test\.js/g, '')));
 });
 
