@@ -1,33 +1,53 @@
 # hunkproof
 
-**git diff tells you what the agent changed. hunkproof stamps every hunk with what the agent ran after writing it, and marks the hunks it never ran.**
-0 LLM tokens. Your transcripts never leave your machine.
+**hunkproof stamps every hunk of the diff with what the agent ran after writing it, and marks the hunks it never ran.**
+Reads the Claude Code transcripts already on your disk. 0 LLM tokens, nothing leaves your machine.
 
-![hunkproof HTML report, 9 seconds: 26 hunks, the Unrun chip is pressed and 6 remain, then the page scrolls from the CHANGELOG hunk to the README hunks, each with its diff lines, its edit time, a red unrun badge and no run after the last edit](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.gif)
+On the laptop that built it, 270 of the 392 commits the agent made after editing files in the session (69%) included a file edited after the last run (446 commits in all, 380 transcripts). `npx hunkproof stats` prints yours ([snapshot](https://github.com/JulienAu/hunkproof/blob/main/docs/stats-2026-10-14.md)).
 
-*The HTML report of [`fixtures/unrun-example`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/unrun-example), 9 seconds: the Unrun chip pressed, 26 hunks down to the 6 unrun ones, then a scroll from `CHANGELOG.md +18,3` to `README.md +47` ([still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png)).*
+![hunkproof HTML report, 8 seconds: the Unrun chip pressed, 6 of 26 hunks remain, then a scroll from CHANGELOG.md +18,3 to README.md +31,3, each with its diff lines, its edit time, a red unrun badge and the line "no run after the last edit"](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.gif)
 
-On the laptop that built it, 69% of the agent's commits included a file edited after the last run (270 of 392, 380 transcripts, 18 projects). `npx hunkproof stats` prints yours. [Snapshot](https://github.com/JulienAu/hunkproof/blob/main/docs/stats-2026-10-14.md).
+*[`fixtures/unrun-example`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/unrun-example): the 6 of 26 hunks with no run after their last edit, the README and CHANGELOG lines written after the last `npm test` ([still image](https://raw.githubusercontent.com/JulienAu/hunkproof/main/docs/demo.png)).*
 
 ## Install
 
-Paste into Claude Code: *"Install github.com/JulienAu/hunkproof and run it on this branch"*. Or, from the repository, with Node 22 or later:
-
 ```
 npx hunkproof --pr <n>
+claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof
 ```
 
-Plugin, with the skill, the `/hunkproof:receipt` command and the Stop hook: `claude plugin marketplace add JulienAu/hunkproof && claude plugin install hunkproof@hunkproof`
+Line 1: the CLI, Node 22 or later, from the repository. Line 2: the Claude Code plugin, with the skill, `/hunkproof:receipt` and the Stop hook. Or paste into Claude Code: *"Install github.com/JulienAu/hunkproof and run it on this branch"*; [docs/install/agent.md](https://github.com/JulienAu/hunkproof/blob/main/docs/install/agent.md) is the page it follows.
 
 [![test](https://github.com/JulienAu/hunkproof/actions/workflows/test.yml/badge.svg)](https://github.com/JulienAu/hunkproof/actions/workflows/test.yml)
 
 ## What you get
 
-- One status per hunk: `ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun` or `unattributed`, decided by the last run after the hunk's last edit.
+- One status per hunk: `ran, passed`, `ran, failed`, `ran, outcome not parsed`, `unrun` (no run after its last edit) or `unattributed` (no session edited that file), decided by the last run after the hunk's last edit.
 - Terminal: one row per hunk with the file, the line range, the status and that run's timestamp, runner and outcome.
 - HTML (`--open`): the diff lines, the sentence the agent wrote with the edit when there is one, the rewrites, the timeline of runs.
 - Markdown (`--post`): the unrun hunks with links and the run that decided each hunk, sent to the PR with `gh` after you type `y`.
 - Written to `<repo>/.hunkproof/` (add it to `.gitignore`) and to a git note on the head commit. `npx hunkproof --base main` when there is no PR yet.
+
+## What an unrun hunk looks like
+
+`npx hunkproof --base 559fee6 --head 7fbda28` on the pull request that prepared v0.1, taken before anything else ran: its docs commits edited the README and the CHANGELOG after the last `npm test`. Output kept in [`fixtures/unrun-example`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/unrun-example). Line-matched: the hunk's added lines were found in a session edit; file-level: the file was edited but the lines were not found, so the timing is relative to the file's last edit.
+
+```
+hunkproof · 559fee6...7fbda28 · 20 of 23 line-matched hunks had a run after their last edit (20 passed, 0 failed, 0 outcome not parsed) · 3 file-level (lines not matched to an edit) · 6 unrun · 0 unattributed · 6 sessions · hunkproof used 0 LLM tokens
+```
+
+The 6 unrun rows of the terminal output:
+
+```
+CHANGELOG.md                +18,3  unrun               none after edit at 17:53:47
+README.md                   +9     unrun               none after edit at 17:51:34
+README.md                   +31,3  unrun               none after edit at 17:53:42
+README.md                   +47    unrun (file-level)  none after edit at 17:53:42
+README.md                   +61,0  unrun (file-level)  none after edit at 17:53:42
+README.md                   +72    unrun (file-level)  none after edit at 17:53:42
+```
+
+The 20 other hunks had `npm test` run after them at 17:45:10; the 6 unrun ones (3 line-matched, 3 README hunks at file level) are the lines written after it. The next `npm test` in that session stamps them `ran, passed`: a receipt says what had run when it was written, so take it before the review, not after.
 
 ## Receipt: hunkproof on its own PR
 
@@ -41,21 +61,7 @@ hunkproof · PR #2 · 64 of 64 line-matched hunks had a run after their last edi
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | 68 | 64 | 64 | 0 | 1 | 9 | 3.5 s | 0 |
 
-## What an unrun hunk looks like
-
-`npx hunkproof --base 559fee6 --head 7fbda28` on the pull request that prepared v0.1, taken before anything else ran: its docs commits edited the README and the CHANGELOG after the last `npm test`. Output kept in [`fixtures/unrun-example`](https://github.com/JulienAu/hunkproof/tree/main/fixtures/unrun-example).
-
-```
-hunkproof · 559fee6...7fbda28 · 20 of 23 line-matched hunks had a run after their last edit (20 passed, 0 failed, 0 outcome not parsed) · 3 file-level (lines not matched to an edit) · 6 unrun · 0 unattributed · 6 sessions · hunkproof used 0 LLM tokens
-```
-
-```
-CHANGELOG.md                +18,3  unrun               none after edit at 17:53:47
-README.md                   +9     unrun               none after edit at 17:51:34
-README.md                   +47    unrun (file-level)  none after edit at 17:53:42
-```
-
-The 20 other hunks had `npm test` run after them at 17:45:10; the 6 unrun ones are the lines written after it. The next `npm test` in that session stamps them `ran, passed`: a receipt says what had run when it was written, so take it before the review, not after.
+The 3 file-level hunks are CONTRACT.md edits whose exact lines were not found in an edit; the unattributed hunk is a `.gitignore` line edited before the branch base. A merged PR is diffed from its merge commit and transcript events after the merge are left out.
 
 ## Stop hook
 

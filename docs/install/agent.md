@@ -31,4 +31,4 @@ The plugin also installs a `Stop` hook (`hooks/hooks.json`): each time you are a
 
 ## Uninstall
 
-`claude plugin uninstall hunkproof@hunkproof && claude plugin marketplace remove hunkproof`
+`claude plugin uninstall hunkproof@hunkproof && claude plugin marketplace remove hunkproof`. Claude Code keeps the cached copy under `~/.claude/plugins/cache/hunkproof/`; remove that directory by hand if you want nothing left.
