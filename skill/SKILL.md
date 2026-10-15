@@ -43,6 +43,10 @@ A run "passing" means the command exited 0 with a parsable pass summary. It says
 4. `FILE_LEVEL` hunks: mention that the lines were not matched to an edit, so their status is weaker.
 5. `UNATTRIBUTED` hunks were not written in a Claude Code session on this machine, or were written before the branch base; say so instead of guessing who wrote them.
 
+## The Stop hook
+
+The plugin also runs `hunkproof hook stop` each time you are about to hand back (`hooks/hooks.json`). It diffs the working tree against the base branch, reads this session's transcripts only, and prints `hunkproof: N hunks edited in this session have no run after their last edit` with one `file:line` per hunk when there are any; otherwise it prints nothing. It writes no file and never posts. With `HUNKPROOF_STOP=block` it returns a block decision instead, so you continue: treat the listed hunks as `UNRUN` and follow the steps above, then stop again. The hook never blocks twice in a row (`stop_hook_active`), so a hunk with no runnable check only needs to be named to the human. `HUNKPROOF_STOP=off` turns the hook off; `HUNKPROOF_BASE=<ref>` changes the base it diffs against.
+
 ## Posting to the PR
 
 Never run `--post` without asking the human first, and never pass `--yes` on their behalf. The sequence is: run hunkproof, show the human `.hunkproof/hunkproof.md`, ask whether to post, and only then run `npx hunkproof --pr <n> --post`, which previews the comment and asks `Post this comment to PR #N? [y/N]` for the human to answer. The comment is public: it quotes the agent's commands verbatim (after redaction) and, with `--quotes`, the agent's own words.
