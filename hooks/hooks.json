@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/bin/hunkproof.js", "hook", "stop"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

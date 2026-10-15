@@ -35,6 +35,7 @@ Usage:
             [--evidence FILE] [--diff FILE] [--from-note] [--no-note] [--theme auto|light|dark]
   hunkproof stats [--since DAYS] [--anonymize] [--json]
   hunkproof note show [--head REF] [--json]
+  hunkproof hook stop [--mode report|block|off]   (Claude Code Stop hook: JSON on stdin, JSON on stdout)
 
 Options:
   --pr N            pull request number (metadata via gh); merged PRs are diffed from their merge commit
@@ -56,6 +57,8 @@ Options:
   --since DAYS      stats: only transcripts modified in the last DAYS days (default 90)
   --anonymize       stats: name projects project-01..project-NN (by sessions, descending) instead of their directories
   --projects-dir D  transcript root (default ~/.claude/projects)
+  --mode M          hook stop: report (default, message to the user), block (ask the agent to run the
+                    unrun hunks) or off; the HUNKPROOF_STOP environment variable wins over the flag
   -h, --help        this text
   --version         print the version
 
@@ -75,6 +78,7 @@ const OPTIONS = {
   theme: { type: 'string' },
   'projects-dir': { type: 'string' },
   'window-hours': { type: 'string' },
+  mode: { type: 'string' },
   open: { type: 'boolean', default: false },
   json: { type: 'boolean', default: false },
   post: { type: 'boolean', default: false },
@@ -796,6 +800,21 @@ async function noteCommand(positionals, opts, io) {
   return 0;
 }
 
+// `hunkproof hook stop`: the Claude Code Stop hook. Reads the hook's JSON from
+// stdin, prints one JSON object (or nothing) and always exits 0: a crash of the
+// hook must never keep the agent from stopping. src/hook.js is imported here, at
+// call time, because it reuses the helpers of this module.
+async function hookCommand(positionals, opts, io) {
+  const sub = positionals[1];
+  if (sub !== 'stop') throw new CliError(`unknown hook command "${sub || ''}"; try: hunkproof hook stop`);
+  const { stopHook, parseStdin } = await import('./hook.js');
+  let text = '';
+  for await (const chunk of io.stdin) text += chunk;
+  const result = await stopHook(parseStdin(text), { mode: opts.mode, stderr: io.stderr });
+  if (result.stdout) io.stdout.write(result.stdout);
+  return result.exitCode;
+}
+
 export async function runCli(argv, io = {}) {
   const out = { stdout: io.stdout || process.stdout, stderr: io.stderr || process.stderr, stdin: io.stdin || process.stdin };
   let parsed;
@@ -811,6 +830,7 @@ export async function runCli(argv, io = {}) {
   try {
     if (positionals[0] === 'stats') return await statsCommand(opts, out);
     if (positionals[0] === 'note') return await noteCommand(positionals, opts, out);
+    if (positionals[0] === 'hook') return await hookCommand(positionals, opts, out);
     if (positionals.length) throw new CliError(`unknown command "${positionals[0]}"\n\n${USAGE}`);
     return await mainReport(opts, out);
   } catch (e) {
