@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { renderHtml, escapeHtml } from '../src/render-html.js';
+import { renderHtml, escapeHtml, defPart, defIntro, REPO_URL, TAGLINE, PASS_LEAD } from '../src/render-html.js';
 import { renderMarkdown, renderTerminal as renderTerminalViaMd, MD_MAX_CHARS } from '../src/render-md.js';
 import { renderTerminal, summarySentence, fmtInt, truncate, lastRunCell, runMarkers } from '../src/render-terminal.js';
 import { buildEvidence } from '../src/evidence.js';
@@ -80,9 +80,10 @@ test('html: self-contained, no external resources', () => {
   assert.ok(!/@import/i.test(html));
   assert.ok(!/url\(\s*['"]?https?:/i.test(html));
   assert.ok(!/@font-face/i.test(html), 'no web fonts');
-  // the only http occurrence allowed is the PR link anchor
+  // the only http occurrences allowed are the brand link and the PR link anchor
   const httpHits = html.match(/https?:\/\/[^\s"'<)]+/g) || [];
-  assert.deepEqual([...new Set(httpHits)], [evidence.repo.prUrl]);
+  assert.deepEqual([...new Set(httpHits)], [REPO_URL, evidence.repo.prUrl]);
+  assert.ok(html.includes(`<h1><a href="${REPO_URL}" rel="noopener">hunkproof</a></h1><span class="tagline">${TAGLINE}</span>`));
   assert.ok(html.includes('<style>') && html.includes('<script>'));
 });
 
@@ -113,17 +114,21 @@ test('html: layout pieces are present', () => {
   assert.ok(html.includes('rewritten 2 times'));
   assert.ok(!html.includes('rewritten 1 times'));
   assert.ok(html.includes('class="who">agent:</span>'));
-  assert.ok(html.includes('class="tgt">targeted</span>'));
+  assert.match(html, /class="tgt" title="A run is targeted when[^"]*">targeted<\/span>/, 'targeted pill with its definition as tooltip');
   assert.ok(html.includes('npx hunkproof --pr 42 --base main --head feat/tax-rate-table'));
   assert.ok(html.includes('<span>written 20'), 'the header says written, not generated');
   assert.ok(!/\bgenerated\b/.test(html), 'the HTML has no "generated"');
   assert.ok(html.includes(LABEL));
   assert.ok(html.includes('At API list prices'));
   assert.ok(!html.includes('List-price equivalent'));
-  // the edit tag names the session and tool of the edit that defines lastEdit
-  assert.ok(html.includes('edit 09:25:19 · 5b1c7d2e Bash'), 'edit tag with session and tool');
-  for (const k of Object.keys(evidence.definitions)) assert.ok(html.includes(`<dt>${k}</dt>`));
-  for (const s of ['RUN_PASS', 'RUN_FAIL', 'RUN_UNPARSED', 'UNRUN', 'UNATTRIBUTED']) assert.ok(html.includes(`<span class="badge" data-s="${s}"`));
+  // the edit tag shows the time; session and tool of the edit that defines lastEdit go in its tooltip
+  assert.ok(html.includes('title="last agent edit of these lines: 09:25:19 UTC · session 5b1c7d2e · Bash">edited 09:25:19</span>'), 'edit tag with session and tool in the title');
+  // the status badge comes first in the hunk header, links to the status definition,
+  // and its tooltip names the status by its label, with the rule that decides it in front
+  assert.match(html, /<div class="hunkhead"><a class="badge" href="#def-status" data-s="UNRUN" title="[^"]+">unrun<\/a><span class="range mono">/);
+  for (const k of Object.keys(evidence.definitions)) assert.ok(html.includes(`<dt id="def-${k}">${k}</dt>`));
+  for (const s of ['RUN_PASS', 'RUN_FAIL', 'RUN_UNPARSED', 'UNRUN', 'UNATTRIBUTED']) assert.ok(html.includes(`<a class="badge" href="#def-status" data-s="${s}"`));
+  assert.ok(!/title="[^"]*\b(RUN_PASS|RUN_FAIL|RUN_UNPARSED|UNRUN|MATCHED|FILE_LEVEL):/.test(html), 'no tooltip shows a case key');
   assert.ok(html.includes('ran, failed') && html.includes('ran, outcome not parsed') && html.includes('ran, passed'));
   // added/removed lines land in coloured spans
   assert.ok(html.includes('<span class="l add"><span class="g">+</span>'));
@@ -228,8 +233,8 @@ test('markdown and html: other-checkout and other-session runs are marked; termi
   const md = renderMarkdown(ev);
   assert.ok(md.includes('other checkout') === false, 'the deciding run is the same-checkout one');
   const html = renderHtml(ev);
-  assert.ok(html.includes('<span class="tgt other">other checkout</span>'));
-  assert.ok(html.includes('<span class="tgt other">other session</span>'));
+  assert.match(html, /<span class="tgt other"(?: title="[^"]*")?>other checkout<\/span>/);
+  assert.match(html, /<span class="tgt other"(?: title="[^"]*")?>other session<\/span>/);
   assert.equal(runMarkers(h, h.runsAfter[0]), ' (other checkout) (other session)');
   assert.equal(runMarkers(h, h.runsAfter[1]), ' (targeted)');
   // only an other-checkout run after the edit: the status cell says so
@@ -284,7 +289,8 @@ test('vocabulary: tool strings stay clean when every data field is a sentinel', 
     repo: { root: `/repo/${DATA}`, remote: `git@github.com:${DATA}/${DATA}.git`, base: DATA, head: DATA, prNumber: 7, prUrl: `https://github.com/${DATA}/${DATA}/pull/7` },
     sessions: [{ sessionId: DATA, path: `/home/x/${DATA}.jsonl`, firstTs: '2026-10-14T09:00:00.000Z', lastTs: '2026-10-14T10:30:00.000Z', versions: [DATA], models: [DATA], toolCalls: 1, edits: 1, shellEdits: 1, runs: 1 }],
     hunks: [
-      hunk('a', 'MATCHED', 'RUN_PASS', [run]),
+      // 5 runs and 45 lines: the folded run list and the folded diff render too
+      hunk('a', 'MATCHED', 'RUN_PASS', Array.from({ length: 5 }, () => run), { added: Array.from({ length: 45 }, () => DATA) }),
       hunk('b', 'MATCHED', 'RUN_FAIL', [{ ...run, outcome: 'fail' }]),
       hunk('c', 'MATCHED', 'RUN_UNPARSED', [{ ...run, outcome: 'unparsed', summary: null, otherCheckout: true, targeted: false }]),
       hunk('d', 'FILE_LEVEL', 'UNRUN', []),
@@ -294,7 +300,11 @@ test('vocabulary: tool strings stay clean when every data field is a sentinel', 
     usage: { ...summarizeUsage([{ type: 'usage', messageId: 'm', requestId: 'r', usage: { model: DATA, input: 1, output: 1, cacheWrite: 0, cacheRead: 0 } }]) },
     generatedAt: '2026-10-14T11:00:00.000Z', version: '0.1.0', home: '/home/x',
   });
-  const outputs = [renderHtml(ev), renderHtml(ev, { theme: 'dark' }), renderMarkdown(ev), renderMarkdown(ev, { quotes: true, blobBase: 'https://example.invalid/b' }), renderTerminal(ev)];
+  // the same diff with every hunk passed renders the pass lead
+  const allPass = { ...ev, hunks: ev.hunks.map((h) => (h.status === 'UNATTRIBUTED' ? h : { ...h, status: 'RUN_PASS' })) };
+  const outputs = [renderHtml(ev), renderHtml(ev, { theme: 'dark' }), renderHtml(allPass), renderMarkdown(ev), renderMarkdown(ev, { quotes: true, blobBase: 'https://example.invalid/b' }), renderTerminal(ev)];
+  assert.ok(outputs[0].includes('more runs after the last edit') && outputs[0].includes('show all 46 lines'), 'the fold strings are rendered');
+  assert.ok(outputs[2].includes(PASS_LEAD), 'the pass lead is rendered');
   const re = /\b(tested|verified|covered)\b|proof that it works/i;
   for (const out of outputs) {
     assert.doesNotMatch(out, re);
@@ -352,13 +362,164 @@ test('renderers tolerate an empty diff-only evidence', () => {
   };
   const html = renderHtml(ev);
   assert.ok(html.includes('0 of 0'));
-  assert.ok(!/https?:\/\//.test(html));
+  assert.ok(!/https?:\/\//.test(html.split(REPO_URL).join('')), 'no URL but the brand link');
+  assert.ok(html.includes('<p class="lead">No hunks in this diff.</p>'));
   const md = renderMarkdown(ev);
   assert.ok(md.includes('No unrun hunks'));
   assert.ok(md.includes('`npx hunkproof --base main --head HEAD`'));
   const term = renderTerminal(ev);
   assert.ok(term.includes('main...HEAD'));
   assert.ok(term.includes('(no hunks in diff)'));
+});
+
+test('html: the lead shows unrun first, then failed, as figures; the rest goes to the sub-line', () => {
+  const html = renderHtml(evidence);
+  const lead = html.slice(html.indexOf('<div class="lead">'), html.indexOf('<p class="sub">'));
+  // the unrun figure splits line-matched from file-level, so it adds up with the sub-line
+  assert.match(lead, /^<div class="lead"><span class="fig" data-s="UNRUN" title="[^"]*"><b>3<\/b>unrun hunks \(2 line-matched, 1 file-level\)<\/span><span class="fig" data-s="RUN_FAIL" title="[^"]*"><b>1<\/b>hunk ran, failed<\/span><span class="fig" data-s="RUN_UNPARSED" title="[^"]*"><b>1<\/b>hunk ran, outcome not parsed<\/span><\/div>/);
+  const sub = html.slice(html.indexOf('<p class="sub">'), html.indexOf('</p>', html.indexOf('<p class="sub">')));
+  assert.ok(!sub.includes('<b>'), 'only the lead figures are bold');
+  // one term for the matched count on every line: line-matched
+  for (const bit of ['5 of 7 <a class="term" href="#def-attribution"', '>line-matched hunks</a>', '(3 passed, 1 failed, 1 outcome not parsed)', '>file-level</a>', '>unattributed</a>', '2 sessions', 'hunkproof used 0 LLM tokens']) assert.ok(sub.includes(bit), bit);
+  assert.ok(!html.includes(PASS_LEAD));
+  // the full contract sentence stays in the footer
+  assert.ok(html.includes(`<p class="fine">Headline: ${escapeHtml(SENTENCE)}.</p>`));
+});
+
+test('html: no unrun, failed or unparsed hunk gives the one-line pass lead', () => {
+  const ev = load();
+  const set = (pred, status) => { for (const h of ev.hunks) if (pred(h)) h.status = status; };
+  set((h) => ['UNRUN', 'RUN_FAIL', 'RUN_UNPARSED'].includes(h.status), 'RUN_PASS');
+  const html = renderHtml(ev);
+  assert.ok(html.includes(`<p class="lead pass">${PASS_LEAD}</p>`));
+  assert.ok(!html.includes('<span class="fig"'));
+  // failed alone leads with the failed figure: no "0 unrun" in the warning colour
+  const failOnly = load();
+  for (const h of failOnly.hunks) if (h.status === 'UNRUN' || h.status === 'RUN_UNPARSED') h.status = 'RUN_PASS';
+  const f = renderHtml(failOnly);
+  assert.match(f, /<div class="lead"><span class="fig" data-s="RUN_FAIL"[^>]*><b>1<\/b>hunk ran, failed<\/span><\/div>/);
+  assert.ok(!f.includes('class="fig" data-s="UNRUN"') && !f.includes('<b>0</b>'));
+  // a FILE_LEVEL hunk that ran and failed counts in the figure, as it does in the chip
+  const fl = load();
+  for (const h of fl.hunks) if (h.status !== 'UNATTRIBUTED') h.status = 'RUN_PASS';
+  fl.hunks.find((h) => h.attribution === 'FILE_LEVEL').status = 'RUN_FAIL';
+  fl.summary = { ...fl.summary, unrun: 0, runFail: 0, runUnparsed: 0 };
+  const flHtml = renderHtml(fl);
+  assert.ok(!flHtml.includes(PASS_LEAD));
+  assert.ok(flHtml.includes('<b>1</b>hunk ran, failed</span>') && flHtml.includes('Ran, failed<span class="n">1</span>'));
+});
+
+test('html: outcomes not parsed are never good news', () => {
+  const ev = load();
+  for (const h of ev.hunks) if (h.status !== 'UNATTRIBUTED') h.status = 'RUN_UNPARSED';
+  const html = renderHtml(ev);
+  assert.ok(!html.includes(PASS_LEAD));
+  assert.match(html, /<div class="lead"><span class="fig" data-s="RUN_UNPARSED"[^>]*><b>8<\/b>hunks ran, outcome not parsed<\/span><\/div>/);
+  // one unparsed among passes still blocks the pass lead
+  const one = load();
+  for (const h of one.hunks) if (h.status === 'UNRUN' || h.status === 'RUN_FAIL') h.status = 'RUN_PASS';
+  assert.ok(!renderHtml(one).includes(PASS_LEAD));
+});
+
+test('html: a diff with only file-level matches says so, not "no hunk matched"', () => {
+  const ev = load();
+  ev.hunks = ev.hunks.filter((h) => h.attribution === 'FILE_LEVEL').map((h) => ({ ...h, status: 'RUN_PASS' }));
+  ev.summary = { ...ev.summary, matched: 0, attributed: 0, fileLevel: ev.hunks.length, unrun: 0, runFail: 0, runUnparsed: 0 };
+  const html = renderHtml(ev);
+  assert.ok(html.includes('<p class="lead">No hunk matched an agent edit line by line; 1 matched at file level.</p>'));
+  ev.hunks = ev.hunks.map((h) => ({ ...h, status: 'UNRUN', runsAfter: [] }));
+  assert.match(renderHtml(ev), /<b>1<\/b>unrun hunk \(file-level\)<\/span>/);
+});
+
+test('html: tooltips name statuses and attributions by their label, terms link to the footer', () => {
+  const ev = JSON.parse(readFileSync(path.join(here, '..', 'fixtures', 'unrun-example', 'evidence.json'), 'utf8'));
+  const html = renderHtml(ev);
+  assert.match(html, /<a class="badge" href="#def-status" data-s="UNRUN" title="Status: Decided by [^"]+ unrun: no run at all after the last edit\.">unrun<\/a>/);
+  assert.match(html, /<a class="badge" href="#def-status" data-s="RUN_PASS" title="Status: [^"]+ ran, passed: that run passed\.">/);
+  assert.match(html, /title="line-matched: most of the added lines[^"]*">line-matched hunks<\/a>/);
+  assert.ok(!/title="[^"]*\b(RUN_PASS|RUN_FAIL|RUN_UNPARSED|UNRUN|MATCHED|FILE_LEVEL|UNATTRIBUTED)[ :(]/.test(html), 'no tooltip shows a case key');
+  for (const k of ['attribution', 'status']) assert.ok(html.includes(`<dt id="def-${k}">`), k);
+  assert.ok(html.includes('<a class="tgt dec" href="#def-status" title="Status: Decided by'));
+  // 6 unrun = 3 line-matched + 3 file-level, next to "20 of 23 line-matched hunks"
+  assert.ok(html.includes('<b>6</b>unrun hunks (3 line-matched, 3 file-level)</span>'));
+  assert.ok(html.includes('20 of 23 <a class="term" href="#def-attribution"'));
+});
+
+test('html: a run from another checkout or without a parsed outcome never carries "decides status"', () => {
+  const ev = load();
+  const h = ev.hunks.find((x) => x.status === 'RUN_PASS');
+  const base = h.runsAfter[0];
+  h.runsAfter = [{ ...base, otherCheckout: true, targeted: false, outcome: 'pass' }];
+  h.status = 'RUN_UNPARSED';
+  const u = ev.hunks.find((x) => x.id === 'src/tax.js:22');
+  const html = renderHtml(ev);
+  const art = (id) => { const a = html.slice(html.indexOf(`id="h-${id.replace(/[^A-Za-z0-9_-]+/g, '-')}"`)); return a.slice(0, a.indexOf('</article>')); };
+  assert.ok(!art(h.id).includes('decides status'));
+  assert.ok(art(h.id).includes('other checkout'));
+  assert.ok(!art(u.id).includes('decides status'), 'an unparsed run lists, it does not decide');
+  assert.ok(art(ev.hunks.find((x) => x.status === 'RUN_FAIL').id).includes('decides status'));
+});
+
+test('html: defPart and defIntro cut the KEY: cases out of a definition', () => {
+  const status = 'Decided by the last run. RUN_PASS: that run passed. RUN_FAIL: it failed ("ran, failed"). UNRUN: no run at all after the last edit.';
+  assert.equal(defIntro(status), 'Decided by the last run.');
+  assert.equal(defPart(status, 'RUN_FAIL'), 'RUN_FAIL: it failed ("ran, failed").');
+  assert.equal(defPart(status, 'UNRUN', { intro: true }), 'Decided by the last run. UNRUN: no run at all after the last edit.');
+  assert.equal(defPart(status, 'UNATTRIBUTED'), '');
+  const attribution = 'MATCHED (line-matched): most lines appear. FILE_LEVEL: the file only.';
+  assert.equal(defPart(attribution, 'MATCHED'), 'MATCHED (line-matched): most lines appear.');
+  assert.equal(defPart(attribution, 'FILE_LEVEL'), 'FILE_LEVEL: the file only.');
+  assert.equal(defIntro(attribution), '');
+  assert.equal(defPart(undefined, 'X'), '');
+  assert.equal(defIntro(null), '');
+});
+
+test('html: files, run lists and long diffs fold with <details> and keep every row', () => {
+  const ev = load();
+  const fail = ev.hunks.find((h) => h.status === 'RUN_FAIL');
+  const base = fail.runsAfter[0];
+  fail.runsAfter = Array.from({ length: 7 }, (_, i) => ({ ...base, ts: `2026-10-13T09:4${i}:00.000Z`, outcome: i === 2 ? 'fail' : 'pass', targeted: i === 2, summary: `run ${i}` }));
+  fail.added = Array.from({ length: 45 }, (_, i) => `line ${i}`);
+  fail.removed = [];
+  const html = renderHtml(ev);
+  const art = html.slice(html.indexOf(`id="h-${fail.id.replace(/[^A-Za-z0-9_-]+/g, '-')}"`));
+  const one = art.slice(0, art.indexOf('</article>'));
+  // the deciding run (the targeted fail, index 2) and the two latest others are open, in time order
+  const open = one.slice(one.indexOf('<ol class="runs" aria-label'), one.indexOf('</ol>'));
+  assert.deepEqual([...open.matchAll(/>run (\d)</g)].map((m) => m[1]), ['2', '5', '6']);
+  assert.ok(open.includes('<li class="dec">') && open.includes('decides status'));
+  assert.ok(one.includes('<details class="more"><summary><span class="c">4 more runs after the last edit</span>'));
+  assert.equal((one.match(/<li[ >]/g) || []).length, 7, 'every run stays in the page');
+  // 45 lines: 20 open, 25 folded, none lost
+  assert.ok(one.includes('show all 45 lines (25 more)'));
+  assert.equal((one.match(/<span class="l add">/g) || []).length, 45);
+  // a file whose hunks all passed starts closed, the others open
+  const sections = [...html.matchAll(/<section class="file" data-file="([^"]+)" data-open="([01])"><details( open)?>/g)];
+  assert.equal(sections.length, 3);
+  for (const [, file, flag, openAttr] of sections) {
+    const statuses = ev.hunks.filter((h) => h.relFile === file).map((h) => h.status);
+    const allPass = statuses.every((s) => s === 'RUN_PASS');
+    assert.equal(flag, allPass ? '0' : '1', file);
+    assert.equal(Boolean(openAttr), !allPass, file);
+  }
+  assert.doesNotMatch(html, /\b(tested|verified|covered)\b|proof that it works/i);
+  // short run lists and short diffs do not fold
+  assert.equal((renderHtml(load()).match(/<details class="more">/g) || []).length, 0);
+});
+
+test('html: no empty intent note, chips explain themselves, footer folds its definitions', () => {
+  const html = renderHtml(evidence);
+  assert.ok(!html.includes('no agent text in this turn'));
+  assert.ok(!html.includes('aside class="note none'));
+  const notes = evidence.hunks.filter((h) => h.status !== 'UNATTRIBUTED' && h.intent && h.intent.text).length;
+  assert.equal((html.match(/<aside class="note mono">/g) || []).length, notes);
+  assert.equal((html.match(/<div class="grid solo">/g) || []).length, evidence.hunks.length - notes);
+  for (const [f, none] of [['all', 'No hunks in this diff.'], ['unrun', 'No unrun hunks.'], ['fail', 'No hunk ran and failed.'], ['unparsed', 'No hunk with an outcome not parsed.'], ['unattributed', 'No unattributed hunks.']]) {
+    assert.match(html, new RegExp(`data-filter="${f}" data-none="${none.replace(/\./g, '\\.')}" aria-pressed="(true|false)" title="[^"]+"`), f);
+  }
+  assert.ok(html.includes('<details class="defs"><summary><h3>Definitions</h3></summary><dl>'));
+  assert.ok(!html.includes('Agent sessions: '), 'the cost line is not repeated under the receipt');
+  assert.ok(html.includes('<th class="path">transcript</th>'));
 });
 
 test('helpers', () => {

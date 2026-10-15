@@ -2,6 +2,17 @@
 
 All notable changes to hunkproof are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- HTML report: the top now leads with the unrun, failed and outcome-not-parsed counts that are above 0, as large figures counted the same way as the filter chips; the unrun figure says how many of them are line-matched and how many file-level. The other numbers sit on one smaller line under them, with "line-matched", "file-level" and "unattributed" linking to their definition. With nothing unrun, failed or unparsed the lead is one line, "Every line-matched hunk had a run after its last edit." The full headline sentence moved to the footer. On a phone the refs and the date come after the figures.
+- HTML report: only the filter chips stay pinned while scrolling (50 px instead of 104 px on desktop and 209 px on a phone); chips are 32 px tall and scroll sideways in one row on a phone; "No hunk matches this filter" names the filter ("No unrun hunks.").
+- HTML report: each file is a collapsible section, closed when every hunk of the file passed; under a hunk the run that decided its status and the two latest other runs are listed, the others fold behind "N more runs after the last edit"; diffs over 40 lines show 20 and fold the rest. Every run and every line stays in the page, and the self-pr receipt (68 hunks) is now a few screens tall instead of a few hundred. A filter opens the files that hold a match and scrolls back to the top of the list; going back to All closes only the files the filter opened.
+- HTML report: the status badge comes first in the hunk header and the edit tag reads "edited HH:MM:SS" (session and tool in its tooltip); badges, chips, pills and the lead carry their definition as a tooltip, worded with the label the page shows ("ran, passed: ...") rather than the status key, and the badges and the "decides status" pill link to the status definition; that pill only marks a run whose pass or fail outcome set the status; the "no agent text in this turn" note is gone and the diff takes the full width; on desktop run rows stay on one line with the command and summary cut short (full text in the tooltip), on a phone they wrap over up to three lines; on a phone diff lines wrap at spaces with the gutter colour kept on every line, and the transcript column is hidden. Fold toggles are 32 px tall and file headers, chips and links get a visible focus ring.
+- HTML report: the footer no longer repeats the cost line under the receipt, and the definitions fold behind a "show" toggle. The "hunkproof" title links to the repository, with the line "Run receipt for an agent-written PR".
+- HTML report: light theme colours darkened so small text passes WCAG AA (secondary text, the passed and unrun badges, the outcome-not-parsed badge).
+
 ## [0.2.0] - 2026-10-15
 
 ### Added
